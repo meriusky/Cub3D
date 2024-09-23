@@ -2,26 +2,30 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-// funcion para comprobar que el archivo no sea un trolleo,
-// es decir, que sea algo.cub y no cosas rarars, esta en proceso
-void	map_name_rules(char **argv)
+int	map_name_rules(char **argv)
 {
 	int name_len;
 	name_len = strlen(argv[1]);
 
 	if(name_len >= 5)
 	{
-			if(argv[1][name_len] == 'b'||argv[1][name_len - 1] == 'u'|| argv[1][name_len] == 'b'||
+			if(argv[1][name_len - 1] == 'b'&& argv[1][name_len - 2] == 'u'&& 
+							argv[1][name_len - 3] == 'c' && argv[1][name_len - 4] == '.')
+				return(0);
+			else
+			{
+					printf("ERROR: just files .cub allowed\n");
+					return(1);
+			}
+
 	}
 	else
 	{
 		printf("ERROR: file not valid\n");
-		exit(1);
+		return(1);
 	}
-
-
-
 }
+
 int main(int argc, char **argv)
 {
 	int fd;
@@ -29,8 +33,11 @@ int main(int argc, char **argv)
 
 	if(argc == 2)
 	{
-		map_name_rules(argv);
-		fd = open("test.txt", O_RDONLY);
+		if(map_name_rules(argv) == 0)
+			fd = open(argv[1], O_RDONLY);
+		//	printf("todo bien\n");
+		else
+				exit(1);
 		line = get_next_line(fd);
 		printf("%s", line);
 		free(line);
