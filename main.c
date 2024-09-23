@@ -1,11 +1,9 @@
-#include "get_next_line.h"
-#include <stdio.h>
-#include <fcntl.h>
+#include "parsing.h"
 
 int	map_name_rules(char **argv)
 {
 	int name_len;
-	name_len = strlen(argv[1]);
+	name_len = ft_strlen(argv[1]);
 
 	if(name_len >= 5)
 	{
@@ -44,17 +42,5 @@ int main(int argc, char **argv)
 	}
 	else
 			printf("ERROR: just the executable and map name allowed\n");
-//	printf("\n");
-//	line = get_next_line(fd);
-//	printf("%s", line);
-//	free(line);
-//	line = get_next_line(fd);
-//	printf("%s", line);
-//	free(line);
-//	line = get_next_line(fd);
-//	printf("%s", line);
-//	free(line);
-//	line = get_next_line(fd);
-//	printf("%s", line);
 	return(0);
 }

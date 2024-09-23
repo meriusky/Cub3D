@@ -6,7 +6,7 @@
 #    By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 14:41:41 by mehernan          #+#    #+#              #
-#    Updated: 2024/09/19 16:04:31 by mehernan         ###   ########.fr        #
+#    Updated: 2024/09/23 13:38:51 by mehernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,22 +14,25 @@ NAME = parsing_cub3D
 
 CC = gcc
 
-SRCS = main.c get_next_line.c get_next_line_utils.c
+SRCS = main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 OBJS = $(SRCS:.c=.o)
 DEPS = $(SRCS:.c=.d)
 
 BUFFER_SIZE = 0
-CFLAGS = -Werror -Wextra -Wall -MMD -D BUFFER_SIZE=$(BUFFER_SIZE) 
+CFLAGS = -Werror -Wextra -Wall -MMD -D BUFFER_SIZE=$(BUFFER_SIZE) -I libft -I get_next_line
+
+LDFLAGS = -Llibft #-l get_next_line -l ft
 
 LIBFT_PATH = libft/libft.a
+GNL_PATH = get_next_line/get_next_line.c
 
 all: 
 	@$(MAKE) $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
 	@echo "Parsing compiled!"
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $(NAME)
 
 $(LIBFT):
 	@make -C libft
