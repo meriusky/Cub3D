@@ -6,7 +6,7 @@
 #    By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 14:41:41 by mehernan          #+#    #+#              #
-#    Updated: 2024/09/23 13:38:51 by mehernan         ###   ########.fr        #
+#    Updated: 2024/09/23 14:20:07 by mehernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,11 +27,15 @@ LDFLAGS = -Llibft #-l get_next_line -l ft
 LIBFT_PATH = libft/libft.a
 GNL_PATH = get_next_line/get_next_line.c
 
+# Color definitions
+GREEN = \033[32m
+RESET = \033[0m
+
 all: 
 	@$(MAKE) $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	@echo "Parsing compiled!"
+	@echo "$(GREEN)Parsing compiled!🩷$(RESET)"
 	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $(NAME)
 
 $(LIBFT):
