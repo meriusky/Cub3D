@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:46:16 by mehernan          #+#    #+#             */
-/*   Updated: 2024/09/23 13:04:28 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/09/30 17:41:59 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"

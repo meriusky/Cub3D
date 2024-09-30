@@ -6,7 +6,7 @@
 #    By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 14:41:41 by mehernan          #+#    #+#              #
-#    Updated: 2024/09/23 14:20:07 by mehernan         ###   ########.fr        #
+#    Updated: 2024/09/30 18:04:11 by mehernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS = main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 OBJS = $(SRCS:.c=.o)
 DEPS = $(SRCS:.c=.d)
 
-BUFFER_SIZE = 0
+BUFFER_SIZE = 1000
 CFLAGS = -Werror -Wextra -Wall -MMD -D BUFFER_SIZE=$(BUFFER_SIZE) -I libft -I get_next_line
 
 LDFLAGS = -Llibft #-l get_next_line -l ft
