@@ -6,7 +6,7 @@
 #    By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 14:41:41 by mehernan          #+#    #+#              #
-#    Updated: 2024/09/30 18:04:11 by mehernan         ###   ########.fr        #
+#    Updated: 2024/10/02 17:04:15 by mehernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = parsing_cub3D
 
 CC = gcc
 
-SRCS = main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+SRCS = main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c filter.c
 
 OBJS = $(SRCS:.c=.o)
 DEPS = $(SRCS:.c=.d)

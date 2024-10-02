@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:22:48 by mehernan          #+#    #+#             */
-/*   Updated: 2024/09/30 20:14:06 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:06:14 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -38,6 +38,7 @@ int	main(int argc, char **argv)
 {
 	int		fd;
 	char	*line;
+	t_mapinfo mapinfo;
 
 	if (argc == 2)
 	{
@@ -49,6 +50,7 @@ int	main(int argc, char **argv)
 		{
 			line = get_next_line(fd);
 			printf("%s", line);
+			sorter(line, &mapinfo);
 			free(line);
 		}
 	}
@@ -56,7 +58,7 @@ int	main(int argc, char **argv)
 		printf("ERROR: just the executable and map name allowed\n");
 	return (0);
 }
-// o que tocaria ahora es ir leyendo el archivo y cada linea
+// lo que tocaria ahora es ir leyendo el archivo y cada linea
 // que se coge debe pasar un filtro. Miramos si en NO SO o lo
 // que sea y la metemos donde corresconda de la lista.
 // si se hace eso se debe tener en cuenta que como es una lista
