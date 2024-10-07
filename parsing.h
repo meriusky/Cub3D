@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:23:56 by mehernan          #+#    #+#             */
-/*   Updated: 2024/10/02 18:33:58 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/10/07 18:30:44 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_mapinfo
 }	t_mapinfo;
 
 void	sorter(char *line, t_mapinfo *mapinfo);
+void	sorting_for_sorte(char *line, t_mapinfo mapinfo, int i);
+
 
 #endif
 
