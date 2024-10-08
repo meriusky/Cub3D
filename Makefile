@@ -14,15 +14,18 @@ NAME = parsing_cub3D
 
 CC = gcc
 
-SRCS = main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c filter.c store_mapinfo.c store_colors.c
+SRCS = main.c get_next_line/get_next_line.c \
+	   get_next_line/get_next_line_utils.c filter.c store_mapinfo.c \
+	   store_colors.c
 
 OBJS = $(SRCS:.c=.o)
 DEPS = $(SRCS:.c=.d)
 
 BUFFER_SIZE = 1000
-CFLAGS = -Werror -Wextra -Wall -MMD -D BUFFER_SIZE=$(BUFFER_SIZE) -I libft -I get_next_line
+CFLAGS = -Werror -Wextra -Wall -MMD -D BUFFER_SIZE=$(BUFFER_SIZE) -I libft -I \
+		 get_next_line
 
-LDFLAGS = -Llibft #-l get_next_line -l ft
+LDFLAGS = -Llibft -l ft #-l get_next_line -l ft
 
 LIBFT_PATH = libft/libft.a
 GNL_PATH = get_next_line/get_next_line.c
@@ -34,11 +37,11 @@ RESET = \033[0m
 all: 
 	@$(MAKE) $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
+$(NAME): libft  $(OBJS)
 	@echo "$(GREEN)Parsing compiled!🩷$(RESET)"
 	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $(NAME)
 
-$(LIBFT):
+libft: 
 	@make -C libft
 
 clean:
@@ -53,4 +56,4 @@ re: fclean all
 
 -include $(DEPS)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft

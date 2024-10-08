@@ -46,12 +46,16 @@ int	main(int argc, char **argv)
 			fd = open(argv[1], O_RDONLY);
 		else
 			exit(1);
+		line = get_next_line(fd);
+//esta parafernalia es porque como line no tiene valos hasta llegar al while 
+//puede dar problemas con segfaults y eso		
 		while (line != NULL)
 		{
-			line = get_next_line(fd);
 			printf("%s", line);
 			sorter(line, &mapinfo);
 			free(line);
+			line = get_next_line(fd);
+
 		}
 	}
 	else
