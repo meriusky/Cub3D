@@ -39,6 +39,7 @@ int	main(int argc, char **argv)
 	int		fd;
 	char	*line;
 	t_mapinfo mapinfo;
+//	int	len_line;
 
 	if (argc == 2)
 	{
@@ -47,21 +48,33 @@ int	main(int argc, char **argv)
 		else
 			exit(1);
 		line = get_next_line(fd);
+//		len_line = ft_strlen(line);
+//		printf("%d\n", len_line);
+//		line[len_line + 1] = '\0';
 //esta parafernalia es porque como line no tiene valos hasta llegar al while 
 //puede dar problemas con segfaults y eso		
 		while (line != NULL)
 		{
-			printf("%s", line);
+			printf("main: %s", line);
 			sorter(line, &mapinfo);
 			free(line);
-			line = get_next_line(fd);
-
+			line = get_next_line(fd);// possible causante del error💀
+//			len_line = ft_strlen(line);
+//			line[len_line + 1] = '\0';
 		}
 	}
 	else
 		printf("ERROR: just the executable and map name allowed\n");
 	return (0);
 }
+//ERROR CON WHILE INFINITO EN STORE_COLORS💀
+//Creo que el problema es que al llamar en el while del main al get_next line
+//y no poder poner como ultimo char un /0 la sting se queda sin cierre, por no
+//hablar de que no he reservado ninguna memoria de nada y eso puede ser un circo, 
+//aunque creo que daria seg fault y directamente no compilaria si fuera el caso.
+//Veremos como soluciono esta mierda. Mirar comentario sorting_colors para mas
+//info del error.
+//
 // lo que tocaria ahora es ir leyendo el archivo y cada linea
 // que se coge debe pasar un filtro. Miramos si en NO SO o lo
 // que sea y la metemos donde corresconda de la lista.

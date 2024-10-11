@@ -36,6 +36,7 @@ void	rgb_checker(char *line, int i)
 		if(line[i] == ',' && (j >= 1 && j <= 3) && (line[i+1] >= '0' || line[i+1] <= 2))
 		{
 			rgb = ft_atoi(str);
+			printf("%d\n", rgb);
 			str[i] = '\0';
 			if((rgb >= 0 && rgb <= 255) && check != 2)
 			{
@@ -90,7 +91,6 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 
 	check = 0;
 	i = 0;
-//	printf("🚨entra a sorter\n");
 	while(line[i])
 	{
 		if(line[i] == 'S' || line[i] == 'N' || line[i] == 'E' || line[i] == 'W'
