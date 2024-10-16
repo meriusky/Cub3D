@@ -48,7 +48,8 @@ void	ceiling_color(char *line, t_mapinfo *mapinfo, int i)
 				printf("😵‍💫\n");
 				i++;
 			}
-			if (line[i] >= '0' && line[i] <= '9')
+			printf("antes del if del rgb");
+			if (line[i] >= 48 && line[i] <= 57)
 			{
 				printf("antes de entrar rgb checker\n");
 				rgb_checker(line, i);
