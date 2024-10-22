@@ -6,7 +6,7 @@
 #    By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 14:41:41 by mehernan          #+#    #+#              #
-#    Updated: 2024/10/22 11:12:18 by mehernan         ###   ########.fr        #
+#    Updated: 2024/10/22 11:18:57 by mehernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ DEPS = $(SRCS:.c=.d)
 
 BUFFER_SIZE = 1000
 CFLAGS = -Werror -Wextra -Wall -MMD -D BUFFER_SIZE=$(BUFFER_SIZE) 
-#LDFLAGS = -Llibft -l ft #-l get_next_line -l ft
+LDFLAGS = -Llibft -l ft #-l get_next_line -l ft
 
 LIBFT_PATH = libft/libft.a
 GNL_PATH = get_next_line/get_next_line.c

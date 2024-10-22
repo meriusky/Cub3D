@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:09:04 by mehernan          #+#    #+#             */
-/*   Updated: 2024/10/16 13:28:06 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/10/22 11:20:43 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -37,7 +37,7 @@ void	rgb_checker(char *line, int i)
 
 		if(line[i] == ',' && (j >= 1 && j <= 3) && (line[i+1] >= '0' || line[i+1] <= 2))
 		{
-			rgb = /*ft_*/atoi(str);//💀Undifined reference to ft_atoi⚠️
+			rgb = ft_atoi(str);
 			printf("%d\n", rgb);
 			str[i] = '\0';
 			if((rgb >= 0 && rgb <= 255) && check != 2)
