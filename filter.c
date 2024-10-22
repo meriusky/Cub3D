@@ -6,13 +6,13 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:09:04 by mehernan          #+#    #+#             */
-/*   Updated: 2024/10/22 11:20:43 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:36:03 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
 #include "libft/libft.h"
 
-void	rgb_checker(char *line, int i)
+int	rgb_checker(char *line, int i)
 {
 	char str[4];
 	int check;
@@ -21,51 +21,62 @@ void	rgb_checker(char *line, int i)
 
 	j = 0;
 	check = 0;
+	printf("entro rgbcheck🧣\n");
 	while(line[i] != '\n')
 	{
-		if(line[i] >= '0' && line[i] <= '9')
+		while(line[i] >= '0' && line[i] <= '9')
 		{
+			printf("j: %d\n", j);
 			if(j == 3)
 			{
-				printf("ERROR: color with more dan 3 digits\n");
+				printf("ERROR: color with more dan 3 digits🧣\n");
 				exit(1);
 			}
+//			printf("rgbchecker char🧣: %c\n", line[i]);
 			str[j] = line[i];
+//			printf("rgbchecker new char🧣: %c\n", str[j]);
 			i++;
 			j++;
 		}
-
-		if(line[i] == ',' && (j >= 1 && j <= 3) && (line[i+1] >= '0' || line[i+1] <= 2))
+		printf("before , if🧣: %s\n", str);
+		if((line[i] == ',' || line[i] == '\n') && (j >= 1 && j <= 3) && (line[i+1] >= '0' || line[i+1] <= 2))
 		{
+			printf("if de la coma🏁: %c\n", line[i]);
+			str[j] = '\0';
 			rgb = ft_atoi(str);
 			printf("%d\n", rgb);
-			str[i] = '\0';
-			if((rgb >= 0 && rgb <= 255) && check != 2)
+			if((rgb >= 0 && rgb <= 255) && check != 3)
 			{
 				str[0] = '\0';
 				rgb = 0;
 				j = 0;		
 				i++;
 				check++;
+				printf("all done perfect✅\n");
+				if(check == 3)
+				{
+					printf("✅COLOR CORRECT✅\n");
+					return(0);
+				}
 			}
 			else
 			{
-				printf("ERROR: rgb color wrong\n");
+				printf("ERROR: rgb color wrong🧣\n");
 				exit(1);
 			}
 		}
 		else
 		{
-			printf("ERROR: only RGB colors allowed\n");
+			printf("ERROR: only RGB colors allowed🧣\n");
 			exit(1);
 		}
 	}
-	if(check != 2)
+	if(check != 3)
 	{
 		printf("ERROR: three colors are needed\n");
 		exit(1);
 	}
-
+	return(1);
 }
 
 void	sorting_for_store(char *line, t_mapinfo *mapinfo, int i)
