@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:09:04 by mehernan          #+#    #+#             */
-/*   Updated: 2024/10/22 17:36:03 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/10/23 17:33:55 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -32,19 +32,16 @@ int	rgb_checker(char *line, int i)
 				printf("ERROR: color with more dan 3 digits🧣\n");
 				exit(1);
 			}
-//			printf("rgbchecker char🧣: %c\n", line[i]);
 			str[j] = line[i];
-//			printf("rgbchecker new char🧣: %c\n", str[j]);
 			i++;
 			j++;
 		}
-		printf("before , if🧣: %s\n", str);
 		if((line[i] == ',' || line[i] == '\n') && (j >= 1 && j <= 3) && (line[i+1] >= '0' || line[i+1] <= 2))
 		{
-			printf("if de la coma🏁: %c\n", line[i]);
+			printf("encuentro coma🏁: %c\n", line[i]);
 			str[j] = '\0';
 			rgb = ft_atoi(str);
-			printf("%d\n", rgb);
+			printf("num post atoi: %d\n", rgb);
 			if((rgb >= 0 && rgb <= 255) && check != 3)
 			{
 				str[0] = '\0';
@@ -56,7 +53,7 @@ int	rgb_checker(char *line, int i)
 				if(check == 3)
 				{
 					printf("✅COLOR CORRECT✅\n");
-					return(0);
+					return (0);
 				}
 			}
 			else
@@ -83,15 +80,15 @@ void	sorting_for_store(char *line, t_mapinfo *mapinfo, int i)
 {
 	if(line[i] == 'N')
 		north_texture(line, mapinfo, i);
-	if(line[i] == 'S')
+	else if(line[i] == 'S')
 		south_texture(line, mapinfo, i);
-	if(line[i] == 'W')
+	else if(line[i] == 'W')
 		west_texture(line, mapinfo, i);
-	if(line[i] == 'E')
+	else if(line[i] == 'E')
 		east_texture(line, mapinfo, i);	
-	if(line[i] == 'F')
+	else if(line[i] == 'F')
 		floor_color(line, mapinfo, i);
-	if(line[i] == 'C')
+	else if(line[i] == 'C')
 		ceiling_color(line, mapinfo, i);
 	else
 		printf("ERROR: information needed not found\n");
@@ -109,8 +106,8 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 		if(line[i] == 'S' || line[i] == 'N' || line[i] == 'E' || line[i] == 'W'
 					|| line[i] == 'F' || line[i] == 'C')
 		{
-			check = check + 1;
-			if(check > 6)
+			check = check + 1; // o simplemente check++;
+			if(check > 5)
 			{
 				printf("ERROR: map error, too amny textures or colors\n");
 				exit(1);
@@ -120,10 +117,14 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 		}
 		else
 			i++;
+		return ;
 //estoy ignorando el hecho de que podria haber letras randoms por ahi, quizas solo
 //deberia ignorar los espacios pero no el resto de cosas.
 //
 //RESPUESTA: Hay que comprobar que no haya mierdas, como mucho espacios al inicio
 //y final pero no mas, esos son los que puedes ignorar
+//
+//Asegurate de haber comprobado que si entran dos N el programa haga exit, es unERROR GRAVE
 	}
+	return ;
 }
