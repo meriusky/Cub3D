@@ -1,0 +1,8 @@
+NO ./path
+SO ./path
+WE ./path
+EA ./path
+
+F 200, 100, 0
+C 225, 30, 0
+

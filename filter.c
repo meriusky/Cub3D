@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:09:04 by mehernan          #+#    #+#             */
-/*   Updated: 2024/10/23 17:33:55 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:31:43 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -74,8 +74,14 @@ int	rgb_checker(char *line, int i)
 		exit(1);
 	}
 	return(1);
-}
+}/*
+void	check_duplication()
+{
+	int N;
+	int
 
+	int check 
+}*/
 void	sorting_for_store(char *line, t_mapinfo *mapinfo, int i)
 {
 	if(line[i] == 'N')
@@ -92,6 +98,7 @@ void	sorting_for_store(char *line, t_mapinfo *mapinfo, int i)
 		ceiling_color(line, mapinfo, i);
 	else
 		printf("ERROR: information needed not found\n");
+	return ;
 }
 
 void	sorter(char *line, t_mapinfo *mapinfo)
@@ -107,7 +114,7 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 					|| line[i] == 'F' || line[i] == 'C')
 		{
 			check = check + 1; // o simplemente check++;
-			if(check > 5)
+			if(check > 6)
 			{
 				printf("ERROR: map error, too amny textures or colors\n");
 				exit(1);
@@ -115,8 +122,13 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 			else
 				sorting_for_store(line, mapinfo, i);
 		}
-		else
+		else if(line[i] == ' ')
 			i++;
+		else
+		{
+			printf("ERROR: map error, something is not soposed to be here:: %c\n", line[i]);
+			exit(1);
+		}
 		return ;
 //estoy ignorando el hecho de que podria haber letras randoms por ahi, quizas solo
 //deberia ignorar los espacios pero no el resto de cosas.
@@ -128,3 +140,4 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 	}
 	return ;
 }
+//IMPORTANTE: crear un check por si se repiten;
