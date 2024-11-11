@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:09:04 by mehernan          #+#    #+#             */
-/*   Updated: 2024/10/24 16:31:43 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:15:36 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -27,6 +27,7 @@ int	rgb_checker(char *line, int i)
 		while(line[i] >= '0' && line[i] <= '9')
 		{
 			printf("j: %d\n", j);
+			printf("numero %c\n", line[i]);
 			if(j == 3)
 			{
 				printf("ERROR: color with more dan 3 digits🧣\n");
@@ -36,7 +37,8 @@ int	rgb_checker(char *line, int i)
 			i++;
 			j++;
 		}
-		if((line[i] == ',' || line[i] == '\n') && (j >= 1 && j <= 3) && (line[i+1] >= '0' || line[i+1] <= 2))
+		printf("char antes del if %c\n", line[i]);
+		if((line[i] == ',' || line[i] == '\n') && (j >= 1 && j <= 3))// && (line[i+1] >= '0' || line[i+1] <= 2))
 		{
 			printf("encuentro coma🏁: %c\n", line[i]);
 			str[j] = '\0';
@@ -122,7 +124,7 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 			else
 				sorting_for_store(line, mapinfo, i);
 		}
-		else if(line[i] == ' ')
+		else if(line[i] == ' ' || line[i] == '\n')
 			i++;
 		else
 		{
