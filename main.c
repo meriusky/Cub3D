@@ -69,10 +69,8 @@ int	main(int argc, char **argv)
 		printf("ERROR: just the executable and map name allowed\n");
 	return (0);
 }
-//NUEVO PROBLEMA:
-//Con el v2_good_map.cub da error en los colores y no entiendo porque
-//podria ser el mapa que esta pocho pero yo creo que es algo mas.
-//He probado con otro mapa de colores y los pilla bien. (11/11/24)
+//consultar subject bien si los colores pueden llevar espacios entre
+//comas, deduzco que no
 //descubrir como lee las cosas y como puedo ir cogiendo 
 // linea por linea, asi que me temo que este main quedara obsoleto.
 //

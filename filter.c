@@ -38,7 +38,8 @@ int	rgb_checker(char *line, int i)
 			j++;
 		}
 		printf("char antes del if %c\n", line[i]);
-		if((line[i] == ',' || line[i] == '\n') && (j >= 1 && j <= 3))// && (line[i+1] >= '0' || line[i+1] <= 2))
+		printf("j antes del if %d\n", j);
+		if((line[i] == ',' || line[i] == '\n') && (j >= 1 && j <= 3))// && (line[i+1] >= '0' || line[i+1] <= 2)) no se porque puse esto
 		{
 			printf("encuentro coma🏁: %c\n", line[i]);
 			str[j] = '\0';
