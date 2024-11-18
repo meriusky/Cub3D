@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:22:48 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/11 17:17:09 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:15:14 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -47,6 +47,7 @@ int	main(int argc, char **argv)
 			fd = open(argv[1], O_RDONLY);// Y para que lo abro?
 		else
 			exit(1);
+		ft_bzero(&mapinfo, sizeof(t_mapinfo));// para inicializar
 		line = get_next_line(fd);
 //		len_line = ft_strlen(line);
 //		printf("%d\n", len_line);

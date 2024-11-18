@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:23:56 by mehernan          #+#    #+#             */
-/*   Updated: 2024/10/24 12:16:24 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:40:50 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	east_texture(char *line, t_mapinfo *mapinfo, int i);
 void	floor_color(char *line, t_mapinfo *mapinfo, int i);
 void	ceiling_color(char *line, t_mapinfo *mapinfo, int i);
 int		rgb_checker(char *line, int i);
+//void	check_duplication(char letter);
+//void	check_color_duplication(char letter);
 
 
 #endif

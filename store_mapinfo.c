@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 16:23:26 by mehernan          #+#    #+#             */
-/*   Updated: 2024/10/24 16:29:18 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:28:41 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ void	north_texture(char *line, t_mapinfo *mapinfo, int i)
 			else if ((line[i] == '.' && line[i + 1] == '/') && line[i + 2] != '\0')
 			{
 				printf("dentro else if: %c\n", line[i]);
+				if(mapinfo->north != NULL)
+				{
+					printf("ERROR: duplicated texture\n");
+					//futura funcion de free de todo💡
+					exit(1);
+				}
+				mapinfo->north = ft_calloc(ft_strlen(line), sizeof(char));
 				mapinfo->north = line;
 				// COMPROBAR PATH, buscarlo en google
 				printf("✅:%s\n", line);
@@ -57,6 +64,13 @@ void	south_texture(char *line, t_mapinfo *mapinfo, int i)
 			else if ((line[i] == '.' && line[i + 1] == '/') && line[i + 2] != '\0')
 			{
 				printf("dentro else if: %c\n", line[i]);
+				if(mapinfo->south != NULL)
+				{
+					printf("ERROR: duplicated texture\n");
+					//futura funcion de free de todo💡
+					exit(1);
+				}
+				mapinfo->south = ft_calloc(ft_strlen(line), sizeof(char));
 				mapinfo->south = line;
 				// COMPROBAR PATH, buscarlo en google
 				printf("✅:%s\n", line);
@@ -87,6 +101,13 @@ void	west_texture(char *line, t_mapinfo *mapinfo, int i)
 			else if ((line[i] == '.' && line[i + 1] == '/') && line[i + 2] != '\0')
 			{
 				printf("dentro else if: %c\n", line[i]);
+				if(mapinfo->west != NULL)
+				{
+					printf("ERROR: duplicated texture\n");
+					//futura funcion de free de todo💡
+					exit(1);
+				}
+				mapinfo->west = ft_calloc(ft_strlen(line), sizeof(char));
 				mapinfo->west = line;
 				// COMPROBAR PATH, buscarlo en google
 				printf("✅:%s\n", line);
@@ -117,6 +138,13 @@ void	east_texture(char *line, t_mapinfo *mapinfo, int i)
 			else if ((line[i] == '.' && line[i + 1] == '/') && line[i + 2] != '\0')
 			{
 				printf("dentro else if: %c\n", line[i]);
+				if(mapinfo->east != NULL)
+				{
+					printf("ERROR: duplicated texture\n");
+					//futura funcion de free de todo💡
+					exit(1);
+				}
+				mapinfo->east = ft_calloc(ft_strlen(line), sizeof(char));
 				mapinfo->east = line;
 				// COMPROBAR PATH, buscarlo en google
 				printf("✅:%s\n", line);

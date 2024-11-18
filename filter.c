@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:09:04 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/11 17:15:36 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:17:41 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -78,13 +78,52 @@ int	rgb_checker(char *line, int i)
 	}
 	return(1);
 }/*
-void	check_duplication()
+void	check_color_duplication(char letter)
+{
+	int	F;
+	int	C;
+
+	F = 0;
+	C = 0;
+	if(letter == 'F' && F != 1)
+		F++;
+	else if(letter == 'C' && C != 1)
+		C++;
+	else
+	{
+		printf("ERROR: duplicated colors\n");
+		exit(1);
+	}
+}
+
+void	check_duplication(char letter)
 {
 	int N;
-	int
+	int S;
+	int W;
+	int	E;
 
-	int check 
+	N = 0;
+	S = 0;
+	W = 0;
+	E = 0;
+	if(letter == 'F' || letter == 'C')
+		check_color_duplication(letter);
+	else if(letter == 'N' && N != 1)
+		N++;
+	else if(letter == 'S' && S != 1)
+		S++;
+	else if(letter == 'W' && W != 1)
+		W++;
+	else if(letter == 'E' && E != 1)
+		E++;
+	else
+	{
+		printf("ERROR: duplicated texture\n");
+		exit(1);
+	}
 }*/
+
 void	sorting_for_store(char *line, t_mapinfo *mapinfo, int i)
 {
 	if(line[i] == 'N')
@@ -139,7 +178,7 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 //RESPUESTA: Hay que comprobar que no haya mierdas, como mucho espacios al inicio
 //y final pero no mas, esos son los que puedes ignorar
 //
-//Asegurate de haber comprobado que si entran dos N el programa haga exit, es unERROR GRAVE
+//Asegurate de haber comprobado que si entran dos N,S,W,E el programa haga exit, es unERROR GRAVE
 	}
 	return ;
 }

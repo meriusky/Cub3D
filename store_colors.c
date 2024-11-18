@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 17:25:28 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/11 17:15:34 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:15:28 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -30,6 +30,13 @@ void	floor_color(char *line, t_mapinfo *mapinfo, int i)
 				if(rgb_checker(line, i) == 0)
 				{
 					printf("string dentro de lista: %s\n", line);
+					if(mapinfo->floor != NULL)
+					{
+						printf("ERROR: duplicated texture\n");
+						//futura funcion de free de todo💡
+						exit(1);
+					}
+					mapinfo->floor = ft_calloc(ft_strlen(line), sizeof(char));	
 					mapinfo->floor = line;
 					return ;
 				}
@@ -67,6 +74,13 @@ void	ceiling_color(char *line, t_mapinfo *mapinfo, int i)
 				if(rgb_checker(line, i) == 0)
 				{
 					printf("string dentro de lista: %s\n", line);
+					if(mapinfo->ceiling != NULL)
+					{
+						printf("ERROR: duplicated texture\n");
+						//futura funcion de free de todo💡
+						exit(1);
+					}
+					mapinfo->ceiling = ft_calloc(ft_strlen(line), sizeof(char));
 					mapinfo->ceiling = line;
 					return ;
 				}
