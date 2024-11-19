@@ -32,26 +32,24 @@ void	floor_color(char *line, t_mapinfo *mapinfo, int i)
 					printf("string dentro de lista: %s\n", line);
 					if(mapinfo->floor != NULL)
 					{
-						printf("ERROR: duplicated texture\n");
-						//futura funcion de free de todo💡
-						exit(1);
+						printf("ERROR: duplicated color\n");
+						error_free(mapinfo, line);
 					}
-					mapinfo->floor = ft_calloc(ft_strlen(line), sizeof(char));	
-					mapinfo->floor = line;
+					mapinfo->floor = ft_strdup(line);
 					return ;
 				}
 			}
 			else
 			{
 					printf("📔ERROR: unexpected char not allowed\n");
-					exit(1);
+					error_free(mapinfo, line);
 			}
 		}
 	}
 	else
 	{
 		printf("📔ERROR: floor color information wrong\n");
-		exit(1);
+		error_free(mapinfo, line);
 	}
 }
 
@@ -59,7 +57,6 @@ void	ceiling_color(char *line, t_mapinfo *mapinfo, int i)
 {
 	if (line[i] == 'C')
 	{
-		printf("📔%s\n", line);
 		i++;
 		while (line[i] != '\0')
 		{
@@ -76,25 +73,23 @@ void	ceiling_color(char *line, t_mapinfo *mapinfo, int i)
 					printf("string dentro de lista: %s\n", line);
 					if(mapinfo->ceiling != NULL)
 					{
-						printf("ERROR: duplicated texture\n");
-						//futura funcion de free de todo💡
-						exit(1);
+						printf("ERROR: duplicated color\n");
+						error_free(mapinfo, line);
 					}
-					mapinfo->ceiling = ft_calloc(ft_strlen(line), sizeof(char));
-					mapinfo->ceiling = line;
+					mapinfo->ceiling = ft_strdup(line);
 					return ;
 				}
 			}
 			else
 			{
 					printf("📔ERROR: unexpected char not allowed\n");
-					exit(1);
+					error_free(mapinfo, line);
 			}
 		}
 	}
 	else
 	{
 		printf("📔ERROR: ceiling color information wrong\n");
-		exit(1);
+		error_free(mapinfo, line);
 	}
 }

@@ -26,7 +26,6 @@ typedef struct s_mapinfo
 	char				*east;
 	char				*floor;
 	char				*ceiling;
-//	struct s_mapinfo	*next;
 }	t_mapinfo;
 
 void	sorter(char *line, t_mapinfo *mapinfo);
@@ -38,8 +37,7 @@ void	east_texture(char *line, t_mapinfo *mapinfo, int i);
 void	floor_color(char *line, t_mapinfo *mapinfo, int i);
 void	ceiling_color(char *line, t_mapinfo *mapinfo, int i);
 int		rgb_checker(char *line, int i);
-//void	check_duplication(char letter);
-//void	check_color_duplication(char letter);
+void	error_free(t_mapinfo *mapinfo, char *line);
 
 
 #endif

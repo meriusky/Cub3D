@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "parsing.h"
-//crear funcion para que en caso de error libere todo o simplemente hacer free
-//cuando toque, no se que me ahorraria mas lineas
 void	north_texture(char *line, t_mapinfo *mapinfo, int i)
 {
 	if (line[i] == 'N' && line[i + 1] == 'O')
@@ -30,23 +28,21 @@ void	north_texture(char *line, t_mapinfo *mapinfo, int i)
 				if(mapinfo->north != NULL)
 				{
 					printf("ERROR: duplicated texture\n");
-					//futura funcion de free de todo💡
-					exit(1);
+					error_free(mapinfo, line);
 				}
-				mapinfo->north = ft_calloc(ft_strlen(line), sizeof(char));
-				mapinfo->north = line;
+				mapinfo->north = ft_strdup(line);
 				// COMPROBAR PATH, buscarlo en google
 				printf("✅:%s\n", line);
 				return ;
 			}
 		}
 		printf("error: wrong north texture path\n");
-		exit(1);
+		error_free(mapinfo, line);
 	}
 	else
 	{
 		printf("ERROR: north textute information wrong\n");
-		exit(1);
+		error_free(mapinfo, line);	
 	}
 }
 
@@ -67,23 +63,21 @@ void	south_texture(char *line, t_mapinfo *mapinfo, int i)
 				if(mapinfo->south != NULL)
 				{
 					printf("ERROR: duplicated texture\n");
-					//futura funcion de free de todo💡
-					exit(1);
+					error_free(mapinfo, line);
 				}
-				mapinfo->south = ft_calloc(ft_strlen(line), sizeof(char));
-				mapinfo->south = line;
+				mapinfo->south = ft_strdup(line);
 				// COMPROBAR PATH, buscarlo en google
 				printf("✅:%s\n", line);
 				return ;
 			}
 		}
 		printf("error: wrong south texture path\n");
-		exit(1);
+		error_free(mapinfo, line);
 	}
 	else
 	{
 		printf("ERROR: south textute information wrong\n");
-		exit(1);
+		error_free(mapinfo, line);
 	}
 }
 
@@ -104,23 +98,21 @@ void	west_texture(char *line, t_mapinfo *mapinfo, int i)
 				if(mapinfo->west != NULL)
 				{
 					printf("ERROR: duplicated texture\n");
-					//futura funcion de free de todo💡
-					exit(1);
+					error_free(mapinfo, line);
 				}
-				mapinfo->west = ft_calloc(ft_strlen(line), sizeof(char));
-				mapinfo->west = line;
+				mapinfo->west = ft_strdup(line);
 				// COMPROBAR PATH, buscarlo en google
 				printf("✅:%s\n", line);
 				return ;
 			}
 		}
 		printf("error: wrong west texture path\n");
-		exit(1);
+		error_free(mapinfo, line);
 	}
 	else
 	{
 		printf("ERROR: west textute information wrong\n");
-		exit(1);
+		error_free(mapinfo, line);
 	}
 }
 
@@ -141,23 +133,21 @@ void	east_texture(char *line, t_mapinfo *mapinfo, int i)
 				if(mapinfo->east != NULL)
 				{
 					printf("ERROR: duplicated texture\n");
-					//futura funcion de free de todo💡
-					exit(1);
+					error_free(mapinfo, line);
 				}
-				mapinfo->east = ft_calloc(ft_strlen(line), sizeof(char));
-				mapinfo->east = line;
+				mapinfo->east = ft_strdup(line);
 				// COMPROBAR PATH, buscarlo en google
 				printf("✅:%s\n", line);
 				return ;
 			}
 		}
 		printf("error: wrong east texture path\n");
-		exit(1);
+		error_free(mapinfo, line);
 	}
 	else
 	{
 		printf("ERROR: east textute information wrong\n");
-		exit(1);
+		error_free(mapinfo, line);
 	}
 }
 
