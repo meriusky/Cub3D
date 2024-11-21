@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:47:22 by mehernan          #+#    #+#             */
-/*   Updated: 2022/06/12 20:45:10 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:14:22 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (ft_strchr(set, s1[end]) && end > start)
 		end--;
 	snew = ft_substr(s1, start, (end - start + 1));
+	printf("path en libft: %sn", snew);
 	return (snew);
 }

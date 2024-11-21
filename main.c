@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:22:48 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/18 20:15:14 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:01:00 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -39,21 +39,22 @@ int	main(int argc, char **argv)
 	int		fd;
 	char	*line;
 	t_mapinfo mapinfo;
-//	int	len_line;
 
 	if (argc == 2)
 	{
 		if (dot_cub_checker(argv) == 0)
+		{
 			fd = open(argv[1], O_RDONLY);// Y para que lo abro?
+			if(fd == -1)
+			{
+				printf("ERROR: file doesn't exist\n");
+				exit(1);
+			}
+		}
 		else
 			exit(1);
 		ft_bzero(&mapinfo, sizeof(t_mapinfo));// para inicializar
 		line = get_next_line(fd);
-//		len_line = ft_strlen(line);
-//		printf("%d\n", len_line);
-//		line[len_line + 1] = '\0';
-//esta parafernalia es porque como line no tiene valos hasta llegar al while 
-//puede dar problemas con segfaults y eso		
 		while (line != NULL)
 		{
 			printf("main: %s", line);
@@ -62,8 +63,6 @@ int	main(int argc, char **argv)
 			line = get_next_line(fd);// possible causante del error💀
 									 // no entiendo como esta yendo a la siguiente line
 									 // creo que deberia hacerse y no se esta haiendo
-//			len_line = ft_strlen(line);
-//			line[len_line + 1] = '\0';
 		}
 	}
 	else

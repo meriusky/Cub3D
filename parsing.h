@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:23:56 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/18 18:40:50 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:54:00 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "get_next_line/get_next_line.h"
 # include <stdio.h>
 # include <fcntl.h>
+# include <unistd.h>// creo que no hace falta lo puse por el open
 
 typedef struct s_mapinfo
 {
@@ -38,11 +39,7 @@ void	floor_color(char *line, t_mapinfo *mapinfo, int i);
 void	ceiling_color(char *line, t_mapinfo *mapinfo, int i);
 int		rgb_checker(char *line, int i);
 void	error_free(t_mapinfo *mapinfo, char *line);
+void	path_checker(t_mapinfo *mapinfo, char *line);
 
 
 #endif
-
-//en caso de error y que haya que liberar los mallocs
-// va a dar segfault cuando inte liberar algo que no ha sido ocupado con informacion.
-// Meter todo a zero con el bzero para que no de segfault y luego rellenar la lista.
-//

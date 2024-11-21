@@ -1,22 +1,42 @@
-// poner cartel
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_management.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/21 18:04:21 by mehernan          #+#    #+#             */
+/*   Updated: 2024/11/21 21:03:09 by mehernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "parsing.h"
+
 void	error_free(t_mapinfo *mapinfo, char *line)
 {
-//	printf("entro en error_free\n");
 	free(line);
-//	printf("line liberada\n");
 	free(mapinfo->north);
-//	printf("free de north\n");
 	free(mapinfo->south);
-//	printf("free de soutn\n");
 	free(mapinfo->west);
-//	printf("free de west\n");
 	free(mapinfo->east);
-//	printf("free de east\n");
 	free(mapinfo->ceiling);
-//	printf("free de ceiling\n");
 	free(mapinfo->floor);
-//	printf("free de floor\n");
-	printf("todo liberado\n");
+	printf("all malloc free🕊️\n");
 	exit(1);
+}
+
+void	path_checker(t_mapinfo *mapinfo, char *line)
+{
+	int c;
+	char *path;
+
+	path = ft_strchr(line, '/');
+	printf("path: %s\n", path);
+	c = open(path, O_RDONLY);
+	if(c == -1)
+	{
+		printf("ERROR: wrong path\n");
+		error_free(mapinfo, line);
+	}
+	else
+		return ;
 }

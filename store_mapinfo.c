@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 16:23:26 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/18 20:28:41 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:59:57 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	north_texture(char *line, t_mapinfo *mapinfo, int i)
 					printf("ERROR: duplicated texture\n");
 					error_free(mapinfo, line);
 				}
+				path_checker(mapinfo, line); 
 				mapinfo->north = ft_strdup(line);
-				// COMPROBAR PATH, buscarlo en google
 				printf("✅:%s\n", line);
 				return ;
 			}
@@ -65,8 +65,8 @@ void	south_texture(char *line, t_mapinfo *mapinfo, int i)
 					printf("ERROR: duplicated texture\n");
 					error_free(mapinfo, line);
 				}
+				path_checker(mapinfo, line); 
 				mapinfo->south = ft_strdup(line);
-				// COMPROBAR PATH, buscarlo en google
 				printf("✅:%s\n", line);
 				return ;
 			}
@@ -100,8 +100,8 @@ void	west_texture(char *line, t_mapinfo *mapinfo, int i)
 					printf("ERROR: duplicated texture\n");
 					error_free(mapinfo, line);
 				}
+				path_checker(mapinfo, line);
 				mapinfo->west = ft_strdup(line);
-				// COMPROBAR PATH, buscarlo en google
 				printf("✅:%s\n", line);
 				return ;
 			}
@@ -135,8 +135,8 @@ void	east_texture(char *line, t_mapinfo *mapinfo, int i)
 					printf("ERROR: duplicated texture\n");
 					error_free(mapinfo, line);
 				}
+				path_checker(mapinfo, line);
 				mapinfo->east = ft_strdup(line);
-				// COMPROBAR PATH, buscarlo en google
 				printf("✅:%s\n", line);
 				return ;
 			}
