@@ -1,0 +1,8 @@
+.DS_Store
+.*.sw*
+a.out
+cub3D
+*.o
+*.d
+*.a
+.git
