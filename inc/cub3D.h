@@ -6,7 +6,7 @@
 /*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:01:24 by frankgar          #+#    #+#             */
-/*   Updated: 2024/11/22 12:38:06 by frankgar         ###   ########.fr       */
+/*   Updated: 2024/11/23 11:29:09 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 
 # define RESIZE 0
 
-# define WIN_WITH 1920
-# define WIN_LEN 1080
+# define WIN_WITH 3840
+# define WIN_LEN 1960
+# define RENDER_WITH WIN_WITH - 1
+# define RENDER_LEN WIN_LEN - 1
 
 typedef struct s_mapinfo
 {
@@ -31,12 +33,12 @@ typedef struct s_mapinfo
 //	char		*east;
 //	char		*floor;
 //	char		*ceiling;
-	char		**map;
-	int			max_x;
-	int			max_y;
-	int			stx;
-	int			sty;
-	char		sto;
+	char		**map; // Mapa
+	int			max_x; // Valor máximo X del mapa
+	int			max_y; // Valor máximo Y del mapa
+	int			stx;   // Posición Inicial del Personaje en X
+	int			sty;   // Posición Inicial del Personaje en Y 
+	char		sto;   // Posición Inicial que apunta el Persoanje
 }	t_mapinfo;
 
 typedef struct s_player
@@ -57,7 +59,8 @@ typedef struct s_player
 
 typedef struct s_game
 {
-	void		*win;
+	mlx_t		*mlx;
+	mlx_image_t	*img;
 	t_player	player;
 	t_mapinfo	*map;
 }	t_game;
