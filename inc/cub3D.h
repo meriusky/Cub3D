@@ -6,7 +6,7 @@
 /*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:01:24 by frankgar          #+#    #+#             */
-/*   Updated: 2024/11/23 11:29:09 by frankgar         ###   ########.fr       */
+/*   Updated: 2024/11/23 22:20:23 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,19 @@
 # include "MLX42.h"
 # include <stdio.h>
 # include <fcntl.h>
+# include <math.h>
 
 # define RESIZE 0
 
-# define WIN_WITH 3840
-# define WIN_LEN 1960
-# define RENDER_WITH WIN_WITH - 1
-# define RENDER_LEN WIN_LEN - 1
+# define NORTH 90
+# define EAST 0
+# define SOUTH 270
+# define WEST 180
+
+# define WIN_WITH 1920
+# define WIN_LEN 1080
+# define RENDER_WITH 1919
+# define RENDER_LEN 1079
 
 typedef struct s_mapinfo
 {
@@ -62,10 +68,8 @@ typedef struct s_game
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	t_player	player;
-	t_mapinfo	*map;
+	t_mapinfo	map;
 }	t_game;
-
-
 
 
 /*

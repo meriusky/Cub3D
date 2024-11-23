@@ -6,12 +6,12 @@
 #    By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 10:44:59 by frankgar          #+#    #+#              #
-#    Updated: 2024/11/22 12:09:58 by frankgar         ###   ########.fr        #
+#    Updated: 2024/11/23 22:02:12 by frankgar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
-FLAGS = -Wall -Werror -Wextra -g -fsanitize=address 
+FLAGS = -Wall -Werror -Wextra -O3 -g -fsanitize=address 
 INCLUDES = -I ./inc/\
            -I ./libft/\
 		   -I ./MLX42/include/MLX42/
