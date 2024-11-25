@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:23:56 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/21 19:54:00 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:05:35 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,18 @@
 
 typedef struct s_mapinfo
 {
-	char				*north;
-	char				*south;
-	char				*west;
-	char				*east;
-	char				*floor;
-	char				*ceiling;
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	char	*floor;
+	char	*ceiling;
+	char	**map; // Mapa
+	int		max_x; // Valor máximo X del mapa
+	int		max_y; // Valor máximo Y del mapa
+	int		stx;   // Posición Inicial del Personaje en X
+	int		sty;   // Posición Inicial del Personaje en Y 
+	char	sto;   // Posición Inicial que apunta el Persoanje
 }	t_mapinfo;
 
 void	sorter(char *line, t_mapinfo *mapinfo);
@@ -39,7 +45,9 @@ void	floor_color(char *line, t_mapinfo *mapinfo, int i);
 void	ceiling_color(char *line, t_mapinfo *mapinfo, int i);
 int		rgb_checker(char *line, int i);
 void	error_free(t_mapinfo *mapinfo, char *line);
-void	path_checker(t_mapinfo *mapinfo, char *line);
+//void	path_checker(t_mapinfo *mapinfo, char *line); // comentado por testeo
+int		premap_checker(t_mapinfo *mapinfo);
+
 
 
 #endif

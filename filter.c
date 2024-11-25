@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:09:04 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/18 20:17:41 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:17:25 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -105,6 +105,8 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 
 	check = 0;
 	i = 0;
+	if(premap_checker(mapinfo) == 6)
+		take_map(line, mapinfo);
 	while(line[i])
 	{
 		if(line[i] == 'S' || line[i] == 'N' || line[i] == 'E' || line[i] == 'W'

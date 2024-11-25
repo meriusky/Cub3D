@@ -6,11 +6,12 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 16:23:26 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/21 19:59:57 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:10:03 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+//path_checker esta comentado porque tengo que testear y no tengo los path correctos aun
 void	north_texture(char *line, t_mapinfo *mapinfo, int i)
 {
 	if (line[i] == 'N' && line[i + 1] == 'O')
@@ -30,7 +31,7 @@ void	north_texture(char *line, t_mapinfo *mapinfo, int i)
 					printf("ERROR: duplicated texture\n");
 					error_free(mapinfo, line);
 				}
-				path_checker(mapinfo, line); 
+//				path_checker(mapinfo, line); 
 				mapinfo->north = ft_strdup(line);
 				printf("✅:%s\n", line);
 				return ;
@@ -65,7 +66,7 @@ void	south_texture(char *line, t_mapinfo *mapinfo, int i)
 					printf("ERROR: duplicated texture\n");
 					error_free(mapinfo, line);
 				}
-				path_checker(mapinfo, line); 
+//				path_checker(mapinfo, line); 
 				mapinfo->south = ft_strdup(line);
 				printf("✅:%s\n", line);
 				return ;
@@ -100,7 +101,7 @@ void	west_texture(char *line, t_mapinfo *mapinfo, int i)
 					printf("ERROR: duplicated texture\n");
 					error_free(mapinfo, line);
 				}
-				path_checker(mapinfo, line);
+//				path_checker(mapinfo, line);
 				mapinfo->west = ft_strdup(line);
 				printf("✅:%s\n", line);
 				return ;
@@ -135,7 +136,7 @@ void	east_texture(char *line, t_mapinfo *mapinfo, int i)
 					printf("ERROR: duplicated texture\n");
 					error_free(mapinfo, line);
 				}
-				path_checker(mapinfo, line);
+	//			path_checker(mapinfo, line);
 				mapinfo->east = ft_strdup(line);
 				printf("✅:%s\n", line);
 				return ;
