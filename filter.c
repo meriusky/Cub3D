@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:09:04 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/25 14:17:25 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:16:52 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -139,4 +139,3 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 	}
 	return ;
 }
-//IMPORTANTE: crear un check por si se repiten;
