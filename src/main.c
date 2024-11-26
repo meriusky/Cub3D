@@ -6,7 +6,7 @@
 /*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:57:11 by frankgar          #+#    #+#             */
-/*   Updated: 2024/11/23 22:59:17 by frankgar         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:03:22 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,40 +38,35 @@ void print_wall(t_game *game, int pos_x, int pos_y)
 	while (y <= pos_y + blck_size_y)
 	{
 		x = pos_x;
-		mlx_put_pixel(game->img, x, y, 0x8C8C8CFF);
-		while (++x <= pos_x + blck_size_x)
+		while (x++ <= pos_x + blck_size_x)
 		{
-			if (y == pos_y || y == pos_y + blck_size_y)
-				mlx_put_pixel(game->img, x, y, 0x8C8C8CFF);
-			else
-				mlx_put_pixel(game->img, x, y, 0xFFFFFFFF);
+			mlx_put_pixel(game->img, x, y, 0xFFFFFFFF);
 		}
-		mlx_put_pixel(game->img, x, y, 0x8C8C8CFF);
 		y++;
 	}	
 }
 
-void print_player(t_game *game, int pos_x, int pos_y)
+void print_player(t_game *game, double pos_x, double pos_y, uint32_t color)
 {
-	int	x;
-	int	y;
-	int	blck_size_x;
-	int	blck_size_y;
-	int	extra;
+	double	x;
+	double	y;
+	double	blck_size_x;
+	double	blck_size_y;
+	double	extra;
 
 	blck_size_x = (RENDER_WITH / game->map.max_x);
 	blck_size_y = (RENDER_LEN / game->map.max_y);
 	extra = blck_size_y / 4;
-	pos_y = (pos_y * blck_size_y) + extra;
+	pos_y = ((pos_y * blck_size_y) + extra) - 0.5;
 	extra = blck_size_x / 4;
-	pos_x = (pos_x * blck_size_x) + extra;
+	pos_x = ((pos_x * blck_size_x) + extra) - 0.5;
 	y = pos_y;
 	while (y <= pos_y + (blck_size_y / 2))
 	{
 		x = pos_x;
 		while (x <= pos_x + (blck_size_x / 2))
 		{
-			mlx_put_pixel(game->img, x, y, 0xFF0000FF);
+			mlx_put_pixel(game->img, x, y, color);
 			x++;
 		}
 		y++;
@@ -95,7 +90,30 @@ void print_map(t_game *game)
 		}
 		y++;
 	}
-	print_player(game, game->player.pos_x, game->player.pos_y);
+	print_player(game, game->player.pos_x, game->player.pos_y, 0xFF0000FF);
+}
+
+void	movement(t_game *game, double x, double y)
+{	
+	double	blck_size_x;
+	double	blck_size_y;
+	int	wall_y;
+	int	wall_x;
+
+	blck_size_x = (RENDER_WITH / game->map.max_x);
+	blck_size_y = (RENDER_LEN / game->map.max_y);
+	wall_y = 0;
+	while () 
+	if (x < player2.x + blck_size_x &&
+    		x + (blck_size_x / 2) > player2.x &&
+    		y < player2.y + blck_size_y &&
+    		y + (blck_size_y / 2) > player2.y)
+		return ;
+
+	print_player(game, game->player.pos_x, game->player.pos_y, 0x00000000);
+	game->player.pos_y = y;
+	game->player.pos_x = x;
+	print_player(game, game->player.pos_x, game->player.pos_y, 0xFF0000FF);
 }
 
 void	key_hook(mlx_key_data_t data, void *param)
@@ -107,19 +125,18 @@ void	key_hook(mlx_key_data_t data, void *param)
 		return ;
 	if (data.key ==  MLX_KEY_ESCAPE)
 		exit_window(0);
-	/*
 	else if (data.key == MLX_KEY_W || data.key  == MLX_KEY_UP)
-		printf("ARRIBA\n");
+		movement(game, game->player.pos_x, game->player.pos_y - 0.25);
 	else if (data.key == MLX_KEY_S || data.key  == MLX_KEY_DOWN)
-		printf("ABAJO\n");
+		movement(game, game->player.pos_x, game->player.pos_y + 0.25);
 	else if (data.key == MLX_KEY_A)
-		printf("IZQUIERDA\n");
+		movement(game, game->player.pos_x - 0.25, game->player.pos_y);
 	else if (data.key == MLX_KEY_D)
-		printf("DERECHA\n");
+		movement(game, game->player.pos_x + 0.25, game->player.pos_y);
 	else if (data.key  == MLX_KEY_RIGHT)
 		printf("ROTATE DERECHA\n");
 	else if (data.key  == MLX_KEY_LEFT)
-		printf("ROTATE IZQUIERDA\n");*/
+		printf("ROTATE IZQUIERDA\n");
 }
 
 void var_init(t_game *game)
@@ -143,8 +160,8 @@ void var_init(t_game *game)
 	game->map.sty = 4;
 	game->map.sto = NORTH;
 ///////////////////////////////////////////////////
-	game->player.pos_x = (double)game->map.stx;
-	game->player.pos_y = (double)game->map.sty;
+	game->player.pos_x = (double)game->map.stx + 0.5;
+	game->player.pos_y = (double)game->map.sty + 0.5;
 	game->player.pova = (double)game->map.sto;
 	game->player.dirx = cos(game->player.pova);
 	game->player.diry = -sin(game->player.pova);
