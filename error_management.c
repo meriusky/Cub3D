@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:04:21 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/26 12:48:19 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:01:41 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -26,9 +26,10 @@ void	error_free(t_mapinfo *mapinfo, char *line)
 
 int		filled_textures(t_mapinfo *mapinfo)
 {
-	int i
+	int i;
 	
-	int = 0
+	i = 0;
+	printf("entro en filled textures\n");
 	if(mapinfo->north != NULL)
 		i++;		
 	else if(mapinfo->north != NULL)

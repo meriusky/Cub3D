@@ -6,12 +6,17 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:23:56 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/26 13:00:19 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:17:36 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
+/*
+# define NORTH 90
+# define EAST 0
+# define SOUTH 270
+# define WEST 180*/
 
 # include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
@@ -32,7 +37,7 @@ typedef struct s_mapinfo
 	int		max_y; // Valor máximo Y del mapa
 	int		stx;   // Posición Inicial del Personaje en X
 	int		sty;   // Posición Inicial del Personaje en Y 
-	char	sto;   // Posición Inicial que apunta el Persoanje
+	int		sto;   // Posición Inicial que apunta el Persoanje
 }	t_mapinfo;
 
 void	sorter(char *line, t_mapinfo *mapinfo);
@@ -49,11 +54,9 @@ void	error_free(t_mapinfo *mapinfo, char *line);
 int		filled_textures(t_mapinfo *mapinfo);
 //☝️funcion que checkea cuando tenemos lo necesario para pasar a mirar el mapa☝️
 void	take_map(char *line, t_mapinfo *mapinfo);
-//void	fill_map(char *line, t_mapinfo *mapinfo); no hace falta que este,
-//ya que se una en el mismo filr
-
-
-
+void	max_line(t_mapinfo *mapinfo);
+int		sto_finder(char c, t_mapinfo *mapinfo);
+void	initial_pos_player(char *line, t_mapinfo *mapinfo);
 
 
 #endif
