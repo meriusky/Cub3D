@@ -39,12 +39,12 @@ typedef struct s_mapinfo
 //	char		*east;
 //	char		*floor;
 //	char		*ceiling;
-	char		**map; // Mapa
+	char			**map; // Mapa
 	int			max_x; // Valor máximo X del mapa
 	int			max_y; // Valor máximo Y del mapa
 	int			stx;   // Posición Inicial del Personaje en X
 	int			sty;   // Posición Inicial del Personaje en Y 
-	char		sto;   // Posición Inicial que apunta el Persoanje
+	int			sto;   // Posición Inicial que apunta el Persoanje
 }	t_mapinfo;
 
 typedef struct s_player
