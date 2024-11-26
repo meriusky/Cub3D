@@ -32,6 +32,7 @@ typedef struct s_mapinfo
 	char	*east;
 	char	*floor;
 	char	*ceiling;
+	int 	check;
 	char	**map; // Mapa
 	int		max_x; // Valor máximo X del mapa
 	int		max_y; // Valor máximo Y del mapa

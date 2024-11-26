@@ -16,6 +16,7 @@ int		map_line_check(char *line, t_mapinfo *mapinfo)
 	int i;
 
 	i = 0;
+	printf("entro en map_line_checker\n");
 	while(line[i])
 	{
 		if(line[i] == '1' || line[i] == '0' || line[i] == ' ')
@@ -43,6 +44,7 @@ void	fill_map(char *line, t_mapinfo *mapinfo)
 
 	i = 0;
 	j = 0;
+	printf("entro en fill_map\n");
 	while(mapinfo->map[j][i])
 	{
 		if(map_line_check(line, mapinfo) == 1)
@@ -59,6 +61,7 @@ void	fill_map(char *line, t_mapinfo *mapinfo)
 
 void	take_map(char *line, t_mapinfo *mapinfo)
 {
+	printf("entro en take_map\n");
 	fill_map(line, mapinfo);
 	max_line(mapinfo);
 	initial_pos_player(line, mapinfo);

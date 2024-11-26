@@ -101,25 +101,21 @@ void	sorting_for_store(char *line, t_mapinfo *mapinfo, int i)
 void	sorter(char *line, t_mapinfo *mapinfo)
 {
 	int i;
-	int check;
 
-	check = 0;
 	i = 0;
 	while(line[i])
 	{
 		if(line[i] == 'S' || line[i] == 'N' || line[i] == 'E' || line[i] == 'W'
 					|| line[i] == 'F' || line[i] == 'C')
 		{
-			check = check + 1; // o simplemente check++;
-//			check++;
-			printf("check: %d\n", check);
-			printf("HOLAAAAAA\n");
-			if(check > 6)
+			mapinfo->check++;
+			printf("check: %d\n", mapinfo->check);
+			if(mapinfo->check > 6)
 			{
 				printf("ERROR: map error, too many textures or colors\n");
 				exit(1);
 			}
-			else if(check == 6)
+			else if(mapinfo->check == 6)
 			{
 				if(filled_textures(mapinfo) == 6)
 				{
