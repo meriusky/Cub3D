@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:09:04 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/25 16:16:52 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:51:38 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -105,7 +105,7 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 
 	check = 0;
 	i = 0;
-	if(premap_checker(mapinfo) == 6)
+	if(filled_textures(mapinfo)== 6)
 		take_map(line, mapinfo);
 	while(line[i])
 	{
@@ -125,7 +125,7 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 			i++;
 		else
 		{
-			printf("ERROR: map error, something is not soposed to be here:: %c\n", line[i]);
+			printf("ERROR: map error, something is not supposed to be here:: %c\n", line[i]);
 			exit(1);
 		}
 		return ;

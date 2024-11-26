@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:04:21 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/25 16:16:39 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:48:19 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -23,25 +23,8 @@ void	error_free(t_mapinfo *mapinfo, char *line)
 	printf("all malloc free🕊️\n");
 	exit(1);
 }
-/*
-void	path_checker(t_mapinfo *mapinfo, char *line)
-{
-	int c;
-	char *path;
 
-	path = ft_strchr(line, '/');
-	printf("path: %s\n", path);
-	c = open(path, O_RDONLY);
-	if(c == -1)
-	{
-		printf("ERROR: wrong path\n");
-		error_free(mapinfo, line);
-	}
-	else
-		return ;
-}*/
-
-int		premap_checker(t_mapinfo *mapinfo)
+int		filled_textures(t_mapinfo *mapinfo)
 {
 	int i
 	
@@ -60,5 +43,6 @@ int		premap_checker(t_mapinfo *mapinfo)
 		i++;	
 	else if(mapinfo->ceiling != NULL)
 		i++;
+
 	return(i);
 }	

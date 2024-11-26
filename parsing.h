@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:23:56 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/25 14:05:35 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:00:19 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "get_next_line/get_next_line.h"
 # include <stdio.h>
 # include <fcntl.h>
-# include <unistd.h>// creo que no hace falta lo puse por el open
+# include <unistd.h>// creo que no hace falta pero lo puse por el open
 
 typedef struct s_mapinfo
 {
@@ -46,7 +46,13 @@ void	ceiling_color(char *line, t_mapinfo *mapinfo, int i);
 int		rgb_checker(char *line, int i);
 void	error_free(t_mapinfo *mapinfo, char *line);
 //void	path_checker(t_mapinfo *mapinfo, char *line); // comentado por testeo
-int		premap_checker(t_mapinfo *mapinfo);
+int		filled_textures(t_mapinfo *mapinfo);
+//☝️funcion que checkea cuando tenemos lo necesario para pasar a mirar el mapa☝️
+void	take_map(char *line, t_mapinfo *mapinfo);
+//void	fill_map(char *line, t_mapinfo *mapinfo); no hace falta que este,
+//ya que se una en el mismo filr
+
+
 
 
 
