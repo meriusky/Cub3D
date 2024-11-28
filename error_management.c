@@ -29,37 +29,17 @@ int		filled_textures(t_mapinfo *mapinfo)
 	int i;
 	
 	i = 0;
-	printf("entro en filled textures\n");
-	if(mapinfo->north == NULL)
-	{
+	if(mapinfo->north != NULL)
 		i++;		
-		printf("N: i de filled: %d\n", i);
-	}
-	else if(mapinfo->south == NULL)
-	{
+	if(mapinfo->south != NULL)
 		i++;	
-	printf("S: i de filled: %d\n", i);
-	}
-	else if(mapinfo->east == NULL)
-	{
+	if(mapinfo->east != NULL)
 		i++;
-	printf("E: i de filled: %d\n", i);
-	}
-	else if(mapinfo->west == NULL)
-	{
+	if(mapinfo->west != NULL)
 		i++;
-		printf("W: i de filled: %d\n", i);
-	}
-	else if(mapinfo->floor == NULL)
-	{
+	if(mapinfo->floor != NULL)
 		i++;
-	printf("F: i de filled: %d\n", i);
-	}
-	else if(mapinfo->ceiling == NULL)
-	{
+	if(mapinfo->ceiling != NULL)
 		i++;
-		printf("C: i de filled: %d\n", i);
-	}
-	printf("i de filled FINAL: %d\n", i);
 	return(i);
 }	

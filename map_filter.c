@@ -44,15 +44,21 @@ void	fill_map(char *line, t_mapinfo *mapinfo)
 
 	i = 0;
 	j = 0;
-	printf("entro en fill_map\n");
-	while(mapinfo->map[j][i])
+//	printf("entro en fill_map\n");
+	while(mapinfo->map[j])
 	{
-		if(map_line_check(line, mapinfo) == 1)
-			error_free(mapinfo, line);
-		while(line[i])
+		mapinfo->map[j] = malloc(sizeof(char) * (strlen(line) + 1));
+		while(mapinfo->map[j][i])
 		{
-			mapinfo->map[j][i] = line[i];//tengo que anyadir el /0 al final e cada str?
-			i++;
+//			printf("holaaaaa\n");
+			if(map_line_check(line, mapinfo) == 1)
+				error_free(mapinfo, line);
+		//	printf("holitaaaaa\n");
+			while(line[i])
+			{
+				mapinfo->map[j][i] = line[i];//tengo que anyadir el /0 al final e cada str?
+				i++;
+			}
 		}
 		printf("linea copiada a **map: %s\n", mapinfo->map[j]);
 		j++;

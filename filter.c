@@ -52,7 +52,7 @@ int	rgb_checker(char *line, int i)
 				j = 0;		
 				i++;
 				check++;
-//				printf("all done perfect✅\n");
+	//			printf("all done perfect✅\n");
 				if(check == 3)
 				{
 					printf("✅COLOR CORRECT✅\n");
@@ -115,18 +115,16 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 				printf("ERROR: map error, too many textures or colors\n");
 				exit(1);
 			}
-			else if(mapinfo->check == 6)
+			sorting_for_store(line, mapinfo, i);
+			if(mapinfo->check == 6)
 			{
 				if(filled_textures(mapinfo) == 6)
-				{
-					printf("entro en take_map\n");
 					take_map(line, mapinfo);
-				}
 				else
 					error_free(mapinfo, line);
 			}
-			else
-				sorting_for_store(line, mapinfo, i);
+		//	else
+		//		sorting_for_store(line, mapinfo, i);
 		}
 //		printf("salgo\n");
 /*		else if(filled_textures(mapinfo)== 6)

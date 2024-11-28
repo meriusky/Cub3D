@@ -74,8 +74,3 @@ int	main(int argc, char **argv)
 //descubrir como lee las cosas y como puedo ir cogiendo 
 // linea por linea, asi que me temo que este main quedara obsoleto.
 //
-// Tema leer el mapa 1 y 0:
-// Esto no se puede hacer cogiendo string por string es de locos
-// y muy largo. Lo mejor es con el floodfiles o algo asi, como con 
-// el fractol. Es un tema que ya se hablo con Frank, pero vaya, hay
-// que investigar mas.
