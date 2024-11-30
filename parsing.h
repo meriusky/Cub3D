@@ -54,6 +54,7 @@ void	error_free(t_mapinfo *mapinfo, char *line);
 //void	path_checker(t_mapinfo *mapinfo, char *line); // comentado por testeo
 int		filled_textures(t_mapinfo *mapinfo);
 //☝️funcion que checkea cuando tenemos lo necesario para pasar a mirar el mapa☝️
+int		count_map(char *line, t_mapinfo *mapinfo);
 void	take_map(char *line, t_mapinfo *mapinfo);
 void	max_line(t_mapinfo *mapinfo);
 int		sto_finder(char c, t_mapinfo *mapinfo);

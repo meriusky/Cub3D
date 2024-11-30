@@ -119,19 +119,11 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 			if(mapinfo->check == 6)
 			{
 				if(filled_textures(mapinfo) == 6)
-					take_map(line, mapinfo);
+					count_map(line, mapinfo);
 				else
 					error_free(mapinfo, line);
 			}
-		//	else
-		//		sorting_for_store(line, mapinfo, i);
 		}
-//		printf("salgo\n");
-/*		else if(filled_textures(mapinfo)== 6)
-		{
-			printf("entro\n");
-			take_map(line, mapinfo);
-		}*/
 		else if(line[i] == ' ' || line[i] == '\n')
 			i++;
 		else
