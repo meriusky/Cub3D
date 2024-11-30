@@ -58,12 +58,20 @@ int	main(int argc, char **argv)
 		while (line != NULL)
 		{
 			printf("main: %s", line);
-			sorter(line, &mapinfo);
+			if(filled_textures(mapinfo) == 6)
+			{
+				if(
+				count_map(line, mapinfo);
+
+			}
+			else
+				sorter(line, &mapinfo);
 			free(line);
 			line = get_next_line(fd);// possible causante del error💀
 									 // no entiendo como esta yendo a la siguiente line
 									 // creo que deberia hacerse y no se esta haiendo
 		}
+
 	}
 	else
 		printf("ERROR: just the executable and map name allowed\n");
@@ -73,4 +81,12 @@ int	main(int argc, char **argv)
 //comas, deduzco que no
 //descubrir como lee las cosas y como puedo ir cogiendo 
 // linea por linea, asi que me temo que este main quedara obsoleto.
-//
+//QUE ESTA PASANDO AHORA:
+//Estoy solucionando el problema que hay en fill_map, necesito saber cuantas
+//filas hay en el mapa para poder hacer malloc, la cuestion es que count_map
+//cuenta las filas con f ya que son variables estaticas. Yo queria pasarle a
+// take_map la j, con el return de count_map pero no es possible ya que para
+//  eso deberia saber cuando es la ultima linea de line. Eso es lo que estaba
+//   haciendo ahora en el main. Queria poner una condicion rollo cuando 
+//   line+1 = NUll, pero no puedo hacer eso porque estoy cogiendo cada linea 
+//   con el get_next_line. Hay que ver como solucionarlo.

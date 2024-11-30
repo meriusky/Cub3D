@@ -1,19 +1,20 @@
 //poner heather
 
 #include "parsing.h"
-int	count_map(char *line, t_mapinfo *mapinfo)
+void	count_map(char *line)
 {
 	static char **map_copy;
-	static int	i;
+	int	i;
 	static int	j;
-
-	map_copy = NULL;
+	
 	i = 0;
-	j = -1;
+	j = 0;
 	map_copy = calloc(j + 1, sizeof(char *));
+	map_copy[j] = strcpy(map_copy, line);//strcpy hay que hacerlo
+//	while(map_copy[j][i])
+//	{
+//		map_copy[j][i] = line[i];
+//		i++;
+//	}
 	j++;
-	while(map_copy[j][i])
-	{
-		//creo que da igual no poner un whiel primero de map_copy[j]
-	}
 }

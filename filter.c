@@ -116,13 +116,13 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 				exit(1);
 			}
 			sorting_for_store(line, mapinfo, i);
-			if(mapinfo->check == 6)
+			/*if(mapinfo->check == 6)
 			{
 				if(filled_textures(mapinfo) == 6)
 					count_map(line, mapinfo);
 				else
 					error_free(mapinfo, line);
-			}
+			}*/
 		}
 		else if(line[i] == ' ' || line[i] == '\n')
 			i++;
