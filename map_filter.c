@@ -67,11 +67,8 @@ void	fill_map(char *line, t_mapinfo *mapinfo)
 
 void	take_map(char *line, t_mapinfo *mapinfo, int)
 {
-	int rows;
 
-	rows = 0;
 	printf("entro en take_map\n");
-	rows = count_map(line);
 	fill_map(line, mapinfo, j);
 	max_line(mapinfo);
 	initial_pos_player(line, mapinfo);

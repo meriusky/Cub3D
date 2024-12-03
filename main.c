@@ -70,6 +70,7 @@ int	main(int argc, char **argv)
 			line = get_next_line(fd);// possible causante del error💀
 									 //no entiendo como esta yendo a la siguiente
 		}
+		take 
 
 	}
 	else
