@@ -33,6 +33,7 @@ typedef struct s_mapinfo
 	char	*floor;
 	char	*ceiling;
 	int 	check;
+	int		rows; //Es lo mismo que max_y pero con valores que pueden ser incorrectos
 	char	**map; // Mapa
 	int		max_x; // Valor máximo X del mapa
 	int		max_y; // Valor máximo Y del mapa

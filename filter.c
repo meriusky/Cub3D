@@ -105,6 +105,13 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 	i = 0;
 	while(line[i])
 	{
+		if(mapinfo->check == 6)
+		{
+			if(filled_textures(mapinfo) == 6)
+				count_map(line, mapinfo);
+			else
+				error_free(mapinfo, line);
+		}
 		if(line[i] == 'S' || line[i] == 'N' || line[i] == 'E' || line[i] == 'W'
 					|| line[i] == 'F' || line[i] == 'C')
 		{
@@ -116,13 +123,6 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 				exit(1);
 			}
 			sorting_for_store(line, mapinfo, i);
-			/*if(mapinfo->check == 6)
-			{
-				if(filled_textures(mapinfo) == 6)
-					count_map(line, mapinfo);
-				else
-					error_free(mapinfo, line);
-			}*/
 		}
 		else if(line[i] == ' ' || line[i] == '\n')
 			i++;

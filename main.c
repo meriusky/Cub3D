@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 	{
 		if (dot_cub_checker(argv) == 0)
 		{
-			fd = open(argv[1], O_RDONLY);// Y para que lo abro?
+			fd = open(argv[1], O_RDONLY);
 			if(fd == -1)
 			{
 				printf("ERROR: file doesn't exist\n");
@@ -58,18 +58,17 @@ int	main(int argc, char **argv)
 		while (line != NULL)
 		{
 			printf("main: %s", line);
-			if(filled_textures(mapinfo) == 6)
+	/*		if(filled_textures(mapinfo) == 6)
 			{
 				if(
 				count_map(line, mapinfo);
 
 			}
-			else
-				sorter(line, &mapinfo);
+			else*/
+			sorter(line, &mapinfo);
 			free(line);
 			line = get_next_line(fd);// possible causante del error💀
-									 // no entiendo como esta yendo a la siguiente line
-									 // creo que deberia hacerse y no se esta haiendo
+									 //no entiendo como esta yendo a la siguiente
 		}
 
 	}

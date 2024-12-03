@@ -1,7 +1,7 @@
 //poner heather
 
 #include "parsing.h"
-void	count_map(char *line)
+void	count_map(t_mapinfo *mapinfo, char *line)
 {
 	static char **map_copy;
 	int	i;
@@ -9,12 +9,8 @@ void	count_map(char *line)
 	
 	i = 0;
 	j = 0;
-	map_copy = calloc(j + 1, sizeof(char *));
-	map_copy[j] = strcpy(map_copy, line);//strcpy hay que hacerlo
-//	while(map_copy[j][i])
-//	{
-//		map_copy[j][i] = line[i];
-//		i++;
-//	}
+	map_copy = calloc(j + 1, sizeof(char *));// usar realoc, crearlo en libft
+	map_copy[j] = ft_strcpy(map_copy, line);
 	j++;
+	mapinfo->rows = j;
 }
