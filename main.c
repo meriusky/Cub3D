@@ -70,7 +70,7 @@ int	main(int argc, char **argv)
 			line = get_next_line(fd);// possible causante del error💀
 									 //no entiendo como esta yendo a la siguiente
 		}
-		take 
+		take_map(mapinfo);
 
 	}
 	else
@@ -90,3 +90,8 @@ int	main(int argc, char **argv)
 //   haciendo ahora en el main. Queria poner una condicion rollo cuando 
 //   line+1 = NUll, pero no puedo hacer eso porque estoy cogiendo cada linea 
 //   con el get_next_line. Hay que ver como solucionarlo.
+//
+//TRUCO PARA ELIMINAR LINEAS💡
+//Hagamos que en el error management, en la funcion error_free ponemos
+//que pille string que sera lo que printeamos. Asi quitamos los {} y el
+//printf de muchos errores;

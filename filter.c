@@ -103,21 +103,22 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 	int i;
 
 	i = 0;
+	if(mapinfo->check == 6)
+	{
+	//	if(filled_textures(mapinfo) == 6)// no hace falta BORRAR
+			count_map_lines(line, mapinfo); 
+			return ; //hay que salir porque sino se mete el while
+	//	else
+		//	error_free(mapinfo, line);
+	}
 	while(line[i])
 	{
-		if(mapinfo->check == 6)
-		{
-			if(filled_textures(mapinfo) == 6)
-				count_map(line, mapinfo);
-			else
-				error_free(mapinfo, line);
-		}
 		if(line[i] == 'S' || line[i] == 'N' || line[i] == 'E' || line[i] == 'W'
 					|| line[i] == 'F' || line[i] == 'C')
 		{
 			mapinfo->check++;
 			printf("check: %d\n", mapinfo->check);
-			if(mapinfo->check > 6)
+			if(mapinfo->check > 6)//no sirve ya se checkea que esten duplicados
 			{
 				printf("ERROR: map error, too many textures or colors\n");
 				exit(1);
@@ -131,14 +132,13 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 			printf("ERROR: map error, something is not supposed to be here: %c\n", line[i]);
 			exit(1);
 		}
-		return ;
 //estoy ignorando el hecho de que podria haber letras randoms por ahi, quizas solo
 //deberia ignorar los espacios pero no el resto de cosas.
 //
 //RESPUESTA: Hay que comprobar que no haya mierdas, como mucho espacios al inicio
 //y final pero no mas, esos son los que puedes ignorar
 //
-//Asegurate de haber comprobado que si entran dos N,S,W,E el programa haga exit, es unERROR GRAVE
+//Asegurate de haber comprobado que si entran dos N,S,W,E el programa haga exit, es unERROR GRAVE	
 	}
 	return ;
 }

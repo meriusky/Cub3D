@@ -23,8 +23,12 @@ void	error_free(t_mapinfo *mapinfo, char *line)
 	printf("all malloc free🕊️\n");
 	exit(1);
 }
-
-int		filled_textures(t_mapinfo *mapinfo)
+//FUTURAS COSAS A TOCAR:
+//1.Poner que se pueda pasar una string en el error_free para poder eliminar printf
+//2. Va a haber un error en error_free porque cuando ya se han llenado las texturas
+// y colores yo no servira mas la line asi que habra un punto que se debera liberar
+// solo el mapinfo con un monton de cosas. Creo que tendre que crear otra funcion.
+int		filled_textures(t_mapinfo *mapinfo)// no hace falta BORRAR 
 {
 	int i;
 	

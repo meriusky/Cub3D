@@ -53,7 +53,7 @@ int	sto_finder(char c, t_mapinfo *mapinfo)
 	}
 }
 
-void	initial_pos_player(char *line, t_mapinfo *mapinfo)
+void	initial_pos_player( t_mapinfo *mapinfo)
 {
 	int i;
 	int j;
@@ -66,7 +66,8 @@ void	initial_pos_player(char *line, t_mapinfo *mapinfo)
 		{
 //este if podria ser lo mismo que ponendo las letras, pero como hay muchos checkeos
 //que comprueban que no se haya colado nada, lo pongo mas corto con 1 0 y sp
-			if(line[i] != '1' && line[i] != '0' && line[i] != ' ')
+			if(mapinfo->map[j][i] != '1' && mapinfo->map[j][i] != '0' 
+							&& mapinfo->map[j][i] != ' ')
 			{
 				printf("before sty: %d stx: %d\n", i, j);//posible error printf
 				mapinfo->sty = j;

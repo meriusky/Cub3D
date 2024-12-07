@@ -11,32 +11,39 @@
 /* ************************************************************************** */
 
 #include "parsing.h"
-int		map_line_check(char *line, t_mapinfo *mapinfo)
+int		map_line_check(/*char *line,*/ t_mapinfo *mapinfo)
 {
 	int i;
+	int j;
 
 	i = 0;
+	j = 0;
 	printf("entro en map_line_checker\n");
-	while(line[i])
+	while(mapinfo->map[j])
 	{
-		if(line[i] == '1' || line[i] == '0' || line[i] == ' ')
-			i++;
-		else if(line[i] == 'N' || line[i] == 'S' || line[i] == 'E'
-				|| line[i] == 'W')
+		while(mapinfo->map[j][i])
 		{
-			printf("char encontrado: %c\n", line[i]);
-			if(sto_finder(line[i], mapinfo) == 1)
+			if(mapinfo->map[j][i] == '1' || mapinfo->map[j][i] == '0' 
+							|| mapinfo->map[j][i] == ' ')
+				i++;
+			else if(mapinfo->map[j][i] == 'N' || mapinfo->map[j][i] == 'S' || mapinfo->map[j][i] == 'E'
+					|| mapinfo->map[j][i] == 'W')
+			{
+				printf("char encontrado: %c\n", mapinfo->map[j][i]);
+				if(sto_finder(mapinfo->map[j][i], mapinfo) == 1)
+					return(1);
+			}
+			else
+			{
+				printf("MAP ERROR: something is not supposed to be there🐛\n");
 				return(1);
+			}
 		}
-		else
-		{
-			printf("MAP ERROR: something is not supposed to be there🐛\n");
-			return(1);
-		}
+		j++;
 	}
 	return(0);
 }
-
+/*
 void	fill_map(char *line, t_mapinfo *mapinfo)
 {
 	int i;
@@ -63,15 +70,16 @@ void	fill_map(char *line, t_mapinfo *mapinfo)
 		printf("linea copiada a **map: %s\n", mapinfo->map[j]);
 		j++;
 	}
-}
+}*/
 
-void	take_map(char *line, t_mapinfo *mapinfo, int)
+void	take_map(/*char *line,*/ t_mapinfo *mapinfo)
 {
 
 	printf("entro en take_map\n");
-	fill_map(line, mapinfo, j);
+	map_line_checker(mapinfo);
+//	fill_map(line, mapinfo, j); ya esta fill
 	max_line(mapinfo);
-	initial_pos_player(line, mapinfo);
+	initial_pos_player(mapinfo);
 	printf("everything fooll👌\n");	
 }
 /* Archivo donde se verificara si el mapa es correcto y se guardara la informacion

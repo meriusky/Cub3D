@@ -33,7 +33,7 @@ typedef struct s_mapinfo
 	char	*floor;
 	char	*ceiling;
 	int 	check;
-	int		rows; //Es lo mismo que max_y pero con valores que pueden ser incorrectos
+//	int		rows; //Es lo mismo que max_y pero con valores que pueden ser incorrectos
 	char	**map; // Mapa
 	int		max_x; // Valor máximo X del mapa
 	int		max_y; // Valor máximo Y del mapa
@@ -53,13 +53,13 @@ void	ceiling_color(char *line, t_mapinfo *mapinfo, int i);
 int		rgb_checker(char *line, int i);
 void	error_free(t_mapinfo *mapinfo, char *line);
 //void	path_checker(t_mapinfo *mapinfo, char *line); // comentado por testeo
-int		filled_textures(t_mapinfo *mapinfo);
+//int		filled_textures(t_mapinfo *mapinfo);
 //☝️funcion que checkea cuando tenemos lo necesario para pasar a mirar el mapa☝️
-int		count_map(char *line, t_mapinfo *mapinfo);
-void	take_map(char *line, t_mapinfo *mapinfo);
+int		count_map_lines(t_mapinfo *mapinfo, char *line);
+void	take_map(t_mapinfo *mapinfo);
 void	max_line(t_mapinfo *mapinfo);
 int		sto_finder(char c, t_mapinfo *mapinfo);
-void	initial_pos_player(char *line, t_mapinfo *mapinfo);
+void	initial_pos_player(t_mapinfo *mapinfo);
 
 
 #endif
