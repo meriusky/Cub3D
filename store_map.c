@@ -13,6 +13,7 @@
 #include "parsing.h"
 void	max_line(t_mapinfo *mapinfo)
 {
+	printf("🫑max_line\n");
 	size_t max_row; // esto era un int pero lo cambie para que encajara con el ft_strlen
 	int j;
 
@@ -23,8 +24,11 @@ void	max_line(t_mapinfo *mapinfo)
 		max_row = ft_strlen(mapinfo->map[j]);
 		if(max_row < ft_strlen(mapinfo->map[j + 1]))
 			max_row = ft_strlen(mapinfo->map[j + 1]);
+//		printf("🫑 j: %d\n", j);
 		j++;
 	}
+	printf("🫑j antes de max_y: %d\n", j);
+	printf("🫑 max_rows andez de max_x: %zu\n", max_row);// zu es pq es size_t
 	mapinfo->max_y = j;
 	mapinfo->max_x = max_row;
 	printf("max_x saved: %d\n", mapinfo->max_x);
@@ -33,6 +37,7 @@ void	max_line(t_mapinfo *mapinfo)
 
 int	sto_finder(char c, t_mapinfo *mapinfo)
 {
+	printf("🍐sto_finder\n");
 	if (mapinfo->sto != 0)
 	{
 		if (c == 'N')
@@ -43,7 +48,7 @@ int	sto_finder(char c, t_mapinfo *mapinfo)
 			mapinfo->sto = 0;
 		else if (c == 'W')
 			mapinfo->sto = 180;
-		printf("sto saved: %d\n", mapinfo->sto);
+		printf("🍐sto saved: %d\n", mapinfo->sto);
 		return(0);
 	}
 	else
@@ -55,6 +60,7 @@ int	sto_finder(char c, t_mapinfo *mapinfo)
 
 void	initial_pos_player( t_mapinfo *mapinfo)
 {
+	printf("🪼initial_pos_player\n");
 	int i;
 	int j;
 
@@ -69,11 +75,11 @@ void	initial_pos_player( t_mapinfo *mapinfo)
 			if(mapinfo->map[j][i] != '1' && mapinfo->map[j][i] != '0' 
 							&& mapinfo->map[j][i] != ' ')
 			{
-				printf("before sty: %d stx: %d\n", i, j);//posible error printf
+				printf("🪼before sty: %d stx: %d\n", i, j);//posible error printf
 				mapinfo->sty = j;
-				printf("sty saved: %d\n", mapinfo->stx);
+				printf("🪼sty saved: %d\n", mapinfo->stx);
 				mapinfo->stx = i;
-				printf("stx saved: %d\n", mapinfo->stx);	
+				printf("🪼stx saved: %d\n", mapinfo->stx);	
 			}
 			else
 			 i++;

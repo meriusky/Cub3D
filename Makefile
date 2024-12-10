@@ -17,7 +17,7 @@ CC = gcc
 SRCS = main.c get_next_line/get_next_line.c \
 	   get_next_line/get_next_line_utils.c filter.c store_mapinfo.c \
 	   store_colors.c error_management.c map_filter.c store_map.c \
-	   map_line.c
+	   map_lines.c
 INCLUDES = -I ./libft/ \
 		   -I ./get_next_line/
 OBJS = $(SRCS:.c=.o)

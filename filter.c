@@ -21,30 +21,23 @@ int	rgb_checker(char *line, int i)
 
 	j = 0;
 	check = 0;
-//	printf("entro rgbcheck🧣\n");
 	while(line[i] != '\n')
 	{
 		while(line[i] >= '0' && line[i] <= '9')
 		{
-		//	printf("j: %d\n", j);
-		//	printf("numero %c\n", line[i]);
 			if(j == 3)
 			{
-				printf("ERROR: color with more dan 3 digits🧣\n");
+				printf("ERROR: color with more dan 3 digits\n");
 				exit(1);
 			}
 			str[j] = line[i];
 			i++;
 			j++;
 		}
-//		printf("char antes del if %c\n", line[i]);
-//		printf("j antes del if %d\n", j);
-		if((line[i] == ',' || line[i] == '\n') && (j >= 1 && j <= 3))// && (line[i+1] >= '0' || line[i+1] <= 2)) no se porque puse esto
+		if((line[i] == ',' || line[i] == '\n') && (j >= 1 && j <= 3))
 		{
-	//		printf("encuentro coma🏁: %c\n", line[i]);
 			str[j] = '\0';
 			rgb = ft_atoi(str);
-	//		printf("num post atoi: %d\n", rgb);
 			if((rgb >= 0 && rgb <= 255) && check != 3)
 			{
 				str[0] = '\0';
@@ -52,7 +45,6 @@ int	rgb_checker(char *line, int i)
 				j = 0;		
 				i++;
 				check++;
-	//			printf("all done perfect✅\n");
 				if(check == 3)
 				{
 					printf("✅COLOR CORRECT✅\n");
@@ -61,13 +53,13 @@ int	rgb_checker(char *line, int i)
 			}
 			else
 			{
-				printf("ERROR: rgb color wrong🧣\n");
+				printf("ERROR: rgb color wrong\n");
 				exit(1);
 			}
 		}
 		else
 		{
-			printf("ERROR: only RGB colors allowed🧣\n");
+			printf("ERROR: only RGB colors allowed\n");
 			exit(1);
 		}
 	}
@@ -105,11 +97,8 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 	i = 0;
 	if(mapinfo->check == 6)
 	{
-	//	if(filled_textures(mapinfo) == 6)// no hace falta BORRAR
-			count_map_lines(line, mapinfo); 
+			count_map_lines(mapinfo, line); 
 			return ; //hay que salir porque sino se mete el while
-	//	else
-		//	error_free(mapinfo, line);
 	}
 	while(line[i])
 	{
@@ -124,6 +113,7 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 				exit(1);
 			}
 			sorting_for_store(line, mapinfo, i);
+			return ;
 		}
 		else if(line[i] == ' ' || line[i] == '\n')
 			i++;

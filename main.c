@@ -58,20 +58,12 @@ int	main(int argc, char **argv)
 		while (line != NULL)
 		{
 			printf("main: %s", line);
-	/*		if(filled_textures(mapinfo) == 6)
-			{
-				if(
-				count_map(line, mapinfo);
-
-			}
-			else*/
 			sorter(line, &mapinfo);
 			free(line);
 			line = get_next_line(fd);// possible causante del error💀
 									 //no entiendo como esta yendo a la siguiente
 		}
-		take_map(mapinfo);
-
+		take_map(&mapinfo);
 	}
 	else
 		printf("ERROR: just the executable and map name allowed\n");

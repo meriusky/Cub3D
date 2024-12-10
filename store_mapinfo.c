@@ -17,15 +17,12 @@ void	north_texture(char *line, t_mapinfo *mapinfo, int i)
 	if (line[i] == 'N' && line[i + 1] == 'O')
 	{
 		i = i + 2;
-//		printf("entro 1r if: %c\n", line[i]);
 		while (line[i] != '\n')
 		{
-//			printf("dentro while: %c\n", line[i]);
 			if (line[i] == ' ' || line[i] == '	')
 				i++;
 			else if ((line[i] == '.' && line[i + 1] == '/') && line[i + 2] != '\0')
 			{
-//				printf("dentro else if: %c\n", line[i]);
 				if(mapinfo->north != NULL)
 				{
 					printf("ERROR: duplicated texture\n");
@@ -49,18 +46,16 @@ void	north_texture(char *line, t_mapinfo *mapinfo, int i)
 
 void	south_texture(char *line, t_mapinfo *mapinfo, int i)
 {
+	printf("hola south\n");
 	if (line[i] == 'S' && line[i + 1] == 'O')
 	{
 		i = i + 2;
-//		printf("entro 1r if: %c\n", line[i]);
 		while (line[i] != '\n')
 		{
-//			printf("dentro while: %c\n", line[i]);
 			if (line[i] == ' ' || line[i] == '	')
 				i++;
 			else if ((line[i] == '.' && line[i + 1] == '/') && line[i + 2] != '\0')
 			{
-//				printf("dentro else if: %c\n", line[i]);
 				if(mapinfo->south != NULL)
 				{
 					printf("ERROR: duplicated texture\n");
@@ -87,15 +82,12 @@ void	west_texture(char *line, t_mapinfo *mapinfo, int i)
 	if (line[i] == 'W' && line[i + 1] == 'E')
 	{
 		i = i + 2;
-//		printf("entro 1r if: %c\n", line[i]);
 		while (line[i] != '\n')
 		{
-//			printf("dentro while: %c\n", line[i]);
 			if (line[i] == ' ' || line[i] == '	')
 				i++;
 			else if ((line[i] == '.' && line[i + 1] == '/') && line[i + 2] != '\0')
 			{
-//				printf("dentro else if: %c\n", line[i]);
 				if(mapinfo->west != NULL)
 				{
 					printf("ERROR: duplicated texture\n");
@@ -122,15 +114,12 @@ void	east_texture(char *line, t_mapinfo *mapinfo, int i)
 	if (line[i] == 'E' && line[i + 1] == 'A')
 	{
 		i = i + 2;
-//		printf("entro 1r if: %c\n", line[i]);
 		while (line[i] != '\n')
 		{
-//			printf("dentro while: %c\n", line[i]);
 			if (line[i] == ' ' || line[i] == '	')
 				i++;
 			else if ((line[i] == '.' && line[i + 1] == '/') && line[i + 2] != '\0')
 			{
-//				printf("dentro else if: %c\n", line[i]);
 				if(mapinfo->east != NULL)
 				{
 					printf("ERROR: duplicated texture\n");
