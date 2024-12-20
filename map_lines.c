@@ -1,13 +1,23 @@
-//poner heather
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_lines.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/20 16:40:11 by mehernan          #+#    #+#             */
+/*   Updated: 2024/12/20 17:42:27 by mehernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "parsing.h"
+
 void count_map_lines(t_mapinfo *mapinfo, char *line) 
 {
 	printf("🍎count_map_lines\n");
     static int j = 0;              // Guarda el numero de lineas del mapa
 //la estatica se puede declarar asi.
 	//ajusta el tamanyo de
-    mapinfo->map = ft_realloc(mapinfo->map, (j + 2) * sizeof(char *));
+    mapinfo->map = ft_double_realloc(mapinfo->map, (j + 2) * sizeof(char *));
     if (!mapinfo->map) 
 	{
         printf("Failed to reallocate memory\n");

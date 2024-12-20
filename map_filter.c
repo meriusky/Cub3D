@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:16:32 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/26 15:30:04 by mehernan         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:39:01 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,34 +51,6 @@ printf("🍋que hay en i: %c\n", mapinfo->map[1][1]);
 	}
 	return(0);
 }
-/*
-void	fill_map(char *line, t_mapinfo *mapinfo)
-{
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-//	printf("entro en fill_map\n");
-	while(mapinfo->map[j])
-	{
-		mapinfo->map[j] = malloc(sizeof(char) * (strlen(line) + 1));
-		while(mapinfo->map[j][i])
-		{
-//			printf("holaaaaa\n");
-			if(map_line_check(line, mapinfo) == 1)
-				error_free(mapinfo, line);
-		//	printf("holitaaaaa\n");
-			while(line[i])
-			{
-				mapinfo->map[j][i] = line[i];//tengo que anyadir el /0 al final e cada str?
-				i++;
-			}
-		}
-		printf("linea copiada a **map: %s\n", mapinfo->map[j]);
-		j++;
-	}
-}*/
 
 void	take_map(/*char *line,*/ t_mapinfo *mapinfo)
 {
