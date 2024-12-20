@@ -18,14 +18,22 @@ int		map_line_checker(/*char *line,*/ t_mapinfo *mapinfo)
 
 	i = 0;
 	j = 0;
+printf("🍋que hay en i: %c\n", mapinfo->map[1][1]);
+
 	printf("🍋map_line_checker\n");
 	while(mapinfo->map[j])
 	{
+		printf("🍋hola\n");
+		i = 0;
 		while(mapinfo->map[j][i])
 		{
+			printf("holaaa\n");
 			if(mapinfo->map[j][i] == '1' || mapinfo->map[j][i] == '0' 
 							|| mapinfo->map[j][i] == ' ')
+			{
+				printf("map_char🍋: %c\n", mapinfo->map[j][i]);
 				i++;
+			}
 			else if(mapinfo->map[j][i] == 'N' || mapinfo->map[j][i] == 'S' 
 					|| mapinfo->map[j][i] == 'E' || mapinfo->map[j][i] == 'W')
 			{
