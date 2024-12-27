@@ -6,7 +6,7 @@
 /*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:01:24 by frankgar          #+#    #+#             */
-/*   Updated: 2024/11/23 22:20:23 by frankgar         ###   ########.fr       */
+/*   Updated: 2024/12/27 16:30:21 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,16 @@
 # define SOUTH 270
 # define WEST 180
 
-# define WIN_WITH 1920
-# define WIN_LEN 1080
-# define RENDER_WITH 1919
-# define RENDER_LEN 1079
+# define CLEAR_SCREEN "\x1b[1J \x1b[H"
+
+# define ROT_SPEED 5
+# define MOVE_STEP 0.1
+# define FOV 60
+
+# define WIN_WITH 1701
+# define WIN_LEN 701
+# define PLAYER_RADIUS 15
+# define WALL_SIZE 100
 
 typedef struct s_mapinfo
 {
@@ -49,13 +55,8 @@ typedef struct s_mapinfo
 
 typedef struct s_player
 {
-//	int 	bs;     // Block size
-//	int 	vh;     // View height
-//	double	fov;    // Field of view
 //	double	ppd;	// Projection Plane Distance
 //	double	angs;   // Angular step
-//	int		lins;   // Linear speed
-//	double	rots;   // Rotation speed
 	double	pos_x;  // Position in x
 	double	pos_y;  // Position in y
 	double	pova;   // Point of view angle
