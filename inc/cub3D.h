@@ -6,7 +6,7 @@
 /*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:01:24 by frankgar          #+#    #+#             */
-/*   Updated: 2024/12/27 16:30:21 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:17:35 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,24 @@
 # define PLAYER_RADIUS 15
 # define WALL_SIZE 100
 
+// PARSEAR FOV NO PUEDE SER NEGATIVO
+
 typedef struct s_mapinfo
 {
-//	char		*north;
-//	char		*south;
-//	char		*west;
-//	char		*east;
-//	char		*floor;
-//	char		*ceiling;
-	char		**map; // Mapa
-	int			max_x; // Valor máximo X del mapa
-	int			max_y; // Valor máximo Y del mapa
-	int			stx;   // Posición Inicial del Personaje en X
-	int			sty;   // Posición Inicial del Personaje en Y 
-	char		sto;   // Posición Inicial que apunta el Persoanje
+//	char			*north;
+//	char			*south;
+//	char			*west;
+//	char			*east;
+	char			*raw_floor;
+	char			*raw_ceiling;
+	uint32_t		floor;
+	uint32_t		ceiling;
+	char			**map; // Mapa
+	int				max_x; // Valor máximo X del mapa
+	int				max_y; // Valor máximo Y del mapa
+	int				stx;   // Posición Inicial del Personaje en X
+	int				sty;   // Posición Inicial del Personaje en Y 
+	int				sto;   // Posición Inicial que apunta el Persoanje
 }	t_mapinfo;
 
 typedef struct s_player

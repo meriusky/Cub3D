@@ -6,7 +6,7 @@
 /*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:57:11 by frankgar          #+#    #+#             */
-/*   Updated: 2024/12/27 16:56:29 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:17:58 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,72 +32,80 @@ void print_wall(t_game *game, int pos_x, int pos_y)
 		x = pos_x;
 		while (x++ <= pos_x + blck_size)
 		{
-			mlx_put_pixel(game->img, x, y, 0xFFFFFFFF);
+			mlx_put_pixel(game->img, x, y, 0x959595FF);
 		}
 		y++;
 	}	
 }
 
-void	print_vision_ray(t_game *game, double pixel_angle)
+void	print_vision_ray(t_game *game, double pixel_angle, double x, double y)
 {
+	double dx;
+	double dy;
+	int map_x; 
+	int map_y;
+	
+	dx = cos(pixel_angle);
+	dy = -sin(pixel_angle);
+	x = game->player.pos_x * WALL_SIZE;
+	y = game->player.pos_y * WALL_SIZE;
+	map_y = (int)y / WALL_SIZE;
+	while (true)
+	{
+		mlx_put_pixel(game->img, (int)x, (int)y, 0x424242FF);
+		map_x = (int)x / WALL_SIZE;
+        if (game->map.map[map_y][map_x] == '1')
+		{
+            mlx_put_pixel(game->img, (int)x, (int)y, 0x00F3FFFF);
+            break;
+        }
+        map_y = (int)y / WALL_SIZE;
+        if (game->map.map[map_y][map_x] == '1')
+		{
 
+            mlx_put_pixel(game->img, (int)x, (int)y, 0x00F3FFFF);
+            break;
+        }
+		x += dx * 0.75;
+		y += dy * 0.75;
+    }
 }
 
 void	graphics(t_game *game)
 {
-    int		y;
-	int		x;
     double	start_angle;
     double	end_angle;
     double	pixel_angle;
+	double	angs;
 
 	start_angle = (game->player.pova - FOV / 2) * M_PI / 180.0;
 	end_angle = (game->player.pova + FOV / 2) * M_PI / 180.0;
+	angs = ((FOV * M_PI) / 180) / WIN_WITH;
 	if (start_angle < 0)
 		start_angle += 2 * M_PI;
-	if (end_angle < 0)
-		end_angle += 2 * M_PI;
 	if (end_angle > 2 * M_PI)
 		end_angle -= 2 * M_PI;
-	
-	y = -PLAYER_RADIUS - 2;
-    while (y <= PLAYER_RADIUS - 2) 
+	pixel_angle = start_angle;
+	while (pixel_angle != end_angle)
 	{
-        x = -PLAYER_RADIUS - 2;
-        while (x <= PLAYER_RADIUS - 2) 
-		{
-			pixel_angle = atan2(-y, x);
-            if (pixel_angle < 0)
-				pixel_angle += 2 * M_PI;
-			if ((pixel_angle >= start_angle && pixel_angle <= end_angle)
-				|| (start_angle >= end_angle 
-				&& (pixel_angle >= start_angle || pixel_angle <= end_angle)))
-				print_vision_ray(game, pixel_angle);	
-            x++;
-        }
-        y++;
+		print_vision_ray(game, pixel_angle, 0, 0);
+		if (pixel_angle < end_angle && pixel_angle + angs > end_angle)
+			pixel_angle = end_angle;
+		else
+			pixel_angle += angs;
+		if (pixel_angle > 2 * M_PI)
+			pixel_angle -= 2 * M_PI;
     }
-
 }
+
 
 void print_player(t_game *game, double pos_x, double pos_y, uint32_t color) 
 {
     int		y;
 	int		x;
-    double	start_angle = (game->player.pova - FOV / 2) * M_PI / 180.0;
-    double	end_angle = (game->player.pova + FOV / 2) * M_PI / 180.0;
-    double	pixel_angle;
-
-	if (start_angle < 0)
-		start_angle += 2 * M_PI;
-	if (end_angle < 0)
-		end_angle += 2 * M_PI;
-	if (end_angle > 2 * M_PI)
-		end_angle -= 2 * M_PI;
 
     pos_x *= WALL_SIZE;
-    pos_y *= WALL_SIZE;
-	
+    pos_y *= WALL_SIZE;	
     y = -PLAYER_RADIUS - 2;
     while (y <= PLAYER_RADIUS - 2) 
 	{
@@ -105,16 +113,7 @@ void print_player(t_game *game, double pos_x, double pos_y, uint32_t color)
         while (x <= PLAYER_RADIUS - 2) 
 		{
             if (x * x + y * y <= (PLAYER_RADIUS - 2) * (PLAYER_RADIUS - 2)) 
-			{
-				pixel_angle = atan2(-y, x);
-                if (pixel_angle < 0)
-					pixel_angle += 2 * M_PI;
-				if ((pixel_angle >= start_angle && pixel_angle <= end_angle)
-						|| (start_angle >= end_angle && (pixel_angle >= start_angle || pixel_angle <= end_angle)))
-					mlx_put_pixel(game->img, (int)pos_x + x, (int)pos_y + y, 0x000000);
-                else
-                    mlx_put_pixel(game->img, (int)pos_x + x, (int)pos_y + y, color);
-            }
+				mlx_put_pixel(game->img, (int)pos_x + x, (int)pos_y + y, color);
             x++;
         }
         y++;
@@ -215,7 +214,6 @@ void	check_colisions(t_game *game, double *new_x, double *new_y)
 	}
 }
 
-
 int	movement(t_game *game, double move_angle)
 {
     double new_x;
@@ -230,10 +228,8 @@ int	movement(t_game *game, double move_angle)
 		get_moves(game, &new_x, &new_y);
 		check_colisions(game, &new_x, &new_y);
 	}
-    print_player(game, game->player.pos_x, game->player.pos_y, 0x00000000);
     game->player.pos_x = new_x;
     game->player.pos_y = new_y;
-    print_player(game, game->player.pos_x, game->player.pos_y, 0xFF0000FF);
 	return (1);
 }
 
@@ -292,13 +288,36 @@ int	event_listener(mlx_t *mlx, t_game *game)
 	return (0);
 }
 
+void	clear_screen(t_game *game)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y <= WIN_LEN)
+	{
+		x = 0;
+		while (x <= WIN_WITH)
+		{
+			mlx_put_pixel(game->img, x, y, 0x000000);
+			x++;
+		}
+		y++;
+	}
+}
+
 void	render_game(void *param)
 {
 	t_game	*game;
 
 	game = param;
 	if (event_listener(game->mlx, game))
+	{
+		clear_screen(game);
+		print_map(game);	
 		graphics(game);
+    	print_player(game, game->player.pos_x, game->player.pos_y, 0xFF0000FF);
+	}
 		
 }
 void	var_init(t_game *game)
@@ -321,6 +340,8 @@ void	var_init(t_game *game)
 	game->map.stx = 7;
 	game->map.sty = 4;
 	game->map.sto = NORTH;
+	game->map.floor = 0xFC7A00FF;
+	game->map.ceiling = 0x00DADAFF;
 ///////////////////////////////////////////////////
 	game->player.pos_x = (double)game->map.stx + 0.5;
 	game->player.pos_y = (double)game->map.sty + 0.5;
@@ -348,7 +369,8 @@ void init_window(t_game *game)
 		}
 		y++;
 	}
-	//print_map(game);	
+	print_map(game);	
+	graphics(game);
     print_player(game, game->player.pos_x, game->player.pos_y, 0xFF0000FF);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 }
