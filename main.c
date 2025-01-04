@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:22:48 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/21 21:01:00 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/04 19:57:07 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -70,7 +70,8 @@ int	main(int argc, char **argv)
 	return (0);
 }
 //consultar subject bien si los colores pueden llevar espacios entre
-//comas, deduzco que no
+//comas, deduzco que no pero companyeros me han dicho que puede.
+//
 //descubrir como lee las cosas y como puedo ir cogiendo 
 // linea por linea, asi que me temo que este main quedara obsoleto.
 //QUE ESTA PASANDO AHORA:

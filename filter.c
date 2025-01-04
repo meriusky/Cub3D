@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:09:04 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/26 17:12:03 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/04 20:15:21 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -106,7 +106,7 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 					|| line[i] == 'F' || line[i] == 'C')
 		{
 			mapinfo->check++;
-			printf("check: %d\n", mapinfo->check);
+	//		printf("check sorter: %d\n", mapinfo->check);
 			if(mapinfo->check > 6)//no sirve ya se checkea que esten duplicados
 			{
 				printf("ERROR: map error, too many textures or colors\n");
