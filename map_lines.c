@@ -17,6 +17,8 @@ void count_map_lines(t_mapinfo *mapinfo, char *line)
     static int j = 0;              // Guarda el numero de lineas del mapa
 //la estatica se puede declarar asi.
 	//ajusta el tamanyo de
+	if (j == 0 && line[0] == '\n')//para eliminar lineas de mas y pillar mapita
+		return ;
     mapinfo->map = ft_double_realloc(mapinfo->map, (j + 2) * sizeof(char *));
     if (!mapinfo->map) 
 	{

@@ -16,29 +16,26 @@ void	max_line(t_mapinfo *mapinfo)
 	printf("🫑max_line\n");
 	size_t max_row; // esto era un int pero lo cambie para que encajara con el ft_strlen
 	int j;
-
 	max_row = 0;
 	j = 0;
 	while(mapinfo->map[j])
 	{
-		max_row = ft_strlen(mapinfo->map[j]);
-		if(max_row < ft_strlen(mapinfo->map[j + 1]))
-			max_row = ft_strlen(mapinfo->map[j + 1]);
-//		printf("🫑 j: %d\n", j);
+		if(max_row < ft_strlen(mapinfo->map[j]))
+			max_row = ft_strlen(mapinfo->map[j]);
 		j++;
 	}
-	printf("🫑j antes de max_y: %d\n", j);
-	printf("🫑 max_rows andez de max_x: %zu\n", max_row);// zu es pq es size_t
 	mapinfo->max_y = j;
 	mapinfo->max_x = max_row;
-	printf("max_x saved: %d\n", mapinfo->max_x);
-	printf("max_y saved: %d\n", mapinfo->max_y);
+	printf("🫑max_x saved: %d\n", mapinfo->max_x);
+	printf("🫑max_y saved: %d\n", mapinfo->max_y);
 }
 
 int	sto_finder(char c, t_mapinfo *mapinfo)
 {
+	static int check = 0;
+
 	printf("🍐sto_finder\n");
-	if (mapinfo->sto != 0)
+	if (check == 0)
 	{
 		if (c == 'N')
 			mapinfo->sto = 90;
@@ -49,6 +46,7 @@ int	sto_finder(char c, t_mapinfo *mapinfo)
 		else if (c == 'W')
 			mapinfo->sto = 180;
 		printf("🍐sto saved: %d\n", mapinfo->sto);
+		check++;
 		return(0);
 	}
 	else
@@ -64,25 +62,24 @@ void	initial_pos_player( t_mapinfo *mapinfo)
 	int i;
 	int j;
 
-	i = 0;
 	j = 0;
 	while(mapinfo->map[j])
 	{
+		i = 0;
 		while(mapinfo->map[j][i])
 		{
 //este if podria ser lo mismo que ponendo las letras, pero como hay muchos checkeos
 //que comprueban que no se haya colado nada, lo pongo mas corto con 1 0 y sp
 			if(mapinfo->map[j][i] != '1' && mapinfo->map[j][i] != '0' 
-							&& mapinfo->map[j][i] != ' ')
+				&& mapinfo->map[j][i] != ' ' && mapinfo->map[j][i] != '\n')
 			{
-				printf("🪼before sty: %d stx: %d\n", i, j);//posible error printf
 				mapinfo->sty = j;
-				printf("🪼sty saved: %d\n", mapinfo->stx);
+				printf("🪼sty saved: %d\n", mapinfo->sty);
 				mapinfo->stx = i;
 				printf("🪼stx saved: %d\n", mapinfo->stx);	
+				return ;
 			}
-			else
-			 i++;
+			i++;
 		}
 		j++;
 	}

@@ -69,6 +69,6 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char	*ft_strcpy(char *dest, const char *src);
 void	*realloc(void *ptr, size_t new_size);
-void	**ft_double_realloc(void **ptr, size_t new_size);
+char	**ft_double_realloc(char **ptr, size_t new_size);
 
 #endif
