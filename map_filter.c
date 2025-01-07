@@ -11,6 +11,32 @@
 /* ************************************************************************** */
 
 #include "parsing.h"
+void	space_dealer(t_mapinfo *mapinfo, int i, int j)
+{
+	printf("entro en space_dealer\n");
+	if(mapinfo->map[j][i] != ' ')
+	{
+//si esta en la primera linea y no es un uno, la ultima es igual
+		if(mapinfo->map[j] == 0 && mapinfo->map[j][i] != 1)
+		{
+			printf("ERROR: This should be a one☝️\n");
+			free(mapinfo->map); 
+			return ;
+			//arreglar error managemnt error_free
+		}
+		if(mapinfo->map[j][i] != 1)
+		{
+			if(mapinfo->map[j-1][i] == ' ' || mapinfo->map[j+1][i] == ' ' 
+				|| mapinfo->map[j][i-1] == ' ' || mapinfo->map[j][i+1] == ' ')
+			{
+				printf("ERROR: This should be a one☝️\n");
+				free(mapinfo->map);
+				return ;
+			}
+		}
+	}
+	return ;
+}
 int		map_line_checker(/*char *line,*/ t_mapinfo *mapinfo)
 {
 	int i;
@@ -27,10 +53,14 @@ int		map_line_checker(/*char *line,*/ t_mapinfo *mapinfo)
 		{
 			if(mapinfo->map[j][i] == '1' || mapinfo->map[j][i] == '0' 
 				|| mapinfo->map[j][i] == ' ' || mapinfo->map[j][i] == '\n')
+			{
+				space_dealer(mapinfo, i, j);
 				printf("map_char🍋: %c\n", mapinfo->map[j][i]);
+			}
 			else if(mapinfo->map[j][i] == 'N' || mapinfo->map[j][i] == 'S' 
 					|| mapinfo->map[j][i] == 'E' || mapinfo->map[j][i] == 'W')
 			{
+				space_dealer(mapinfo, i, j);
 				printf("🍋char encontrado: %c\n", mapinfo->map[j][i]);
 				if(sto_finder(mapinfo->map[j][i], mapinfo) == 1)
 					return(1);

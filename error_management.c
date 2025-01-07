@@ -22,6 +22,8 @@ void	error_free(t_mapinfo *mapinfo, char *line)
 	free(mapinfo->floor);
 	printf("all malloc free🕊️\n");
 	exit(1);
+	// s'ha de fer free de mes cosetes eh...
+	// potser caldire un altre funcio per els frees sense line
 }
 //FUTURAS COSAS A TOCAR:
 //1.Poner que se pueda pasar una string en el error_free para poder eliminar printf
