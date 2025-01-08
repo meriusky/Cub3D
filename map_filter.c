@@ -6,40 +6,46 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:16:32 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/08 15:36:08 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:20:30 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 void	space_dealer(t_mapinfo *mapinfo, int i, int j)
 {
-	printf("entro en space_dealer\n");
 	printf("char de space_dealer: %c\n", mapinfo->map[j][i]);
-	if(mapinfo->map[j][i] != ' ') //|| mapinfo->map[j][i] != '\n')
+	if(mapinfo->map[j][i] != ' ' && mapinfo->map[j][i] != '\n')
 	{
 		printf("char dentro while: %c\n", mapinfo->map[j][i]);
 //si esta en la primera linea y no es un uno, la ultima es igual
-		if(mapinfo->map[j] == 0 && mapinfo->map[j][i] != 1)
+/*		if(mapinfo->map[j] == 0 && mapinfo->map[j][i] != 1)
 		{
 			printf("ERROR: This should be a one☝️\n");
 		//	free(mapinfo->map); 
 			return ;
 			//arreglar error managemnt error_free
-		}
+		}*/
 		if(mapinfo->map[j][i] != '1')
 		{
-			printf("holaaaa\n");
-			if(mapinfo->map[j-1][i] == ' ' || mapinfo->map[j+1][i] == ' ' 
-				|| mapinfo->map[j][i-1] == ' ' || mapinfo->map[j][i+1] == ' ')
+			printf("caracter con el que entra:-%c-\n", mapinfo->map[j][i]);
+			if((ft_strlen(mapinfo->map[j+1]) < (size_t)i) || 
+			(ft_strlen(mapinfo->map[j-1]) < (size_t)i) || mapinfo->map[j-1][i] == ' '
+		    || mapinfo->map[j][i-1] == ' ' || mapinfo->map[j][i+1] == ' ' 
+			|| mapinfo->map[j+1][i] == ' '|| (j == 0 && mapinfo->map[j][i] != 1)
+			|| mapinfo->map[j+1] == NULL)
 			{
 				printf("ERROR: This should be a one☝️\n");
+				printf("j:%d\n", j);
+				printf("i:%d\n", i);
 			//	free(mapinfo->map);
-				return ;
+				exit(1);	
+			//	return ;
 			}
 		}
 	}
 	return ;
 }
+
 int		map_line_checker(/*char *line,*/ t_mapinfo *mapinfo)
 {
 	int i;
