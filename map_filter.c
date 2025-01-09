@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:16:32 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/08 17:20:30 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/09 13:29:54 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,12 @@ void	space_dealer(t_mapinfo *mapinfo, int i, int j)
 	if(mapinfo->map[j][i] != ' ' && mapinfo->map[j][i] != '\n')
 	{
 		printf("char dentro while: %c\n", mapinfo->map[j][i]);
-//si esta en la primera linea y no es un uno, la ultima es igual
-/*		if(mapinfo->map[j] == 0 && mapinfo->map[j][i] != 1)
-		{
-			printf("ERROR: This should be a one☝️\n");
-		//	free(mapinfo->map); 
-			return ;
-			//arreglar error managemnt error_free
-		}*/
 		if(mapinfo->map[j][i] != '1')
 		{
-			printf("caracter con el que entra:-%c-\n", mapinfo->map[j][i]);
-			if((ft_strlen(mapinfo->map[j+1]) < (size_t)i) || 
-			(ft_strlen(mapinfo->map[j-1]) < (size_t)i) || mapinfo->map[j-1][i] == ' '
-		    || mapinfo->map[j][i-1] == ' ' || mapinfo->map[j][i+1] == ' ' 
-			|| mapinfo->map[j+1][i] == ' '|| (j == 0 && mapinfo->map[j][i] != 1)
-			|| mapinfo->map[j+1] == NULL)
+			if((j == 0 && mapinfo->map[j][i] != 1) || (ft_strlen(mapinfo->map[j+1])
+			< (size_t)i+1) || (ft_strlen(mapinfo->map[j-1]) < (size_t)i+1) ||
+			mapinfo->map[j-1][i] == ' ' || mapinfo->map[j][i-1] == ' ' || 
+			mapinfo->map[j][i+1] == ' ' || mapinfo->map[j+1][i] == ' ')
 			{
 				printf("ERROR: This should be a one☝️\n");
 				printf("j:%d\n", j);
@@ -63,8 +53,8 @@ int		map_line_checker(/*char *line,*/ t_mapinfo *mapinfo)
 			if(mapinfo->map[j][i] == '1' || mapinfo->map[j][i] == '0' 
 				|| mapinfo->map[j][i] == ' ' || mapinfo->map[j][i] == '\n')
 			{
-				space_dealer(mapinfo, i, j);
 				printf("map_char🍋: %c\n", mapinfo->map[j][i]);
+				space_dealer(mapinfo, i, j);
 			}
 			else if(mapinfo->map[j][i] == 'N' || mapinfo->map[j][i] == 'S' 
 					|| mapinfo->map[j][i] == 'E' || mapinfo->map[j][i] == 'W')
