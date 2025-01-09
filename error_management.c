@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:04:21 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/04 19:30:54 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:52:06 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -20,6 +20,11 @@ void	error_free(t_mapinfo *mapinfo, char *line)
 	free(mapinfo->east);
 	free(mapinfo->ceiling);
 	free(mapinfo->floor);
+//	free(mapinfo->check);//creoq ue no cal
+	free(mapinfo->map);//ojo el doble puntero que quizas da problema
+//	free(mapinfo->max_x);
+//	free(mapinfo->max_y);
+//	free(mapinfo->stx
 	printf("all malloc free🕊️\n");
 	exit(1);
 	// s'ha de fer free de mes cosetes eh...

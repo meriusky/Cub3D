@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:23:56 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/26 16:17:36 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:57:14 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_mapinfo
 	char	*floor;
 	char	*ceiling;
 	int 	check;
-//	int		rows; //Es lo mismo que max_y pero con valores que pueden ser incorrectos
 	char	**map; // Mapa
 	int		max_x; // Valor máximo X del mapa
 	int		max_y; // Valor máximo Y del mapa

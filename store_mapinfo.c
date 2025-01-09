@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 16:23:26 by mehernan          #+#    #+#             */
-/*   Updated: 2024/11/26 17:00:47 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:30:43 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	north_texture(char *line, t_mapinfo *mapinfo, int i)
 					printf("ERROR: duplicated texture\n");
 					error_free(mapinfo, line);
 				}
-//				path_checker(mapinfo, line); 
+//				path_checker(mapinfo, line); // hacerlo con open y close 
 				mapinfo->north = ft_strdup(line);
 				printf("✅:%s\n", line);
 				return ;

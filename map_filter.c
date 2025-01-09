@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:16:32 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/09 13:29:54 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:56:40 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	space_dealer(t_mapinfo *mapinfo, int i, int j)
 		printf("char dentro while: %c\n", mapinfo->map[j][i]);
 		if(mapinfo->map[j][i] != '1')
 		{
-			if((j == 0 && mapinfo->map[j][i] != 1) || (ft_strlen(mapinfo->map[j+1])
+			if((j == 0 && mapinfo->map[j][i] != 1) || i == 0 || (ft_strlen(mapinfo->map[j+1])
 			< (size_t)i+1) || (ft_strlen(mapinfo->map[j-1]) < (size_t)i+1) ||
 			mapinfo->map[j-1][i] == ' ' || mapinfo->map[j][i-1] == ' ' || 
 			mapinfo->map[j][i+1] == ' ' || mapinfo->map[j+1][i] == ' ')
@@ -28,7 +28,8 @@ void	space_dealer(t_mapinfo *mapinfo, int i, int j)
 				printf("j:%d\n", j);
 				printf("i:%d\n", i);
 			//	free(mapinfo->map);
-				exit(1);	
+				error_free(mapinfo, NULL);
+		//		exit(1);	
 			//	return ;
 			}
 		}
@@ -62,12 +63,14 @@ int		map_line_checker(/*char *line,*/ t_mapinfo *mapinfo)
 				space_dealer(mapinfo, i, j);
 				printf("🍋char encontrado: %c\n", mapinfo->map[j][i]);
 				if(sto_finder(mapinfo->map[j][i], mapinfo) == 1)
-					return(1);
+					error_free(mapinfo, NULL);
+				//	return(1);
 			}
 			else
 			{
 				printf("MAP ERROR: something is not supposed to be there🐛\n");
-				return(1);
+				error_free(mapinfo, NULL);
+		//		return(1);
 			}
 			i++;
 		}
@@ -80,7 +83,8 @@ void	take_map(/*char *line,*/ t_mapinfo *mapinfo)
 {
 
 	printf("🍊take_map\n");
-	map_line_checker(mapinfo);
+	if(map_line_checker(mapinfo) == 1)
+		error_free(mapinfo, NULL);
 	max_line(mapinfo);
 	initial_pos_player(mapinfo);
 	printf("🍊everything full👌\n");	

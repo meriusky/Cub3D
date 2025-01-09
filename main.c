@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:22:48 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/04 19:57:07 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:29:40 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -61,7 +61,7 @@ int	main(int argc, char **argv)
 			sorter(line, &mapinfo);
 			free(line);
 			line = get_next_line(fd);// possible causante del error💀
-									 //no entiendo como esta yendo a la siguiente
+									 //no entiendo como esta yendo a la siguiente, creo que va solo
 		}
 		take_map(&mapinfo);
 	}
