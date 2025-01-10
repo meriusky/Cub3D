@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:22:48 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/09 17:29:40 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/10 18:54:47 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -33,6 +33,42 @@ int	dot_cub_checker(char **argv)
 		return (1);
 	}
 }
+/*
+int	parsing(int argc, char **argv)
+{
+	int		fd;
+	char	*line;
+	t_mapinfo mapinfo;
+
+	if (argc == 2)
+	{
+		if (dot_cub_checker(argv) == 0)
+		{
+			fd = open(argv[1], O_RDONLY);
+			if(fd == -1)
+			{
+				printf("ERROR: file doesn't exist\n");
+				exit(1);
+			}
+		}
+		else
+			exit(1);
+		ft_bzero(&mapinfo, sizeof(t_mapinfo));// para inicializar
+		line = get_next_line(fd);
+		while (line != NULL)
+		{
+			printf("main: %s", line);
+			sorter(line, &mapinfo);
+			free(line);
+			line = get_next_line(fd);
+		}
+		take_map(&mapinfo);
+	}
+	else
+		printf("ERROR: just the executable and map name allowed\n");
+	close(fd);
+	return (0);
+}*/
 
 int	main(int argc, char **argv)
 {
@@ -45,6 +81,9 @@ int	main(int argc, char **argv)
 		if (dot_cub_checker(argv) == 0)
 		{
 			fd = open(argv[1], O_RDONLY);
+			// hay que hacer close, ahora no porque estas abriendolo para leerlo,
+			//  pero a la que todos los datos esten en la estructura note sirve de 
+			//  nada tenerlo abierto y puede dar problemas.
 			if(fd == -1)
 			{
 				printf("ERROR: file doesn't exist\n");

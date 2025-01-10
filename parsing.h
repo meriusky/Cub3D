@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:23:56 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/09 16:57:14 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:54:12 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	floor_color(char *line, t_mapinfo *mapinfo, int i);
 void	ceiling_color(char *line, t_mapinfo *mapinfo, int i);
 int		rgb_checker(char *line, int i);
 void	error_free(t_mapinfo *mapinfo, char *line);
-//void	path_checker(t_mapinfo *mapinfo, char *line); // comentado por testeo
+void	path_checker(/*t_mapinfo *mapinfo,*/ char *line); 
 //int		filled_textures(t_mapinfo *mapinfo);
-//☝️funcion que checkea cuando tenemos lo necesario para pasar a mirar el mapa☝️
+//funcion que checkea cuando tenemos lo necesario para pasar a mirar el mapa☝️
 void	count_map_lines(t_mapinfo *mapinfo, char *line);
 void	take_map(t_mapinfo *mapinfo);
 void	max_line(t_mapinfo *mapinfo);

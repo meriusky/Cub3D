@@ -6,70 +6,11 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:09:04 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/09 17:30:09 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:50:52 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
 #include "libft/libft.h"
-
-int	rgb_checker(char *line, int i)
-{
-	char str[4];
-	int check;
-	int j;
-	int rgb;
-
-	j = 0;
-	check = 0;
-	while(line[i] != '\n')
-	{
-		while(line[i] >= '0' && line[i] <= '9')
-		{
-			if(j == 3)
-			{
-				printf("ERROR: color with more dan 3 digits\n");
-				exit(1);
-			}
-			str[j] = line[i];
-			i++;
-			j++;
-		}
-		if((line[i] == ',' || line[i] == '\n') && (j >= 1 && j <= 3))
-		{
-			str[j] = '\0';
-			rgb = ft_atoi(str);
-			if((rgb >= 0 && rgb <= 255) && check != 3)
-			{
-				str[0] = '\0';
-				rgb = 0;
-				j = 0;		
-				i++;
-				check++;
-				if(check == 3)
-				{
-					printf("✅COLOR CORRECT✅\n");
-					return (0);
-				}
-			}
-			else
-			{
-				printf("ERROR: rgb color wrong\n");
-				exit(1);
-			}
-		}
-		else
-		{
-			printf("ERROR: only RGB colors allowed\n");
-			exit(1);
-		}
-	}
-	if(check != 3)
-	{
-		printf("ERROR: three colors are needed\n");
-		exit(1);
-	}
-	return(1);
-}
 
 void	sorting_for_store(char *line, t_mapinfo *mapinfo, int i)
 {

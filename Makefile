@@ -6,7 +6,7 @@
 #    By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 14:41:41 by mehernan          #+#    #+#              #
-#    Updated: 2024/11/26 15:01:01 by mehernan         ###   ########.fr        #
+#    Updated: 2025/01/10 16:46:08 by mehernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC = gcc
 SRCS = main.c get_next_line/get_next_line.c \
 	   get_next_line/get_next_line_utils.c filter.c store_mapinfo.c \
 	   store_colors.c error_management.c map_filter.c store_map.c \
-	   map_lines.c
+	   map_lines.c path_rgb_checker.c
 INCLUDES = -I ./libft/ \
 		   -I ./get_next_line/
 OBJS = $(SRCS:.c=.o)
