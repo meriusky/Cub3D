@@ -34,6 +34,5 @@ void count_map_lines(t_mapinfo *mapinfo, char *line)
         error_free(mapinfo, line);
     }
     j++;
-//    mapinfo->rows = j;// se podria poner mapinfo->max_y;
 }
 

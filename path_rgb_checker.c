@@ -35,7 +35,7 @@ void	extension_checker(char *line)
 	return ;
 }
 
-void	path_checker(/*t_mapinfo *mapinfo,*/ char *line)
+void	path_checker(char *line)
 {
 	int i;
 	int check;
@@ -61,6 +61,36 @@ void	path_checker(/*t_mapinfo *mapinfo,*/ char *line)
 
 }
 
+void	rgb_space(char *line, int i)
+{
+	int	check;
+	int space;
+
+	check = 0;
+	space = 0;
+	while(line[i] != '\n')
+	{
+		if(line[i] >= '0' && line[i] <= '9')
+		{
+			if(space != 0)
+			{
+				printf("ERROR: space between numbers not allowed: %c\n", line[i]);
+				error_free(NULL, line);
+			}
+			check++;
+		}
+		else if(check != 0 && line[i] == ' ')
+			space++;
+		else if((line[i] == ',' || line[i] == '\n') && space != 0)
+		{
+			printf("todo bien\n");
+			space = 0;
+			check = 0;
+		}
+		i++;
+	}
+	return ;
+}
 int	rgb_checker(char *line, int i)
 {
 	char str[4];
@@ -70,6 +100,7 @@ int	rgb_checker(char *line, int i)
 
 	j = 0;
 	check = 0;
+//	rgb_space(line);
 	while(line[i] != '\n')
 	{
 		while(line[i] >= '0' && line[i] <= '9')
@@ -106,6 +137,8 @@ int	rgb_checker(char *line, int i)
 				exit(1);
 			}
 		}
+		else if(line[i] == ' ')
+			i++;
 		else
 		{
 			printf("ERROR: only RGB colors allowed\n");

@@ -68,8 +68,6 @@ void	initial_pos_player( t_mapinfo *mapinfo)
 		i = 0;
 		while(mapinfo->map[j][i])
 		{
-//este if podria ser lo mismo que ponendo las letras, pero como hay muchos checkeos
-//que comprueban que no se haya colado nada, lo pongo mas corto con 1 0 y sp
 			if(mapinfo->map[j][i] != '1' && mapinfo->map[j][i] != '0' 
 				&& mapinfo->map[j][i] != ' ' && mapinfo->map[j][i] != '\n')
 			{

@@ -28,7 +28,7 @@ void	north_texture(char *line, t_mapinfo *mapinfo, int i)
 					printf("ERROR: duplicated texture\n");
 					error_free(mapinfo, line);
 				}
-				path_checker(line); 
+//				path_checker(line); 
 				mapinfo->north = ft_strdup(line);
 				printf("✅:%s\n", line);
 				return ;
@@ -61,7 +61,7 @@ void	south_texture(char *line, t_mapinfo *mapinfo, int i)
 					printf("ERROR: duplicated texture\n");
 					error_free(mapinfo, line);
 				}
-				path_checker(/*mapinfo,*/ line); 
+//				path_checker(line); 
 				mapinfo->south = ft_strdup(line);
 				printf("✅:%s\n", line);
 				return ;
@@ -93,7 +93,7 @@ void	west_texture(char *line, t_mapinfo *mapinfo, int i)
 					printf("ERROR: duplicated texture\n");
 					error_free(mapinfo, line);
 				}
-				path_checker(/*mapinfo,*/ line);
+//				path_checker( line);
 				mapinfo->west = ft_strdup(line);
 				printf("✅:%s\n", line);
 				return ;
@@ -125,7 +125,7 @@ void	east_texture(char *line, t_mapinfo *mapinfo, int i)
 					printf("ERROR: duplicated texture\n");
 					error_free(mapinfo, line);
 				}
-				path_checker(/*mapinfo,*/ line);
+//				path_checker(line);
 				mapinfo->east = ft_strdup(line);
 				printf("✅:%s\n", line);
 				return ;

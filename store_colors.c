@@ -15,21 +15,17 @@ void	floor_color(char *line, t_mapinfo *mapinfo, int i)
 {
 	if (line[i] == 'F')
 	{
-//		printf("📔%s\n", line);
 		i++;
+		rgb_space(line, i);
+		printf("i: %d\n", i);
 		while (line[i] != '\0')
 		{
-			if (line[i] == 32)
-			{
-//				printf("📔espacio💫\n");
+			if (line[i] == ' ')
 				i++;
-			}
-			if (line[i] >= 48 && line[i] <= 57)
+			else if(line[i] >= 48 && line[i] <= 57)
 			{
-//				printf("📔antes de entrar rgb checker\n");
 				if(rgb_checker(line, i) == 0)
 				{
-//					printf("string dentro de lista: %s\n", line);
 					if(mapinfo->floor != NULL)
 					{
 						printf("ERROR: duplicated color\n");
@@ -58,19 +54,15 @@ void	ceiling_color(char *line, t_mapinfo *mapinfo, int i)
 	if (line[i] == 'C')
 	{
 		i++;
+		rgb_space(line, i);
 		while (line[i] != '\0')
 		{
-			if (line[i] == 32)
-			{
-//				printf("📔espacio💫\n");
+			if (line[i] == ' ')
 				i++;
-			}
-			if (line[i] >= 48 && line[i] <= 57)
+			else if (line[i] >= 48 && line[i] <= 57)
 			{
-//				printf("📔antes de entrar rgb checker\n");
 				if(rgb_checker(line, i) == 0)
 				{
-//					printf("string dentro de lista: %s\n", line);
 					if(mapinfo->ceiling != NULL)
 					{
 						printf("ERROR: duplicated color\n");
