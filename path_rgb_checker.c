@@ -81,9 +81,8 @@ void	rgb_space(char *line, int i)
 		}
 		else if(check != 0 && line[i] == ' ')
 			space++;
-		else if((line[i] == ',' || line[i] == '\n') && space != 0)
+		else if(line[i] == ',' || line[i] == '\n')// && space != 0)
 		{
-			printf("todo bien\n");
 			space = 0;
 			check = 0;
 		}
@@ -100,8 +99,7 @@ int	rgb_checker(char *line, int i)
 
 	j = 0;
 	check = 0;
-//	rgb_space(line);
-	while(line[i] != '\n')
+	while(line[i] != '\0')
 	{
 		while(line[i] >= '0' && line[i] <= '9')
 		{
@@ -118,19 +116,14 @@ int	rgb_checker(char *line, int i)
 		{
 			str[j] = '\0';
 			rgb = ft_atoi(str);
-			if((rgb >= 0 && rgb <= 255) && check != 3)
+			if(rgb >= 0 && rgb <= 255)
 			{
 				str[0] = '\0';
 				rgb = 0;
 				j = 0;
 				i++;
 				check++;
-				if(check == 3)
-				{
-					printf("✅COLOR CORRECT✅\n");
-					return (0);
-				}
-			}
+							}
 			else
 			{
 				printf("ERROR: rgb color wrong\n");
@@ -145,11 +138,12 @@ int	rgb_checker(char *line, int i)
 			exit(1);
 		}
 	}
-	if(check != 3)
+	if(check == 3)
 	{
-		printf("ERROR: three colors are needed\n");
-		exit(1);
+		printf("✅COLOR CORRECT✅\n");
+		return (0);
 	}
+	printf("ERROR: three colors are needed\n");
 	return(1);
 }
 

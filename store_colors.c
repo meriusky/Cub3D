@@ -34,6 +34,7 @@ void	floor_color(char *line, t_mapinfo *mapinfo, int i)
 					mapinfo->floor = ft_strdup(line);
 					return ;
 				}
+				exit (1);
 			}
 			else
 			{
@@ -71,6 +72,7 @@ void	ceiling_color(char *line, t_mapinfo *mapinfo, int i)
 					mapinfo->ceiling = ft_strdup(line);
 					return ;
 				}
+				exit (1);
 			}
 			else
 			{
