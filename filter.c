@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:09:04 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/10 16:50:52 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/12 17:41:03 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -14,17 +14,17 @@
 
 void	sorting_for_store(char *line, t_mapinfo *mapinfo, int i)
 {
-	if(line[i] == 'N')
+	if (line[i] == 'N')
 		north_texture(line, mapinfo, i);
-	else if(line[i] == 'S')
+	else if (line[i] == 'S')
 		south_texture(line, mapinfo, i);
-	else if(line[i] == 'W')
+	else if (line[i] == 'W')
 		west_texture(line, mapinfo, i);
-	else if(line[i] == 'E')
-		east_texture(line, mapinfo, i);	
-	else if(line[i] == 'F')
+	else if (line[i] == 'E')
+		east_texture(line, mapinfo, i);
+	else if (line[i] == 'F')
 		floor_color(line, mapinfo, i);
-	else if(line[i] == 'C')
+	else if (line[i] == 'C')
 		ceiling_color(line, mapinfo, i);
 	else
 		printf("ERROR: information needed not found\n");
@@ -33,21 +33,21 @@ void	sorting_for_store(char *line, t_mapinfo *mapinfo, int i)
 
 void	sorter(char *line, t_mapinfo *mapinfo)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if(mapinfo->check == 6)
+	if (mapinfo->check == 6)
 	{
-			count_map_lines(mapinfo, line); 
-			return ; //hay que salir porque sino se mete el while
+		count_map_lines(mapinfo, line);
+		return ;
 	}
-	while(line[i])
+	while (line[i])
 	{
-		if(line[i] == 'S' || line[i] == 'N' || line[i] == 'E' || line[i] == 'W'
-					|| line[i] == 'F' || line[i] == 'C')
+		if (line[i] == 'S' || line[i] == 'N' || line[i] == 'E' || line[i] == 'W'
+			|| line[i] == 'F' || line[i] == 'C')
 		{
 			mapinfo->check++;
-			if(mapinfo->check > 6)//no sirve ya se checkea que esten duplicados
+			if (mapinfo->check > 6)
 			{
 				printf("ERROR: map error, too many textures or colors\n");
 				exit(1);
@@ -55,20 +55,13 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 			sorting_for_store(line, mapinfo, i);
 			return ;
 		}
-		else if(line[i] == ' ' || line[i] == '\n')
+		else if (line[i] == ' ' || line[i] == '\n')
 			i++;
 		else
 		{
-			printf("ERROR: map error, something is not supposed to be here: %c\n", line[i]);
+			printf("ERROR: map error, char no allowed: %c\n", line[i]);
 			exit(1);
 		}
-//estoy ignorando el hecho de que podria haber letras randoms por ahi, quizas solo
-//deberia ignorar los espacios pero no el resto de cosas.
-//
-//RESPUESTA: Hay que comprobar que no haya mierdas, como mucho espacios al inicio
-//y final pero no mas, esos son los que puedes ignorar
-//
-//Asegurate de haber comprobado que si entran dos N,S,W,E el programa haga exit, es unERROR GRAVE	
 	}
 	return ;
 }

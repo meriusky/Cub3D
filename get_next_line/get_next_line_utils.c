@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:48:02 by mehernan          #+#    #+#             */
-/*   Updated: 2024/09/19 11:35:28 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/12 19:30:56 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -25,7 +25,7 @@ char	*search_char(const char *s, char c)
 		return ((char *)&s[count]);
 	return (NULL);
 }
-// la funcion que corta substr 
+
 char	*cutstr(char const *s, unsigned int start, size_t len)
 {
 	size_t	count;
@@ -52,7 +52,7 @@ char	*cutstr(char const *s, unsigned int start, size_t len)
 	free((void *)s);
 	return (result);
 }
-//Hay que copiar la info del buffer a la statica.
+
 char	*strjoin(char const *s1, char const *s2)
 {
 	char	*snew;

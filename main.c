@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:22:48 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/10 18:54:47 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/12 17:42:07 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -33,19 +33,19 @@ int	dot_cub_checker(char **argv)
 		return (1);
 	}
 }
-/*
-int	parsing(int argc, char **argv)
+
+int	parsing(int argc, char **argv)// lineas de mas
 {
-	int		fd;
-	char	*line;
-	t_mapinfo mapinfo;
+	int			fd;
+	char		*line;
+	t_mapinfo	mapinfo;
 
 	if (argc == 2)
 	{
 		if (dot_cub_checker(argv) == 0)
 		{
 			fd = open(argv[1], O_RDONLY);
-			if(fd == -1)
+			if (fd == -1)
 			{
 				printf("ERROR: file doesn't exist\n");
 				exit(1);
@@ -53,11 +53,11 @@ int	parsing(int argc, char **argv)
 		}
 		else
 			exit(1);
-		ft_bzero(&mapinfo, sizeof(t_mapinfo));// para inicializar
+		ft_bzero(&mapinfo, sizeof(t_mapinfo));
 		line = get_next_line(fd);
 		while (line != NULL)
 		{
-			printf("main: %s", line);
+	//		printf("main: %s", line);
 			sorter(line, &mapinfo);
 			free(line);
 			line = get_next_line(fd);
@@ -68,8 +68,8 @@ int	parsing(int argc, char **argv)
 		printf("ERROR: just the executable and map name allowed\n");
 	close(fd);
 	return (0);
-}*/
-
+}
+/*
 int	main(int argc, char **argv)
 {
 	int		fd;
@@ -103,7 +103,7 @@ int	main(int argc, char **argv)
 	else
 		printf("ERROR: just the executable and map name allowed\n");
 	return (0);
-}
+}*/
 //TRUCO PARA ELIMINAR LINEAS💡
 //Hagamos que en el error management, en la funcion error_free ponemos
 //que pille string que sera lo que printeamos. Asi quitamos los {} y el

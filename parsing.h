@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:23:56 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/10 16:54:12 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/12 18:06:58 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ typedef struct s_mapinfo
 	char	*east;
 	char	*floor;
 	char	*ceiling;
-	int 	check;
-	char	**map; // Mapa
-	int		max_x; // Valor máximo X del mapa
-	int		max_y; // Valor máximo Y del mapa
-	int		stx;   // Posición Inicial del Personaje en X
-	int		sty;   // Posición Inicial del Personaje en Y 
-	int		sto;   // Posición Inicial que apunta el Persoanje
+	int		check;
+	char	**map;
+	int		max_x;
+	int		max_y;
+	int		stx;
+	int		sty;
+	int		sto;
 }	t_mapinfo;
 
 void	sorter(char *line, t_mapinfo *mapinfo);
@@ -51,7 +51,7 @@ void	floor_color(char *line, t_mapinfo *mapinfo, int i);
 void	ceiling_color(char *line, t_mapinfo *mapinfo, int i);
 int		rgb_checker(char *line, int i);
 void	error_free(t_mapinfo *mapinfo, char *line);
-void	path_checker( char *line); 
+void	path_checker( char *line);
 void	count_map_lines(t_mapinfo *mapinfo, char *line);
 void	take_map(t_mapinfo *mapinfo);
 void	max_line(t_mapinfo *mapinfo);
@@ -59,6 +59,5 @@ int		sto_finder(char c, t_mapinfo *mapinfo);
 void	initial_pos_player(t_mapinfo *mapinfo);
 int		map_line_checker(t_mapinfo *mapinfo);
 void	rgb_space(char *line, int i);
-
 
 #endif

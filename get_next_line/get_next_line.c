@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:46:16 by mehernan          #+#    #+#             */
-/*   Updated: 2024/10/02 16:14:05 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/12 19:34:26 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -24,7 +24,7 @@ char	*show_newline(char *line)
 	check = 0;
 	if (!line || line[0] == '\0')
 		return (NULL);
-	while (line[++count] != '\0')// while solo para el malloc, hay que gurdar cuantos char va a haber, pereza :(
+	while (line[++count] != '\0')
 	{
 		if (line[count] == '\n')
 		{
@@ -35,29 +35,29 @@ char	*show_newline(char *line)
 	newline = malloc(sizeof(char) * (count + check + 1));
 	if (!newline)
 		return (NULL);
-	while (++i < (count + check))// que pasa si no hay un \n, no debe hace nada.
+	while (++i < (count + check))
 		newline[i] = line[i];
 	newline[i] = '\0';
 	return (newline);
 }
-// Una funcion que lea y guarde la info (con una estatica) y que este el buffer tambien (delimitar lineas)
+
 char	*read_and_save(int fd, char *line)
 {
 	char	*buffer;
-	int		read_bytes; //esta variable sirve para guardar el nº de bytes y cosicas
+	int		read_bytes;
 
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	buffer[0] = '\0'; // si no ponems esto da segmentation fault
+	buffer[0] = '\0';
 	while (search_char(buffer, '\n') == NULL)
 	{
-		read_bytes = read (fd, buffer, BUFFER_SIZE); // el archivo, la variable (que almacena el texto), el tamano
+		read_bytes = read (fd, buffer, BUFFER_SIZE);
 		if (read_bytes == 0)
 			break ;
 		if (read_bytes == -1)
 		{
-			free (buffer);//si hay un error, ahi hay memoria que no se usara y debe ser liberada
+			free (buffer);
 			free(line);
 			return (NULL);
 		}
@@ -67,7 +67,7 @@ char	*read_and_save(int fd, char *line)
 	free (buffer);
 	return (line);
 }
-// Otra funcion que te limpie la estatica de la linea que acabas de mostrar y devuela la statca sin la linea
+
 char	*delete_line(char *line)
 {
 	int	count;
@@ -75,7 +75,7 @@ char	*delete_line(char *line)
 
 	count = 0;
 	start = 0;
-	if (!line) //si la statica esta vacia
+	if (!line)
 		return (NULL);
 	while (line[count] != '\0')
 	{
@@ -88,17 +88,16 @@ char	*delete_line(char *line)
 		free(line);
 		return (NULL);
 	}
-	line = cutstr(line, start, (count - start));// start es dodne cortas y la longitud es desde el punto donde ha encontrado \n mas uno porque queremos que lo pase
-	//aqui hay que hacer que lo elmine
+	line = cutstr(line, start, (count - start));
 	return (line);
 }
-// El get next line lo puedo usar para llamar a otras funciones y puede que para printear las frases pero bueno, esta por ver
-char *get_next_line(int fd)
+
+char	*get_next_line(int fd)
 {
 	static char	*line = NULL;
 	char		*newline;
 
-	if (fd < 0 || BUFFER_SIZE <= 0) //si el fd es incorrecto o el Buffer es menor de 0
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!line)
 	{
@@ -115,7 +114,7 @@ char *get_next_line(int fd)
 		line = NULL;
 		return (NULL);
 	}
-	line = delete_line(line);// con las staticas hay que "="asignar el nuevo valor  cuando las mandas a otra funcion
+	line = delete_line(line);
 	if (!line)
 		free(line);
 	return (newline);
