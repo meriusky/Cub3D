@@ -30,14 +30,14 @@ void	space_dealer(t_mapinfo *mapinfo, int i, int j)
 	return ;
 }
 
-int	map_line_checker( t_mapinfo *mapinfo)
+void	map_line_checker( t_mapinfo *mapinfo)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (mapinfo->map[j])
+	while (mapinfo->map[j++])
 	{
 		i = 0;
 		while (mapinfo->map[j][i])
@@ -50,15 +50,13 @@ int	map_line_checker( t_mapinfo *mapinfo)
 			{
 				space_dealer(mapinfo, i, j);
 				if (sto_finder(mapinfo->map[j][i], mapinfo) == 1)
-					error_free(mapinfo, NULL, "MAP ERROR: more then one player");
+					error_free(mapinfo, NULL, "ERROR: more then one player");
 			}
 			else
-				error_free(mapinfo, NULL, "MAP ERROR: something is not supposed to be there🐛");
+				error_free(mapinfo, NULL, "ERROR: not supposed to be there🐛");
 			i++;
 		}
-		j++;
 	}
-	return (0);
 }
 
 void	take_map( t_mapinfo *mapinfo)

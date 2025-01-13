@@ -63,13 +63,13 @@ void	floor_color(char *line, t_mapinfo *mapinfo, int i);
 void	ceiling_color(char *line, t_mapinfo *mapinfo, int i);
 int		rgb_checker(char *line, int i, t_mapinfo *mapinfo, char c);
 void	error_free(t_mapinfo *mapinfo, char *line, char *print);
-//void	path_checker( char *line);
+void	path_checker( char *line);
 void	count_map_lines(t_mapinfo *mapinfo, char *line);
 void	take_map(t_mapinfo *mapinfo);
 void	max_line(t_mapinfo *mapinfo);
 int		sto_finder(char c, t_mapinfo *mapinfo);
 void	initial_pos_player(t_mapinfo *mapinfo);
-int		map_line_checker(t_mapinfo *mapinfo);
+void	map_line_checker(t_mapinfo *mapinfo);
 void	rgb_space(char *line, int i);
 void	convert_rgb(t_mapinfo *mapinfo, int rgb, int checker, char c);
 

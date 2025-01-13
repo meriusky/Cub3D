@@ -48,20 +48,13 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 		{
 			mapinfo->check++;
 			if (mapinfo->check > 6)
-			{
-				printf("ERROR: map error, too many textures or colors\n");
-				exit(1);
-			}
+				error_free(mapinfo, line, "ERROR: too many textures or colors");
 			sorting_for_store(line, mapinfo, i);
 			return ;
 		}
 		else if (line[i] == ' ' || line[i] == '\n')
 			i++;
 		else
-		{
-			printf("ERROR: map error, char no allowed: %c\n", line[i]);
-			exit(1);
-		}
+			error_free(mapinfo, line, "ERROR: map error, char no allowed");
 	}
-	return ;
 }

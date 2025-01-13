@@ -65,97 +65,44 @@ void	convert_rgb(t_mapinfo *mapinfo, int rgb, int check, char c)
 	return ;
 }
 
-int parse_color_component(char *line, int *index, t_mapinfo *mapinfo) 
-{
-    char str[4];
-    int j;
-	int rgb;
-   
-	j= 0;
-    while (line[*index] >= '0' && line[*index] <= '9') 
-	{
-        if (j == 3)
-            error_free(mapinfo, line, "ERROR: color with more than 3 digits");
-        str[j++] = line[(*index)++];
-    }
-    str[j] = '\0';
-    rgb = ft_atoi(str);
-    if (rgb < 0 || rgb > 255)
-        error_free(mapinfo, line, "ERROR: RGB color out of range");
-    return rgb;
-}
-
-int rgb_checker(char *line, int i, t_mapinfo *mapinfo, char c)
-{
-    int check = 0;
-    int rgb;
-
-    while (line[i] != '\0')
-	{
-        if (line[i] == ' ') 
-		{
-            i++;
-            continue;
-        }
-        rgb = parse_color_component(line, &i, mapinfo);
-        check++;
-        convert_rgb(mapinfo, rgb, check, c);
-        if (line[i] == ',' || line[i] == '\n') 
-            i++;
-		else
-		{
-			printf("carcter:%c\n", line[i]);
-            error_free(mapinfo, line, "ERROR: unexpected character in RGB");
-		}
-    }
-    if (check == 3)
-        return 0;
-    error_free(mapinfo, line, "ERROR: three color components are required");
-    return 1;
-}
-/*
-int	rgb_checker(char *line, int i, t_mapinfo *mapinfo, char c)
+int	parse_color_component(char *line, int *index, t_mapinfo *mapinfo)
 {
 	char	str[4];
-	int		check;
 	int		j;
 	int		rgb;
 
 	j = 0;
+	while (line[*index] >= '0' && line[*index] <= '9')
+	{
+		if (j == 3)
+			error_free(mapinfo, line, "ERROR: color with more than 3 digits");
+		str[j++] = line[(*index)++];
+	}
+	str[j] = '\0';
+	rgb = ft_atoi(str);
+	if (rgb < 0 || rgb > 255)
+		error_free(mapinfo, line, "ERROR: RGB color out of range");
+	return (rgb);
+}
+
+int	rgb_checker(char *line, int i, t_mapinfo *mapinfo, char c)
+{
+	int	check;
+	int	rgb;
+
 	check = 0;
 	while (line[i] != '\0')
 	{
-		while (line[i] >= '0' && line[i] <= '9')
-		{
-			if (j == 3)
-				error_free(mapinfo, line, "ERROR: color with more dan 3 digits");
-			str[j] = line[i];
+		while (line[i] == ' ' || line[i] == ',')
 			i++;
-			j++;
-		}
-		if ((line[i] == ',' || line[i] == '\n') && (j >= 1 && j <= 3))
-		{
-			str[j] = '\0';
-			rgb = ft_atoi(str);
-			if (rgb >= 0 && rgb <= 255)
-			{
-				str[0] = '\0';
-				check++;
-				convert_rgb(mapinfo, rgb, check, c);
-				rgb = 0;
-				j = 0;
-				i++;
-			}
-			else
-				error_free(mapinfo, line, "ERROR: rgb color wrong");
-		}
-		else if (line[i] == ' ')
-			i++;
-		else
-			error_free(mapinfo, line, "ERROR: only RGB colors allowed\n");
+		if (line[i] == '\n')
+			break ;
+		rgb = parse_color_component(line, &i, mapinfo);
+		check++;
+		convert_rgb(mapinfo, rgb, check, c);
 	}
 	if (check == 3)
 		return (0);
-	printf("ERROR: three colors are needed\n");
+	error_free(mapinfo, line, "ERROR: three color components are required");
 	return (1);
-}*/
+}
