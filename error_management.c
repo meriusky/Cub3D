@@ -6,13 +6,14 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:04:21 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/12 17:34:25 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:57:12 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
 
-void	error_free(t_mapinfo *mapinfo, char *line)
+void	error_free(t_mapinfo *mapinfo, char *line, char *print)
 {
+	printf("%s\n", print);
 	free(line);
 	if (mapinfo != NULL)
 	{
@@ -20,8 +21,8 @@ void	error_free(t_mapinfo *mapinfo, char *line)
 		free(mapinfo->south);
 		free(mapinfo->west);
 		free(mapinfo->east);
-		free(mapinfo->ceiling);
-		free(mapinfo->floor);
+		free(mapinfo->raw_ceiling);
+		free(mapinfo->raw_floor);
 		free(mapinfo->map);
 	}
 	printf("all malloc free🕊️\n");

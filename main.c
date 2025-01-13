@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:22:48 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/12 17:42:07 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:06:37 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -34,30 +34,34 @@ int	dot_cub_checker(char **argv)
 	}
 }
 
-int	parsing(int argc, char **argv)// lineas de mas
+int	open_error(char *argv, int fd)
+{
+	fd = open(argv, O_RDONLY);
+	if(fd == -1)
+	{
+		printf("ERROR: file doesn't exist\n");
+		exit(1);
+	}
+	return (fd);
+}
+
+int	main(int argc, char **argv)
 {
 	int			fd;
 	char		*line;
 	t_mapinfo	mapinfo;
 
+	fd = 0;
 	if (argc == 2)
 	{
 		if (dot_cub_checker(argv) == 0)
-		{
-			fd = open(argv[1], O_RDONLY);
-			if (fd == -1)
-			{
-				printf("ERROR: file doesn't exist\n");
-				exit(1);
-			}
-		}
+			fd = open_error(argv[1], fd);
 		else
 			exit(1);
 		ft_bzero(&mapinfo, sizeof(t_mapinfo));
 		line = get_next_line(fd);
 		while (line != NULL)
 		{
-	//		printf("main: %s", line);
 			sorter(line, &mapinfo);
 			free(line);
 			line = get_next_line(fd);

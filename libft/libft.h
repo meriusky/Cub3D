@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:41:40 by mehernan          #+#    #+#             */
-/*   Updated: 2024/12/20 17:58:17 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:12:25 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char	*ft_strcpy(char *dest, const char *src);
 void	*realloc(void *ptr, size_t new_size);
 char	**ft_double_realloc(char **ptr, size_t new_size);
+char	*ft_remove_space(char *str);
 
 #endif

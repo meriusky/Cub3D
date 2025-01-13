@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 16:23:26 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/12 19:01:15 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:58:41 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,20 @@ void	north_texture(char *line, t_mapinfo *mapinfo, int i)
 				&& line[i + 2] != '\0')
 			{
 				if (mapinfo->north != NULL)
-				{
-					printf("ERROR: duplicated texture\n");
-					error_free(mapinfo, line);
-				}
-				path_checker(line);
+					error_free(mapinfo, line, "ERROR: duplicated texture");
+	//			path_checker(line);
 				mapinfo->north = ft_strdup(line);
-				printf("✅:%s\n", line);
 				return ;
 			}
 		}
-		printf("error: wrong north texture path\n");
-		error_free(mapinfo, line);
+		error_free(mapinfo, line, "error: wrong north texture path");
 	}
 	else
-	{
-		printf("ERROR: north textute information wrong\n");
-		error_free(mapinfo, line);
-	}
+		error_free(mapinfo, line, "ERROR: north textute information wrong");
 }
 
 void	south_texture(char *line, t_mapinfo *mapinfo, int i)
 {
-	printf("hola south\n");
 	if (line[i] == 'S' && line[i + 1] == 'O')
 	{
 		i = i + 2;
@@ -59,24 +50,16 @@ void	south_texture(char *line, t_mapinfo *mapinfo, int i)
 				&& line[i + 2] != '\0')
 			{
 				if (mapinfo->south != NULL)
-				{
-					printf("ERROR: duplicated texture\n");
-					error_free(mapinfo, line);
-				}
-				path_checker(line);
+					error_free(mapinfo, line, "ERROR: duplicated texture");
+//				path_checker(line);
 				mapinfo->south = ft_strdup(line);
-				printf("✅:%s\n", line);
 				return ;
 			}
 		}
-		printf("error: wrong south texture path\n");
-		error_free(mapinfo, line);
+		error_free(mapinfo, line, "error: wrong south texture path");
 	}
 	else
-	{
-		printf("ERROR: south textute information wrong\n");
-		error_free(mapinfo, line);
-	}
+		error_free(mapinfo, line, "ERROR: south textute information wrong");
 }
 
 void	west_texture(char *line, t_mapinfo *mapinfo, int i)
@@ -92,24 +75,16 @@ void	west_texture(char *line, t_mapinfo *mapinfo, int i)
 				&& line[i + 2] != '\0')
 			{
 				if (mapinfo->west != NULL)
-				{
-					printf("ERROR: duplicated texture\n");
-					error_free(mapinfo, line);
-				}
-				path_checker(line);
+					error_free(mapinfo, line, "ERROR: duplicated texture");
+		//		path_checker(line);
 				mapinfo->west = ft_strdup(line);
-				printf("✅:%s\n", line);
 				return ;
 			}
 		}
-		printf("error: wrong west texture path\n");
-		error_free(mapinfo, line);
+		error_free(mapinfo, line, "error: wrong west texture path");
 	}
 	else
-	{
-		printf("ERROR: west textute information wrong\n");
-		error_free(mapinfo, line);
-	}
+		error_free(mapinfo, line, "ERROR: west textute information wrong");
 }
 
 void	east_texture(char *line, t_mapinfo *mapinfo, int i)
@@ -125,22 +100,14 @@ void	east_texture(char *line, t_mapinfo *mapinfo, int i)
 				&& line[i + 2] != '\0')
 			{
 				if (mapinfo->east != NULL)
-				{
-					printf("ERROR: duplicated texture\n");
-					error_free(mapinfo, line);
-				}
-				path_checker(line);
+					error_free(mapinfo, line, "ERROR: duplicated texture");
+		//		path_checker(line);
 				mapinfo->east = ft_strdup(line);
-				printf("✅:%s\n", line);
 				return ;
 			}
 		}
-		printf("error: wrong east texture path\n");
-		error_free(mapinfo, line);
+		error_free(mapinfo, line, "error: wrong east texture path");
 	}
 	else
-	{
-		printf("ERROR: east textute information wrong\n");
-		error_free(mapinfo, line);
-	}
+		error_free(mapinfo, line, "ERROR: east textute information wrong");
 }

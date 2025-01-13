@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:01:18 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/12 18:41:33 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:11:43 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ int	sto_finder(char c, t_mapinfo *mapinfo)
 		return (0);
 	}
 	else
-	{
-		printf("MAP ERROR: more that one player found🤼‍♀️\n");
 		return (1);
-	}
 }
 
 void	initial_pos_player( t_mapinfo *mapinfo)

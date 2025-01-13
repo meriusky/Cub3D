@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:16:32 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/12 17:51:23 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:09:08 by mehernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,7 @@ void	space_dealer(t_mapinfo *mapinfo, int i, int j)
 				mapinfo->map[j - 1][i] == ' ' || mapinfo->map[j][i - 1] == ' '
 				||mapinfo->map[j][i + 1] == ' ' ||
 				mapinfo->map[j + 1][i] == ' ')
-			{
-				printf("ERROR: This should be a one☝️\n");
-				printf("j:%d\n", j);
-				printf("i:%d\n", i);
-				error_free(mapinfo, NULL);
-			}
+				error_free(mapinfo, NULL, "ERROR: This should be a one☝️");
 		}
 	}
 	return ;
@@ -55,13 +50,10 @@ int	map_line_checker( t_mapinfo *mapinfo)
 			{
 				space_dealer(mapinfo, i, j);
 				if (sto_finder(mapinfo->map[j][i], mapinfo) == 1)
-					error_free(mapinfo, NULL);
+					error_free(mapinfo, NULL, "MAP ERROR: more then one player");
 			}
 			else
-			{
-				printf("MAP ERROR: something is not supposed to be there🐛\n");
-				error_free(mapinfo, NULL);
-			}
+				error_free(mapinfo, NULL, "MAP ERROR: something is not supposed to be there🐛");
 			i++;
 		}
 		j++;
@@ -71,8 +63,7 @@ int	map_line_checker( t_mapinfo *mapinfo)
 
 void	take_map( t_mapinfo *mapinfo)
 {
-	if (map_line_checker(mapinfo) == 1)
-		error_free(mapinfo, NULL);
+	map_line_checker(mapinfo);
 	max_line(mapinfo);
 	initial_pos_player(mapinfo);
 	printf("🍊everything full👌\n");
