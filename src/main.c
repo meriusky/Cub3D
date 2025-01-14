@@ -6,7 +6,7 @@
 /*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:57:11 by frankgar          #+#    #+#             */
-/*   Updated: 2025/01/02 16:17:58 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/14 09:50:56 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,248 +15,6 @@
 int	exit_window(int value)
 {
 	exit(value);
-}
-
-void print_wall(t_game *game, int pos_x, int pos_y)
-{
-	int x;
-	int	y;
-	int	blck_size;
-
-	blck_size = WALL_SIZE;
-	pos_y = pos_y * blck_size;
-	pos_x = pos_x * blck_size;
-	y = pos_y;
-	while (y <= pos_y + blck_size)
-	{
-		x = pos_x;
-		while (x++ <= pos_x + blck_size)
-		{
-			mlx_put_pixel(game->img, x, y, 0x959595FF);
-		}
-		y++;
-	}	
-}
-
-void	print_vision_ray(t_game *game, double pixel_angle, double x, double y)
-{
-	double dx;
-	double dy;
-	int map_x; 
-	int map_y;
-	
-	dx = cos(pixel_angle);
-	dy = -sin(pixel_angle);
-	x = game->player.pos_x * WALL_SIZE;
-	y = game->player.pos_y * WALL_SIZE;
-	map_y = (int)y / WALL_SIZE;
-	while (true)
-	{
-		mlx_put_pixel(game->img, (int)x, (int)y, 0x424242FF);
-		map_x = (int)x / WALL_SIZE;
-        if (game->map.map[map_y][map_x] == '1')
-		{
-            mlx_put_pixel(game->img, (int)x, (int)y, 0x00F3FFFF);
-            break;
-        }
-        map_y = (int)y / WALL_SIZE;
-        if (game->map.map[map_y][map_x] == '1')
-		{
-
-            mlx_put_pixel(game->img, (int)x, (int)y, 0x00F3FFFF);
-            break;
-        }
-		x += dx * 0.75;
-		y += dy * 0.75;
-    }
-}
-
-void	graphics(t_game *game)
-{
-    double	start_angle;
-    double	end_angle;
-    double	pixel_angle;
-	double	angs;
-
-	start_angle = (game->player.pova - FOV / 2) * M_PI / 180.0;
-	end_angle = (game->player.pova + FOV / 2) * M_PI / 180.0;
-	angs = ((FOV * M_PI) / 180) / WIN_WITH;
-	if (start_angle < 0)
-		start_angle += 2 * M_PI;
-	if (end_angle > 2 * M_PI)
-		end_angle -= 2 * M_PI;
-	pixel_angle = start_angle;
-	while (pixel_angle != end_angle)
-	{
-		print_vision_ray(game, pixel_angle, 0, 0);
-		if (pixel_angle < end_angle && pixel_angle + angs > end_angle)
-			pixel_angle = end_angle;
-		else
-			pixel_angle += angs;
-		if (pixel_angle > 2 * M_PI)
-			pixel_angle -= 2 * M_PI;
-    }
-}
-
-
-void print_player(t_game *game, double pos_x, double pos_y, uint32_t color) 
-{
-    int		y;
-	int		x;
-
-    pos_x *= WALL_SIZE;
-    pos_y *= WALL_SIZE;	
-    y = -PLAYER_RADIUS - 2;
-    while (y <= PLAYER_RADIUS - 2) 
-	{
-        x = -PLAYER_RADIUS - 2;
-        while (x <= PLAYER_RADIUS - 2) 
-		{
-            if (x * x + y * y <= (PLAYER_RADIUS - 2) * (PLAYER_RADIUS - 2)) 
-				mlx_put_pixel(game->img, (int)pos_x + x, (int)pos_y + y, color);
-            x++;
-        }
-        y++;
-    }
-}
-
-void print_map(t_game *game)
-{
-	int y;
-	int	x;
-
-	y = 0;
-	x = 0;
-	while (y < game->map.max_y)
-	{
-		x = 0;
-		while (x < game->map.max_x)
-		{
-			if (game->map.map[y][x] == '1')
-				print_wall(game, x, y);
-			x++;
-		}
-		y++;
-	}
-	print_player(game, game->player.pos_x, game->player.pos_y, 0xFF0000FF);
-}
-
-double	get_closest_to_wall(double origin_pos, double new_pos)
-{
-	double	closest_pos_to_wall;
-
-	closest_pos_to_wall = (double)((int)origin_pos);
-	if (origin_pos > new_pos)
-		closest_pos_to_wall += (PLAYER_RADIUS + 1) * 0.01;
-	else if (origin_pos < new_pos)
-		closest_pos_to_wall += 1 - ((PLAYER_RADIUS + 1) * 0.01);
-	else
-		closest_pos_to_wall = origin_pos;
-	return (closest_pos_to_wall);
-}
-
-void	get_moves(t_game *game, double *new_x, double *new_y)
-{
-	double	x;
-	double	y;
-	int		map_x;
-	int		map_y;
-
-	y = -PLAYER_RADIUS * 0.01;
-    while (y <= PLAYER_RADIUS * 0.01)
-    {
-		x = -PLAYER_RADIUS * 0.01;
-    	while (x <= PLAYER_RADIUS * 0.01)
-    	{
-			if (x * x + y * y <= PLAYER_RADIUS * PLAYER_RADIUS * 0.01) 
-			{
-				map_x = game->player.pos_x + x;
-				map_y = *new_y + y;
-				if (game->map.map[map_y][map_x] == '1')
-					*new_y = get_closest_to_wall(game->player.pos_y, *new_y);
-				map_x = *new_x + x;
-				map_y = game->player.pos_y + y;
-				if (game->map.map[map_y][map_x] == '1')
-					*new_x = get_closest_to_wall(game->player.pos_x, *new_x);
-				x += 0.01;
-			}
-        }
-		y += 0.01;
-	}
-}
-
-void	check_colisions(t_game *game, double *new_x, double *new_y)
-{
-	double	x;
-	double	y;
-	int		map_x;
-	int		map_y;
-
-	y = -PLAYER_RADIUS * 0.01;
-    while (y <= PLAYER_RADIUS * 0.01)
-    {
-		x = -PLAYER_RADIUS * 0.01;
-    	while (x <= PLAYER_RADIUS * 0.01)
-    	{
-			if (x * x + y * y <= PLAYER_RADIUS * PLAYER_RADIUS * 0.01) 
-			{
-				map_x = *new_x + x;
-				map_y = *new_y + y;
-				if (game->map.map[map_y][map_x] == '1')
-				{
-					*new_y = get_closest_to_wall(game->player.pos_y, *new_y);
-					*new_x = get_closest_to_wall(game->player.pos_x, *new_x);
-				}
-				x += 0.01;
-			}
-        }
-		y += 0.01;
-	}
-}
-
-int	movement(t_game *game, double move_angle)
-{
-    double new_x;
-    double new_y;
-
-    new_x = game->player.pos_x;
-    new_y = game->player.pos_y;
-    if (move_angle >= 0)
-	{
-		new_x += (MOVE_STEP * cos(move_angle * M_PI / 180.0));
-    	new_y -= (MOVE_STEP * sin(move_angle * M_PI / 180.0));
-		get_moves(game, &new_x, &new_y);
-		check_colisions(game, &new_x, &new_y);
-	}
-    game->player.pos_x = new_x;
-    game->player.pos_y = new_y;
-	return (1);
-}
-
-double	get_movement_angle(t_game *game, int *key_set)
-{
-	double	move_angle;
-	double	move[4];
-
-	game->player.pova += (game->player.pova < 0) * 360;
-	game->player.pova -= (game->player.pova >= 360) * 360;
-	move_angle = game->player.pova;
-	move[0] = !(key_set[0] && key_set[1]) * key_set[0];
-	move[1] = !(key_set[0] && key_set[1]) * key_set[1];
-	move[2] = !(key_set[2] && key_set[3]) * key_set[2];
-	move[3] = !(key_set[2] && key_set[3]) * key_set[3];
-	move[2] -= (move[2]) * (move[0] * 0.5 + move[1] * 1.5);
-	move[3] -= (move[3]) * (move[0] * 0.5 + move[1] * 1.5);
-	if (!move[0] && !move[1] && !move[2] && !move[3])
-		return (-1);
-	move_angle += move[1] * 180;
-	move_angle += move[2] * 90;
-	move_angle -= move[3] * 90;
-	move_angle += (move_angle < 0) * 360;
-	move_angle -= (move_angle >= 360) * 360;
-	game->player.dirx = cos(game->player.pova);
-	game->player.diry = -sin(game->player.pova);
-	return (move_angle);
 }
 
 int	event_listener(mlx_t *mlx, t_game *game)
@@ -281,29 +39,11 @@ int	event_listener(mlx_t *mlx, t_game *game)
 		rotation += ROT_SPEED;
 	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
 		rotation -= ROT_SPEED;
-	game->player.pova += rotation;
+	game->pl.pova += rotation;
 	move_angle = get_movement_angle(game, move);
 	if (move_angle != -1 || rotation)
 		return (movement(game, move_angle));
 	return (0);
-}
-
-void	clear_screen(t_game *game)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y <= WIN_LEN)
-	{
-		x = 0;
-		while (x <= WIN_WITH)
-		{
-			mlx_put_pixel(game->img, x, y, 0x000000);
-			x++;
-		}
-		y++;
-	}
 }
 
 void	render_game(void *param)
@@ -312,70 +52,10 @@ void	render_game(void *param)
 
 	game = param;
 	if (event_listener(game->mlx, game))
-	{
-		clear_screen(game);
-		print_map(game);	
-		graphics(game);
-    	print_player(game, game->player.pos_x, game->player.pos_y, 0xFF0000FF);
-	}
-		
-}
-void	var_init(t_game *game)
-{
-	game->map.map = ft_calloc(8, sizeof(char *));
-    if (!game->map.map)
-        exit(printf("Error malloc\n") * 0 + 1);
-    
-    // Inicialización de cada fila del mapa
-    game->map.map[0] = ft_strdup("11111111111111111");
-    game->map.map[1] = ft_strdup("10000000000000001");
-    game->map.map[2] = ft_strdup("10000000100000001");
-    game->map.map[3] = ft_strdup("10000001010000001");
-    game->map.map[4] = ft_strdup("10000000100000001");
-    game->map.map[5] = ft_strdup("10000000000000001");
-    game->map.map[6] = ft_strdup("11111111111111111");
-
-	game->map.max_x = 17;
-	game->map.max_y = 7;
-	game->map.stx = 7;
-	game->map.sty = 4;
-	game->map.sto = NORTH;
-	game->map.floor = 0xFC7A00FF;
-	game->map.ceiling = 0x00DADAFF;
-///////////////////////////////////////////////////
-	game->player.pos_x = (double)game->map.stx + 0.5;
-	game->player.pos_y = (double)game->map.sty + 0.5;
-	game->player.pova = (double)game->map.sto;
-	game->player.dirx = cos(game->player.pova);
-	game->player.diry = -sin(game->player.pova);
+		draw_game(game);
 }
 
-void init_window(t_game *game)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	game->mlx = mlx_init(WIN_WITH + 1, WIN_LEN + 1, "Cub3D", RESIZE);
-	game->img = mlx_new_image(game->mlx, WIN_WITH + 1, WIN_LEN + 1);
-	while (y < game->map.max_y)
-	{
-		x = 0;
-		while (x < game->map.max_x)
-		{
-			if (game->map.map[y][x] == '1')
-				mlx_put_pixel(game->img, x, y, 0x00000000);
-			x++;
-		}
-		y++;
-	}
-	print_map(game);	
-	graphics(game);
-    print_player(game, game->player.pos_x, game->player.pos_y, 0xFF0000FF);
-	mlx_image_to_window(game->mlx, game->img, 0, 0);
-}
-
-int main()
+int	main(void)
 {
 	t_game	game;
 
@@ -385,8 +65,5 @@ int main()
 	mlx_loop_hook(game.mlx, render_game, &game);
 	mlx_loop(game.mlx);
 	mlx_terminate(game.mlx);
-	for (int i = 0; i < game.map.max_y; i++)
-		free(game.map.map[i]);
-	free(game.map.map);
-	return (0);	
+	exit(0);
 }

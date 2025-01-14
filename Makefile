@@ -6,7 +6,7 @@
 #    By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 10:44:59 by frankgar          #+#    #+#              #
-#    Updated: 2024/11/23 22:02:12 by frankgar         ###   ########.fr        #
+#    Updated: 2025/01/14 09:35:42 by frankgar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ FLAGS = -Wall -Werror -Wextra -O3 -g -fsanitize=address
 INCLUDES = -I ./inc/\
            -I ./libft/\
 		   -I ./MLX42/include/MLX42/
-SRC = main.c 
+SRC = main.c graphics.c graphics_utils.c inits.c movement.c  
 
 DIR_SRC = ./src
 DIR_OBJ = $(DIR_SRC)/obj
@@ -53,4 +53,4 @@ re: fclean all
 
 .PHONY: fclean all clean re dir
 
-.SILENT:
+#.SILENT:
