@@ -3,26 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mehernan <mehernan@student.42barcel>       +#+  +:+       +#+        */
+/*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 20:24:36 by mehernan          #+#    #+#             */
-/*   Updated: 2022/06/18 02:35:28 by mehernan         ###   ########.fr       */
+/*   Created: 2023/10/13 12:37:48 by frankgar          #+#    #+#             */
+/*   Updated: 2023/10/13 16:37:01 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
+#include <fcntl.h>
+
+int	ft_power(int power)
+{
+	int	result;
+
+	result = 1;
+	if (power == 0)
+		return (result);
+	while (power != 0)
+	{
+		result *= 10;
+		power--;
+	}
+	return (result);
+}
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	long	number;
+	int	sign;
+	int	tmp;
+	int	len;
 
-	number = n;
-	if (number < 0)
+	sign = 1;
+	len = 0;
+	tmp = n;
+	if (n < 0)
 	{
-		ft_putchar_fd('-', fd);
-		number *= -1;
+		sign = -1;
+		write (fd, "-", 1);
 	}
-	if (number >= 10)
-		ft_putnbr_fd(number / 10, fd);
-	ft_putchar_fd('0' + (number % 10), fd);
+	if (n == 0)
+		len++;
+	while (tmp != 0)
+	{
+		tmp /= 10;
+		len++;
+	}
+	while (len > 0)
+	{
+		tmp = (n / ft_power(--len) * sign) + '0';
+		write (fd, &tmp, 1);
+		n = n - ((n / ft_power(len)) * ft_power(len));
+	}
 }
+/*
+int	main(int argc, char **argv)
+{
+	if (argc != 2)
+		return (0);
+	int fd;
+
+	fd = open("archivo.txt", O_WRONLY);
+	
+	ft_putnbr_fd(atoi(argv[1]), fd);
+	printf ("\n"); 
+	return (0);
+}*/

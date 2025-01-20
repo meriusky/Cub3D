@@ -3,67 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mehernan <mehernan@student.42barcel>       +#+  +:+       +#+        */
+/*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/12 17:56:38 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/12 19:29:47 by mehernan         ###   ########.fr       */
+/*   Created: 2023/10/09 10:48:20 by frankgar          #+#    #+#             */
+/*   Updated: 2023/10/10 11:37:15 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_lumaca(int number, int n)
+char	*mfill(int len, int n, int i, int signo)
 {
-	char	digito;
-	char	*result;
+	char	*str;
 
-	result = ft_calloc(sizeof(char), (number + 1));
-	if (!result)
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
 		return (NULL);
-	if (n < 0)
-	{
-		result[0] = '-';
-		n = n * -1;
-	}
-	number--;
+	if (n == 0)
+		str[0] = '0';
+	i = len--;
+	if (signo == -1)
+		str[0] = '-';
 	while (n != 0)
 	{
-		digito = '0' + (n % 10);
+		str[len--] = n % 10 * signo + '0';
 		n = n / 10;
-		result[number] = digito;
-		number--;
 	}
-	return (result);
-}
-
-int	calcular_numero_de_digitos(int n)
-{
-	int	num_dig;
-
-	num_dig = 0;
-	if (n < 0)
-		num_dig++;
-	while (n != 0)
-	{
-		n = n / 10;
-		num_dig++;
-	}
-	return (num_dig);
+	str[i] = '\0';
+	return (str);
 }
 
 char	*ft_itoa(int n)
 {
-	int		numero_de_digitos;
-	char	*result;
+	int		signo;
+	int		i;
+	int		len;
+	char	*str;
 
-	if (n == -2147483648)
-		result = ft_strdup("-2147483648");
-	else if (n == 0)
-		result = ft_strdup("0");
-	else
+	if (n > 2147483647 || n < -2147483648)
+		return (NULL);
+	signo = 1;
+	i = n;
+	len = 0;
+	if (n == 0)
+		len = 1;
+	if (n < 0)
 	{
-		numero_de_digitos = calcular_numero_de_digitos(n);
-		result = ft_lumaca(numero_de_digitos, n);
+		signo = -1;
+		len++;
 	}
-	return (result);
+	while (i != 0)
+	{
+		i = i / 10;
+		len++;
+	}
+	str = mfill(len, n, i, signo);
+	return (str);
 }
+
+/*int	main(int argc, char **argv)
+{
+	if (argc != 2)
+	   return (0);
+	printf("str: %s\n", ft_itoa(atoi(argv[1])));
+	return (0);
+}*/	

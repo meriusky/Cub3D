@@ -3,30 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mehernan <mehernan@student.42barcel>       +#+  +:+       +#+        */
+/*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 13:52:32 by mehernan          #+#    #+#             */
-/*   Updated: 2022/05/19 13:21:51 by mehernan         ###   ########.fr       */
+/*   Created: 2023/09/17 16:47:38 by frankgar          #+#    #+#             */
+/*   Updated: 2023/09/19 12:51:55 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t	count;
-	char	*ptra;
-	char	*ptrb;
+	size_t	i;
 
-	if (!dst && !src)
-		return (NULL);
-	count = 0;
-	ptra = (char *)dst;
-	ptrb = (char *)src;
-	while (count < n)
+	i = 0;
+	if ((unsigned char *)src == (unsigned char *)dst)
+		return (0);
+	while (i < n)
 	{
-		ptra[count] = ptrb[count];
-		count++;
+		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+		i++;
 	}
 	return (dst);
 }
+/*#include <stdio.h>
+int main(int c, char **v)
+{
+	if (c == 4)
+		printf ("Resultado: '%s'.\n", ft_memcpy(v[1], v[2], atoi(v[3])));
+	else
+		printf("error de argumentos :D.\n");
+	return (0);
+}*/

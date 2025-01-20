@@ -3,81 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mehernan <mehernan@student.42barcel>       +#+  +:+       +#+        */
+/*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 17:33:06 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/12 19:02:53 by mehernan         ###   ########.fr       */
+/*   Created: 2023/10/07 13:33:55 by frankgar          #+#    #+#             */
+/*   Updated: 2024/01/21 12:28:04 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	free_mem_case_error(char **result, int i)
+int	ft_word_count(char const *s, char c)
 {
-	int	count;
+	int	i;
+	int	qword;
 
-	count = 0;
-	while (count < i)
-	{
-		free(result[count]);
-		count++;
-	}
-	free(result);
-}
-
-char	**construct_result(char **result, char const *s, char c)
-{
-	int		count;
-	int		start;
-	int		i;
-
-	count = -1;
 	i = 0;
-	start = 0;
-	while (s[++count] != '\0')
+	qword = 0;
+	if (s[0] != c && s[0] != '\0')
+		qword++;
+	while (s[i])
 	{
-		if (s[count] == c && s[count + 1] != c)
-			start = count + 1;
-		if (s[count] != c && (s[count + 1] == c || s[count + 1] == '\0'))
-		{
-			result[i] = ft_substr(s, start, count - start + 1);
-			if (!result[i])
-			{
-				free_mem_case_error(result, i);
-				return (NULL);
-			}
-			i++;
-		}
+		if (s[i] == c && s[i + 1] != c && s[i + 1] != '\0')
+			qword++;
+		i++;
 	}
-	result[i] = NULL;
-	return (result);
+	return (qword);
 }
 
-int	contar_palabras(char const *s, char c)
+char	**ft_shut_down_and_get_off(char **str, int qword)
 {
-	int	num_palabras;
-	int	count;
-
-	num_palabras = 0;
-	count = 0;
-	while (s[count])
-	{
-		if (s[count] != c && (s[count + 1] == c || s[count + 1] == '\0'))
-			num_palabras++;
-		count++;
-	}
-	return (num_palabras);
+	while (qword >= 0)
+		free (str[qword--]);
+	free (str);
+	return (0);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**result;
-	int		num_palabras;
+	char	**str;
+	int		start;
+	int		fin;
+	int		qword;
 
-	num_palabras = contar_palabras(s, c);
-	result = malloc(sizeof(char *) * (num_palabras + 1));
-	if (!result)
+	start = 0;
+	qword = 0;
+	str = (char **) malloc((ft_word_count(s, c) + 1) * sizeof (char *));
+	if (!str)
 		return (NULL);
-	result = construct_result(result, s, c);
-	return (result);
+	while (qword < ft_word_count(s, c))
+	{
+		while (s[start] == c)
+			start++;
+		fin = start;
+		while (s[fin] != c && s[fin] != '\0')
+			fin++;
+		str[qword] = ft_substr(s, start, fin - start);
+		if (!str[qword])
+			return (ft_shut_down_and_get_off(str, qword - 1));
+		start = fin;
+		qword++;
+	}
+	str[qword] = 0;
+	return (str);
 }
+/*
+int	main(void)
+{
+	char	**tab;
+
+	tab = ft_split(NULL, 'a');
+	return (0);
+}*/

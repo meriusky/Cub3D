@@ -3,39 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mehernan <mehernan@student.42barcel>       +#+  +:+       +#+        */
+/*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 15:25:40 by mehernan          #+#    #+#             */
-/*   Updated: 2022/12/03 20:51:15 by mehernan         ###   ########.fr       */
+/*   Created: 2023/10/02 12:08:51 by frankgar          #+#    #+#             */
+/*   Updated: 2023/10/05 10:15:19 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	count;
-	size_t	count2;
-	char	*result;
+	char	*str;
+	size_t	i;
 
-	count = 0;
-	count2 = 0;
-	while (s[count] != '\0')
-		count++;
-	if (start >= count)
-		start = count;
-	if (len > count - start)
-		result = malloc(sizeof(char) * (count - start + 1));
-	else
-		result = malloc(sizeof(char) * (len + 1));
-	if (!result)
-		return (NULL);
-	while (start <= count && s[start] != '\0' && count2 < len)
+	i = 0;
+	if (start >= ft_strlen(s) || len == 0 || ft_strlen(s) == 0)
 	{
-		result[count2] = s[start];
-		start++;
-		count2++;
+		str = (char *)malloc(1);
+		if (str == NULL)
+			return (NULL);
+		str[i] = '\0';
+		return (str);
 	}
-	result[count2] = '\0';
-	return (result);
+	if (len > (ft_strlen(s) - start))
+		len = (ft_strlen(s) - start);
+	str = (char *) malloc ((len + 1) * sizeof (char));
+	if (str == NULL)
+		return (NULL);
+	while (i < len && s[start])
+		str[i++] = s[start++];
+	str[i] = '\0';
+	return (str);
 }

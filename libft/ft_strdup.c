@@ -3,34 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mehernan <mehernan@student.42barcel>       +#+  +:+       +#+        */
+/*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/28 19:57:56 by mehernan          #+#    #+#             */
-/*   Updated: 2022/06/07 16:46:59 by mehernan         ###   ########.fr       */
+/*   Created: 2023/10/02 09:58:18 by frankgar          #+#    #+#             */
+/*   Updated: 2023/10/07 18:36:40 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//guardar tanta memoria como la string tiene
-//hacer la copia
-//devolver el puntero en donde esta
+#include <stdlib.h>
+
 char	*ft_strdup(const char *s1)
 {
-	char	*ptr;
-	int		count;
+	char	*str;
 
-	count = 0;
-	while (s1 [count] != '\0')
-		count++;
-	ptr = malloc(sizeof(char) * (count + 1));
-	if (!ptr)
-		return (NULL);
-	count = 0;
-	while (s1[count] != '\0')
-	{
-		ptr[count] = s1[count];
-		count++;
-	}
-	ptr[count] = '\0';
-	return (ptr);
+	str = (char *)malloc ((int)ft_strlen (s1) + 1 * sizeof (char));
+	if (str)
+		ft_strlcpy (str, s1, (int)ft_strlen (s1) + 1);
+	return (str);
 }

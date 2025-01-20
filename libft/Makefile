@@ -3,57 +3,52 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mehernan <mehernan@student.42barcel>       +#+  +:+       +#+         #
+#    By: frankgar <frankgar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/05/25 23:56:16 by mehernan          #+#    #+#              #
-#    Updated: 2025/01/13 15:05:32 by mehernan         ###   ########.fr        #
+#    Created: 2023/09/17 20:46:05 by frankgar          #+#    #+#              #
+#    Updated: 2024/02/23 13:02:29 by frankgar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC = gcc
+CFLAGS = -Wall -Werror -Wextra
 
-SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
-	   ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
-	   ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c \
-	   ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c \
-	   ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c \
-	   ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c \
-	   ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_strcpy.c ft_realloc.c \
-	   ft_double_realloc.c ft_trim_space.c 
+SRC = ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
+		ft_isprint.c ft_memcpy.c ft_memmove.c ft_memset.c ft_strlen.c \
+		ft_strrchr.c ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c \
+		ft_strchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c \
+		ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c \
+		ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c \
+		ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c  ft_putnbr_fd.c \
+		get_next_line.c get_next_line_utils.c ft_strcpy.c ft_realloc.c \
+		ft_double_realloc.c ft_trim_space.c \
+		ft_printf.c ft_fd_printf.c
 
-SRCS_BONUS = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c \
-			 ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c \
-			 ft_lstmap_bonus.c
+DIR_OBJ = ./obj
+OBJ = $(addprefix $(DIR_OBJ)/, $(SRC:.c=.o))
+DEP = $(addprefix $(DIR_OBJ)/, $(SRC:.c=.d))
 
-OBJS = $(SRCS:.c=.o)
-OBJS_BONUS = ${SRCS_BONUS:.c=.o}
+all: dir $(NAME)
 
-CFLAGS = -Wall -Werror -Wextra -MMD
+dir:
+	mkdir -p $(DIR_OBJ)
 
-DEPS = $(SRCS:.c=.d)
-DEPBONUS = ${SRCS_BONUS:.c=.d}
+$(DIR_OBJ)/%.o: %.c Makefile
+	$(CC) $(CFLAGS) -MMD -c $< -o $@
+	echo "Compiling: $<"
 
-all: $(NAME)
-
--include $(DEPS)
-$(NAME): $(OBJS)
-	ar -rcs $(NAME) $(OBJS)
-
--include $(DEPBONUS)
-bonus: $(OBJS) $(OBJS_BONUS)
-	ar -rcs $(NAME) $(OBJS) $(OBJS_BONUS)
-	touch $@
+$(NAME): $(OBJ) Makefile 
+	ar -rcs $(NAME) $(OBJ)
 
 clean:
-	rm -f $(OBJS) $(OBJS_BONUS)
-	rm -f $(DEPS) $(DEPBONUS)
+	rm -rf $(DIR_OBJ) $(DIR_DEP)
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f bonus
+	rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+-include $(DEP)
+.PHONY: fclean all clean re
+.SILENT:

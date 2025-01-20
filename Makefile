@@ -3,57 +3,56 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+         #
+#    By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 14:41:41 by mehernan          #+#    #+#              #
 #    Updated: 2025/01/13 12:30:23 by mehernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = parsing_cub3D
+NAME = cub3D
+FLAGS = -Wall -Werror -Wextra -O3 -g -fsanitize=address 
+INCLUDES = -I ./inc/\
+           -I ./libft/\
+		   -I ./MLX42/include/MLX42/
 
-CC = gcc
-
-SRCS = main.c get_next_line/get_next_line.c \
-	   get_next_line/get_next_line_utils.c filter.c store_mapinfo.c \
+SRC = main.c filter.c store_mapinfo.c \
 	   store_colors.c error_management.c map_filter.c store_map.c \
-	   map_lines.c path_checker.c color_checker.c
-INCLUDES = -I ./libft/ \
-		   -I ./get_next_line/
-OBJS = $(SRCS:.c=.o)
-DEPS = $(SRCS:.c=.d)
+	   map_lines.c path_checker.c color_checker.c parsing.c graphics.c \
+	   graphics_utils.c inits.c movement.c 
 
-BUFFER_SIZE = 1000
-CFLAGS = -Werror -Wextra -Wall -MMD -D BUFFER_SIZE=$(BUFFER_SIZE) 
-LDFLAGS = -Llibft -l ft #-l get_next_line -l ft
+DIR_SRC = ./src
+DIR_OBJ = $(DIR_SRC)/obj
+OBJ = $(addprefix $(DIR_OBJ)/, $(SRC:.c=.o))
+DEP = $(addprefix $(DIR_OBJ)/, $(SRC:.c=.d))
 
-LIBFT_PATH = libft/libft.a
-GNL_PATH = get_next_line/get_next_line.c
+all: dir $(NAME)
 
-# Color definitions
-GREEN = \033[32m
-RESET = \033[0m
+dir:
+	cmake ./MLX42 -B ./MLX42/build/ && make -C ./MLX42/build/ -j4 --no-print-directory
+	make -C ./libft --no-print-directory
+	mkdir -p $(DIR_OBJ)
 
-all: 
-	@$(MAKE) $(NAME)
+$(DIR_OBJ)/%.o: $(DIR_SRC)/%.c Makefile
+	$(CC) -MMD $(FLAGS)  -c $< -o $@ $(INCLUDES)
 
-$(NAME): libft  $(OBJS)
-	@echo "$(GREEN)Parsing compiled!🩷$(RESET)"
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LDFLAGS) -o $(NAME)
-
-libft: 
-	@make -C libft
+$(NAME): $(OBJ) ./libft/libft.a ./MLX42/build/libmlx42.a 
+	$(CC) $(FLAGS) $(OBJ) -Iinclude -ldl -lglfw -pthread -lm ./libft/libft.a ./MLX42/build/libmlx42.a -o $@ $(INCLUDES)
+	echo "$(NAME) Created :D"
 
 clean:
-	rm -f $(OBJS)
-	rm -f $(DEPS)
+	rm -rf $(DIR_OBJ)
+	rm -rf ./MLX42/build
+	make clean -C ./libft/ --no-print-directory 
+	echo "DEPENDENCIES Erased :D"
 
 fclean: clean
-	$(MAKE) -C libft fclean
 	rm -rf $(NAME)
+	make fclean -C ./libft/ --no-print-directory 
+	echo "EVERYTHING Erased D:"
 
 re: fclean all
 
--include $(DEPS)
+-include $(DEP)
 
-.PHONY: all clean fclean re libft
+.PHONY: fclean all clean re dir

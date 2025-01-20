@@ -3,29 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mehernan <mehernan@student.42barcel>       +#+  +:+       +#+        */
+/*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/16 19:24:30 by mehernan          #+#    #+#             */
-/*   Updated: 2022/05/18 16:52:41 by mehernan         ###   ########.fr       */
+/*   Created: 2023/09/17 13:06:21 by frankgar          #+#    #+#             */
+/*   Updated: 2024/03/09 18:53:07 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
- 	Recibo un puntero a un espacio de la memeoria (void *b
-	Relleno con valor 0, n espacios a partir de donde empieza el puntero)
- */
 
-#include "libft.h"
+#include <stddef.h>
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t	count;
-	char	*dst;
+	size_t	i;
 
-	dst = (char *)s;
-	count = 0;
-	while (count < n)
+	i = 0;
+	while (i < n)
 	{
-		dst[count] = 0;
-		count++;
+		((unsigned char *)s)[i] = '\0';
+		i++;
 	}
 }

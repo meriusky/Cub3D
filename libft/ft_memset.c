@@ -3,31 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mehernan <mehernan@student.42barcel>       +#+  +:+       +#+        */
+/*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/15 19:20:35 by mehernan          #+#    #+#             */
-/*   Updated: 2022/05/17 15:16:24 by mehernan         ###   ########.fr       */
+/*   Created: 2023/09/17 11:01:05 by frankgar          #+#    #+#             */
+/*   Updated: 2023/09/17 20:31:11 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-/*
- 	recibo un puntero que apunta a un espacio de memoria (void *b)
-	relleno en "len" espacios el valor de c
-	devulevo un puntero al sitio donde apuntaba b
- */
 void	*ft_memset(void *b, int c, size_t len)
 {
-	unsigned char	*str;
-	size_t			i;
+	size_t	i;
 
 	i = 0;
-	str = (unsigned char *)b;
 	while (i < len)
 	{
-		str[i] = c;
+		((unsigned char *)b)[i] = c;
 		i++;
 	}
-	return (str);
+	return (b);
 }
+/*
+#include <stdio.h>
+int main(int c, char **v)
+{
+	if (c == 4)
+	{	
+	printf ("la solucion es: %s \n", ft_memset(v[1], v[2][0], atoi(v[3])));
+	}
+	else 
+		printf("Error de argumenots :D \n");
+	return (0);
+}*/

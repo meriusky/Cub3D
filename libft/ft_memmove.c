@@ -3,40 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mehernan <mehernan@student.42barcel>       +#+  +:+       +#+        */
+/*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 19:27:27 by mehernan          #+#    #+#             */
-/*   Updated: 2022/05/19 17:33:59 by mehernan         ###   ########.fr       */
+/*   Created: 2023/09/17 18:36:18 by frankgar          #+#    #+#             */
+/*   Updated: 2023/10/05 09:57:32 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t	count;
-	char	*ptrd;
-	char	*ptrs;
+	size_t	i;
 
-	count = 0;
-	ptrd = (char *)dst;
-	ptrs = (char *)src;
-	if (ptrd < ptrs)
+	i = 0;
+	if ((unsigned char *)src == NULL && (unsigned char *)dst == NULL)
+		return (0);
+	if (dst > src)
 	{
-		while (count < len)
+		while (len)
 		{
-			ptrd[count] = ptrs[count];
-			count++;
+			((unsigned char *)dst)[len - 1] = ((unsigned char *)src)[len - 1];
+			len--;
 		}
 	}
-	else if (ptrd > ptrs)
+	else
 	{
-		count = len;
-		while (count > 0)
+		while (i < len)
 		{
-			count--;
-			ptrd[count] = ptrs[count];
+			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			i++;
 		}
 	}
 	return (dst);
 }
+/*
+#include <stdio.h>
+#include <string.h>
+int main(int c, char **v)
+{
+
+	if (c == 4)
+		printf ("Tu Resultado: '%s'.\n", ft_memmove(v[1], v[2], atoi(v[3])));
+	else if (c == 5)
+		printf ("Resultado Esperado: '%s'.\n", memmove(v[1], v[2], atoi(v[3])));
+	else
+		printf("error de argumentos :D.\n");
+	return (0);
+}*/
