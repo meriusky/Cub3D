@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:48:02 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/12 19:30:56 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:26:04 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -78,7 +78,7 @@ char	*strjoin(char const *s1, char const *s2)
 	free((void *)s1);
 	return (snew);
 }
-
+/*
 size_t	ft_strlen(const char *s)
 {
 	int	i;
@@ -87,4 +87,4 @@ size_t	ft_strlen(const char *s)
 	while (s[i] != '\0')
 		i++;
 	return (i);
-}
+}*/

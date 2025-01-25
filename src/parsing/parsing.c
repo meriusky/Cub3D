@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:22:48 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/13 17:06:37 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/25 19:22:03 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -23,13 +23,13 @@ int	dot_cub_checker(char **argv)
 			return (0);
 		else
 		{
-			printf("ERROR: just files .cub allowed\n");
+			ft_fd_printf(2, "ERROR: just files .cub allowed\n");
 			return (1);
 		}
 	}
 	else
 	{
-		printf("ERROR: file not valid\n");
+		ft_fd_printf(2, "ERROR: file not valid\n");
 		return (1);
 	}
 }
@@ -39,26 +39,26 @@ int	open_error(char *argv, int fd)
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 	{
-		printf("ERROR: file doesn't exist\n");
+		ft_fd_printf(2, "ERROR: file doesn't exist\n");
 		exit(1);
 	}
 	return (fd);
 }
 
-int	parsing(int argc, char **argv)
+t_mapinfo	parsing(int argc, char **argv)
 {
 	int			fd;
 	char		*line;
 	t_mapinfo	mapinfo;
 
 	fd = 0;
+	ft_bzero(&mapinfo, sizeof(t_mapinfo));
 	if (argc == 2)
 	{
 		if (dot_cub_checker(argv) == 0)
 			fd = open_error(argv[1], fd);
 		else
 			exit(1);
-		ft_bzero(&mapinfo, sizeof(t_mapinfo));
 		line = get_next_line(fd);
 		while (line != NULL)
 		{
@@ -69,7 +69,7 @@ int	parsing(int argc, char **argv)
 		take_map(&mapinfo);
 	}
 	else
-		printf("ERROR: just the executable and map name allowed\n");
+		error_args();
 	close(fd);
-	return (0);
+	return (mapinfo);
 }

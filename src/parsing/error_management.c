@@ -6,14 +6,20 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:04:21 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/13 16:57:12 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/25 19:01:01 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
 
+void	error_args(void)
+{
+	ft_fd_printf(2, "ERROR: ARGS: Just the executable and map path\n");
+	exit(1);
+}
+
 void	error_free(t_mapinfo *mapinfo, char *line, char *print)
 {
-	printf("%s\n", print);
+	ft_fd_printf(2, "%s\n", print);
 	free(line);
 	if (mapinfo != NULL)
 	{
@@ -25,27 +31,5 @@ void	error_free(t_mapinfo *mapinfo, char *line, char *print)
 		free(mapinfo->raw_floor);
 		free(mapinfo->map);
 	}
-	printf("all malloc free🕊️\n");
 	exit(1);
 }
-/*
-int		filled_textures(t_mapinfo *mapinfo)// no hace falta BORRAR 
-{
-	int i;
-	
-	i = 0;
-	printf("🚨SOYUNTIL?🚨\n");
-	if(mapinfo->north != NULL)
-		i++;		
-	if(mapinfo->south != NULL)
-		i++;	
-	if(mapinfo->east != NULL)
-		i++;
-	if(mapinfo->west != NULL)
-		i++;
-	if(mapinfo->floor != NULL)
-		i++;
-	if(mapinfo->ceiling != NULL)
-		i++;
-	return(i);
-}	*/

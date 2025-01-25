@@ -6,7 +6,7 @@
 /*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:42:17 by frankgar          #+#    #+#             */
-/*   Updated: 2025/01/14 09:50:31 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/18 18:42:54 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	draw_game(t_game *game)
 	x = WIN_WITH;
 	ray.ray_angle = (game->pl.pova - (FOV / 2)) * M_PI / 180.0;
 	ray.angle_step = (FOV * M_PI / 180.0) / WIN_WITH;
-	while (x >= 0 )
+	while (x >= 0)
 	{
 		get_hit_distance(game, &ray);
 		wall.height = (int)(WIN_LEN / ray.perp_dist);
@@ -91,8 +91,7 @@ void	draw_game(t_game *game)
 		wall.wall_x = get_wall_pixel_x(*game, ray);
 		draw_texture(game->img, ray.texture, x, wall);
 		draw_world(game, wall, x);
-		ray.t_hit_x = ray.hit_x;
-		ray.t_hit_y = ray.hit_y;
+		ray.angle_step = (FOV * M_PI / 180.0) / WIN_WITH;
 		ray.ray_angle += ray.angle_step;
 		x--;
 	}

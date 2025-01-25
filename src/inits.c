@@ -6,7 +6,7 @@
 /*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 13:47:43 by frankgar          #+#    #+#             */
-/*   Updated: 2025/01/14 09:46:00 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/25 19:24:07 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	init_textures(t_game *game)
 {
-	game->texture.north = mlx_load_png("sprites/North.png");
-	game->texture.south = mlx_load_png("sprites/South.png");
-	game->texture.east = mlx_load_png("sprites/East.png");
-	game->texture.west = mlx_load_png("sprites/West.png");
+	game->texture.north = mlx_load_png("sprites/texture.png");
+	game->texture.south = mlx_load_png("sprites/texture.png");
+	game->texture.east = mlx_load_png("sprites/texture.png");
+	game->texture.west = mlx_load_png("sprites/texture.png");
 	if (!game->texture.north || !game->texture.south
 		|| !game->texture.east || !game->texture.west)
 	{
@@ -37,9 +37,9 @@ void	var_init(t_game *game)
 		exit(printf("Error malloc\n") * 0 + 1);
 	game->map.map[0] = ft_strdup(" 111111111111111 ");
 	game->map.map[1] = ft_strdup("10000000000011111");
-	game->map.map[2] = ft_strdup("10111111111111111");
+	game->map.map[2] = ft_strdup("10111111111000111");
 	game->map.map[3] = ft_strdup("11011111111010101");
-	game->map.map[4] = ft_strdup("111001   10000101");
+	game->map.map[4] = ft_strdup("111001   10000001");
 	game->map.map[5] = ft_strdup("11111111111111001");
 	game->map.map[6] = ft_strdup("10010001000001001");
 	game->map.map[7] = ft_strdup("10010001001001001");

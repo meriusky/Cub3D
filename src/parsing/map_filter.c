@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:16:32 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/13 17:09:08 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:59:17 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,4 @@ void	take_map( t_mapinfo *mapinfo)
 	map_line_checker(mapinfo);
 	max_line(mapinfo);
 	initial_pos_player(mapinfo);
-	printf("🍊everything full👌\n");
 }

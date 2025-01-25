@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:09:04 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/12 17:41:03 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:57:04 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -26,7 +26,10 @@ void	sorting_for_store(char *line, t_mapinfo *mapinfo, int i)
 	else if (line[i] == 'C')
 		ceiling_color(line, mapinfo, i);
 	else
-		printf("ERROR: information needed not found\n");
+	{
+		ft_fd_printf(2, "ERROR: information needed not found\n");
+		exit(1);
+	}
 	return ;
 }
 

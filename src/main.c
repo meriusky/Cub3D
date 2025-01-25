@@ -6,11 +6,12 @@
 /*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:57:11 by frankgar          #+#    #+#             */
-/*   Updated: 2025/01/14 09:50:56 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/25 19:20:15 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include <cub3D.h>
+#include <parsing.h>
 
 int	exit_window(int value)
 {
@@ -55,10 +56,14 @@ void	render_game(void *param)
 		draw_game(game);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	t_game	game;
+	t_game		game;
+	//t_mapindo	tmp_map;
 
+	(void)argc;
+	(void)argv;
+	//tmp_map parsing(argc, argv);
 	ft_bzero(&game, sizeof(t_game));
 	var_init(&game);
 	init_window(&game);

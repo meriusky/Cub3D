@@ -6,7 +6,7 @@
 /*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:43:00 by frankgar          #+#    #+#             */
-/*   Updated: 2025/01/14 09:52:12 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/25 19:02:44 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 mlx_image_t	*get_texture(t_game *game, t_ray *ray)
 {
-	if (ray->side == 0)
+	if (ray->hit_side == 0)
 	{
 		if (ray->ray_angle_dx > 0)
 			return (game->texture.img_e);
@@ -43,7 +43,7 @@ void	set_hit_info(t_game *game, t_ray *ray, double x, double y)
 	ray->dist = dist;
 	ray->perp_dist = perp_dist;
 }
-// PROBAR QUITANDO EL RETURN
+
 void	get_hit_distance(t_game *game, t_ray *ray)
 {
 	double	x;
@@ -55,14 +55,14 @@ void	get_hit_distance(t_game *game, t_ray *ray)
 	ray->ray_angle_dx = cos(ray->ray_angle);
 	ray->ray_angle_dy = -sin(ray->ray_angle);
 	tmp_y = (int)y;
-	ray->side = -1;
-	while (ray->side == -1)
+	ray->hit_side = NO_HIT;
+	while (ray->hit_side == NO_HIT)
 	{
 		if (game->map.map[tmp_y][(int)x] == '1')
-			ray->side = 0;
+			ray->hit_side = HIT_IN_Y;
 		else if (game->map.map[(int)y][(int)x] == '1')
-			ray->side = 1;
-		if (ray->side == 1 || ray->side == 0)
+			ray->hit_side = HIT_IN_X;
+		if (ray->hit_side == HIT_IN_X || ray->hit_side == HIT_IN_Y)
 			set_hit_info(game, ray, x, y);
 		tmp_y = (int)y;
 		x += ray->ray_angle_dx * 0.001;
@@ -74,10 +74,11 @@ double	get_wall_pixel_x(t_game game, t_ray ray)
 {
 	double	wall_x;
 
-	wall_x = (ray.hit_x - floor(ray.hit_x)) * 10000 / ray.texture->width;
-	if (ray.side == 0)
-		wall_x = (ray.hit_y - floor(ray.hit_y)) * 10000 / ray.texture->width;
-	if (ray.texture == game.texture.img_n || ray.texture == game.texture.img_w)
+	if (ray.hit_side == HIT_IN_Y)
+		wall_x = (ray.hit_y - floor(ray.hit_y)) * ray.texture->width;
+	else
+		wall_x = (ray.hit_x - floor(ray.hit_x)) * ray.texture->width;
+	if (ray.texture == game.texture.img_s || ray.texture == game.texture.img_w)
 		wall_x = ray.texture->width - wall_x - 1;
 	return (wall_x);
 }

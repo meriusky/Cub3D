@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 17:25:28 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/13 17:04:08 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:59:37 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -15,7 +15,6 @@ void	floor_color(char *line, t_mapinfo *mapinfo, int i)
 {
 	i++;
 	rgb_space(line, i);
-	printf("i: %d\n", i);
 	while (line[i] != '\0')
 	{
 		if (line[i] == ' ')

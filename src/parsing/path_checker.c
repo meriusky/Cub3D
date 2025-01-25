@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:02:15 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/13 17:10:36 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:58:39 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -22,10 +22,7 @@ void	extension_checker(char *line)
 	{
 		if (line[i] == '.' && line[i + 1] == 'p' && line[i + 2] == 'n'
 			&& line[i + 3] == 'g' && line[i + 4] == '\n')
-		{
 			check++;
-			printf("extension correct✅\n");
-		}
 		i++;
 	}
 	if (check != 1)
