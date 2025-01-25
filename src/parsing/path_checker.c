@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:02:15 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/25 20:14:45 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/25 21:05:49 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -43,7 +43,7 @@ char	*get_texture_path(char *line)
 		end_line++;
 	if (line[end_line - 1] == '\n')
 		line[end_line - 1] = '\0';
-	return(&line[i]);
+	return (&line[i]);
 }
 
 void	path_checker(char *line)

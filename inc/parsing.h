@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:23:56 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/25 20:30:58 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/25 21:05:21 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_colors
 	uint8_t		g;				// Defines the green color
 	uint8_t		b;				// Defines the blue color
 	uint8_t		a;				// Defines de alpha color (opacity)
-	uint32_t	color;			// Defines the color based on the previous rgba
 }	t_colors;
 
 typedef struct s_mapinfo
