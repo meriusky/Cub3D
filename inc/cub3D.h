@@ -6,7 +6,7 @@
 /*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:01:24 by frankgar          #+#    #+#             */
-/*   Updated: 2025/01/25 19:22:54 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/25 20:32:52 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "MLX42.h"
+# include "parsing.h"
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
@@ -30,7 +31,7 @@
 
 # define ROT_SPEED 4
 # define MOVE_STEP 0.1
-# define FOV 90
+# define FOV 60
 
 # define WIN_WITH 1920
 # define WIN_LEN 1080
@@ -67,7 +68,7 @@ typedef struct s_map
 {
 	char			**map;		// Contains the Map 
 	char			*north;		// Texture North file path
-	char			*sout;		// Texture South file path
+	char			*south;		// Texture South file path
 	char			*east;		// Texture East file path
 	char			*west;		// Texture West file path
 	uint32_t		floor;		// Floor Color
@@ -112,7 +113,7 @@ typedef struct s_game
 //////////////////////////////////// INITS /////////////////////////////////////
 
 void		init_textures(t_game *game);
-void		var_init(t_game *game);
+void		var_init(t_game *game, t_mapinfo *mapinfo);
 void		init_window(t_game *game);
 
 ////////////////////////////////// MOVEMENT ////////////////////////////////////

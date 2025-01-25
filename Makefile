@@ -6,7 +6,7 @@
 #    By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 14:41:41 by mehernan          #+#    #+#              #
-#    Updated: 2025/01/25 19:13:13 by frankgar         ###   ########.fr        #
+#    Updated: 2025/01/25 21:01:59 by frankgar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,12 @@ DIR_OBJ = $(DIR_SRC)/obj
 OBJ = $(addprefix $(DIR_OBJ)/, $(SRC:.c=.o))
 DEP = $(addprefix $(DIR_OBJ)/, $(SRC:.c=.d))
 
-all: dir $(NAME)
+all: clear dir $(NAME)
 
-dir:
+clear:
+	clear
+
+dir: clear
 	cmake ./inc/MLX42 -B ./inc/MLX42/build/ && make -C ./inc/MLX42/build/ -j4 --no-print-directory
 	make -C ./inc/libft --no-print-directory
 	mkdir -p $(DIR_OBJ)
@@ -44,28 +47,32 @@ $(NAME): $(OBJ) ./inc/libft/libft.a ./inc/MLX42/build/libmlx42.a
 	$(CC) $(FLAGS) $(OBJ) -Iinclude -ldl -lglfw -pthread -lm ./inc/libft/libft.a ./inc/MLX42/build/libmlx42.a -o $@ $(INCLUDES)
 	echo "$(NAME) Created :D"
 
-clean:
+clean: clear
 	rm -rf $(DIR_OBJ)
 	rm -rf ./inc/MLX42/build
 	make clean -C ./inc/libft/ --no-print-directory 
 	echo "DEPENDENCIES Erased :D"
 
-fclean: clean
+fclean: clear clean
 	rm -rf $(NAME)
 	make fclean -C ./inc/libft/ --no-print-directory 
 	echo "EVERYTHING Erased D:"
 
-push:
+push: clear
 ifndef COMMIT
 	echo "Error: La variable COMMIT no está definida. Usa 'make push COMMIT=\"mensaje\"'"
 else
-	make fclean -C ./
-	git add .
-	git commit -m "$(COMMIT)"
-	git push	
+	@if [ "$(NORM)" = "NO" ] || norminette $(DIR_SRC) >/dev/null; then \
+		echo "Norminette passed! Continuando con el push..."; \
+		git add .; \
+		git commit -m "$(COMMIT)"; \
+		git push; \
+	else \
+		echo "Norminette failed! Corrige los errores antes de hacer el push."; \
+	fi	
 endif
 
-re: fclean all
+re: clear fclean all
 
 -include $(DEP)
 

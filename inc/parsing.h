@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:23:56 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/25 19:21:16 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/25 20:30:58 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_mapinfo
 	int			stx;			// Initial X position from player
 	int			sty;			// Initial Y position from player
 	int			sto;			// Initial Player's Point Of View
-	int			check;			// 
+	int			check;			// Checks if the file's extensions are correct
 }	t_mapinfo;
 
 /******************************** PARSING PART ********************************/
@@ -74,6 +74,7 @@ void			count_map_lines(t_mapinfo *mapinfo, char *line);
 
 ///////////////////////////////// PATH CHECKER /////////////////////////////////
 
+char			*get_texture_path(char *line);
 void			path_checker( char *line);
 
 ///////////////////////////////// COLOR CHECKER ////////////////////////////////

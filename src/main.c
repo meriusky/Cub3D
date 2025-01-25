@@ -6,7 +6,7 @@
 /*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:57:11 by frankgar          #+#    #+#             */
-/*   Updated: 2025/01/25 19:20:15 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/25 20:25:08 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,11 @@ void	render_game(void *param)
 int	main(int argc, char **argv)
 {
 	t_game		game;
-	//t_mapindo	tmp_map;
+	t_mapinfo	tmp_map;
 
-	(void)argc;
-	(void)argv;
-	//tmp_map parsing(argc, argv);
 	ft_bzero(&game, sizeof(t_game));
-	var_init(&game);
+	tmp_map = parsing(argc, argv);
+	var_init(&game, &tmp_map);
 	init_window(&game);
 	mlx_loop_hook(game.mlx, render_game, &game);
 	mlx_loop(game.mlx);

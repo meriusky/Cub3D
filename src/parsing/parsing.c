@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:22:48 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/25 19:22:03 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/25 20:18:48 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -67,9 +67,9 @@ t_mapinfo	parsing(int argc, char **argv)
 			line = get_next_line(fd);
 		}
 		take_map(&mapinfo);
+		close(fd);
 	}
 	else
 		error_args();
-	close(fd);
 	return (mapinfo);
 }

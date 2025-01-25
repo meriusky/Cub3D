@@ -1,10 +1,10 @@
-NO ./path
-SO ./path
-WE ./path
-EA ./path
+NO ./sprites/texture.png
+SO ./sprites/texture.png
+WE ./sprites/texture.png
+EA ./sprites/texture.png
 
-F 200,100,0
-C 225,30,0
+F 43,124,0
+C 0,218,218
 
 111111111111111
 100000100000001
@@ -17,4 +17,3 @@ C 225,30,0
 111000000000001
 100000000000001
 111111111111111
-

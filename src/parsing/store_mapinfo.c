@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 16:23:26 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/13 16:58:41 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/25 20:38:55 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	north_texture(char *line, t_mapinfo *mapinfo, int i)
 			{
 				if (mapinfo->north != NULL)
 					error_free(mapinfo, line, "ERROR: duplicated texture");
-				path_checker(line);
-				mapinfo->north = ft_strdup(line);
+				path_checker(get_texture_path(line));
+				mapinfo->north = ft_strdup(get_texture_path(line));
 				return ;
 			}
 		}
-		error_free(mapinfo, line, "error: wrong north texture path");
+		error_free(mapinfo, line, "ERROR: wrong north texture path");
 	}
 	else
 		error_free(mapinfo, line, "ERROR: north textute information wrong");
@@ -51,8 +51,8 @@ void	south_texture(char *line, t_mapinfo *mapinfo, int i)
 			{
 				if (mapinfo->south != NULL)
 					error_free(mapinfo, line, "ERROR: duplicated texture");
-				path_checker(line);
-				mapinfo->south = ft_strdup(line);
+				path_checker(get_texture_path(line));
+				mapinfo->south = ft_strdup(get_texture_path(line));
 				return ;
 			}
 		}
@@ -76,8 +76,8 @@ void	west_texture(char *line, t_mapinfo *mapinfo, int i)
 			{
 				if (mapinfo->west != NULL)
 					error_free(mapinfo, line, "ERROR: duplicated texture");
-				path_checker(line);
-				mapinfo->west = ft_strdup(line);
+				path_checker(get_texture_path(line));
+				mapinfo->west = ft_strdup(get_texture_path(line));
 				return ;
 			}
 		}
@@ -101,8 +101,8 @@ void	east_texture(char *line, t_mapinfo *mapinfo, int i)
 			{
 				if (mapinfo->east != NULL)
 					error_free(mapinfo, line, "ERROR: duplicated texture");
-				path_checker(line);
-				mapinfo->east = ft_strdup(line);
+				path_checker(get_texture_path(line));
+				mapinfo->east = ft_strdup(get_texture_path(line));
 				return ;
 			}
 		}

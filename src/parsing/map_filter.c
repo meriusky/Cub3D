@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:16:32 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/25 18:59:17 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/25 20:05:34 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	map_line_checker( t_mapinfo *mapinfo)
 	int	j;
 
 	i = 0;
-	j = 0;
-	while (mapinfo->map[j++])
+	j = -1;
+	while (mapinfo->map[++j])
 	{
 		i = 0;
 		while (mapinfo->map[j][i])
