@@ -6,12 +6,14 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:23:56 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/25 21:05:21 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/26 15:20:28 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
+
+# define CLEAR_SCREEN "\x1b[1J \x1b[H"
 
 # include "libft.h"
 # include <stdio.h>

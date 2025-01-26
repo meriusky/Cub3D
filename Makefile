@@ -6,7 +6,7 @@
 #    By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 14:41:41 by mehernan          #+#    #+#              #
-#    Updated: 2025/01/25 21:01:59 by frankgar         ###   ########.fr        #
+#    Updated: 2025/01/26 13:56:48 by frankgar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,15 +60,15 @@ fclean: clear clean
 
 push: clear
 ifndef COMMIT
-	echo "Error: La variable COMMIT no está definida. Usa 'make push COMMIT=\"mensaje\"'"
+	echo "Error: COMMIT variable not setted. Use 'make push COMMIT=\"mensaje\"'"
 else
-	@if [ "$(NORM)" = "NO" ] || norminette $(DIR_SRC) >/dev/null; then \
-		echo "Norminette passed! Continuando con el push..."; \
+	if [ "$(NORM)" = "NO" ] || norminette $(DIR_SRC) >/dev/null; then \
+		echo "Norminette passed!"; \
 		git add .; \
 		git commit -m "$(COMMIT)"; \
 		git push; \
 	else \
-		echo "Norminette failed! Corrige los errores antes de hacer el push."; \
+		echo "Norminette failed! Not going to push."; \
 	fi	
 endif
 

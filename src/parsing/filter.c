@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:09:04 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/25 18:57:04 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/26 15:27:17 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -26,10 +26,7 @@ void	sorting_for_store(char *line, t_mapinfo *mapinfo, int i)
 	else if (line[i] == 'C')
 		ceiling_color(line, mapinfo, i);
 	else
-	{
-		ft_fd_printf(2, "ERROR: information needed not found\n");
-		exit(1);
-	}
+		error_free(mapinfo, line, "ERROR: information needed not found");
 	return ;
 }
 
@@ -50,13 +47,13 @@ void	sorter(char *line, t_mapinfo *mapinfo)
 		{
 			mapinfo->check++;
 			if (mapinfo->check > 6)
-				error_free(mapinfo, line, "ERROR: too many textures or colors");
+				error_free(mapinfo, line, "ERROR: Too many textures or colors");
 			sorting_for_store(line, mapinfo, i);
 			return ;
 		}
 		else if (line[i] == ' ' || line[i] == '\n')
 			i++;
 		else
-			error_free(mapinfo, line, "ERROR: map error, char no allowed");
+			error_free(mapinfo, line, "ERROR: Map error, unexpected content");
 	}
 }

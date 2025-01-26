@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:16:32 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/25 20:05:34 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/26 17:21:28 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,45 @@
 
 void	space_dealer(t_mapinfo *mapinfo, int i, int j)
 {
-	if (mapinfo->map[j][i] != ' ' && mapinfo->map[j][i] != '\n')
+	if (ft_strchr("0NESW", mapinfo->map[j][i]))
 	{
-		if (mapinfo->map[j][i] != '1')
-		{
-			if ((j == 0 && mapinfo->map[j][i] != 1) || i == 0 ||
-				(ft_strlen(mapinfo->map[j + 1]) < (size_t)i + 1) ||
-				(ft_strlen(mapinfo->map[j - 1]) < (size_t)i + 1) ||
-				mapinfo->map[j - 1][i] == ' ' || mapinfo->map[j][i - 1] == ' '
-				||mapinfo->map[j][i + 1] == ' ' ||
-				mapinfo->map[j + 1][i] == ' ')
-				error_free(mapinfo, NULL, "ERROR: This should be a one☝️");
-		}
+		if (i == 0 || j == 0 || j + 1 == mapinfo->max_y || \
+			(!ft_strchr("10NEWS", mapinfo->map[j][i + 1]) || \
+			!ft_strchr("10NEWS", mapinfo->map[j][i - 1]) || \
+			!ft_strchr("10NEWS", mapinfo->map[j + 1][i]) || \
+			!ft_strchr("10NEWS", mapinfo->map[j - 1][i])))
+			error_free(mapinfo, NULL, "ERROR: Map not closed");
 	}
-	return ;
 }
 
-void	map_line_checker( t_mapinfo *mapinfo)
+void	map_line_checker(t_mapinfo *mapinfo)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = -1;
-	while (mapinfo->map[++j])
+	while (mapinfo->map && mapinfo->map[++j])
 	{
 		i = 0;
 		while (mapinfo->map[j][i])
 		{
-			if (mapinfo->map[j][i] == '1' || mapinfo->map[j][i] == '0'
-				|| mapinfo->map[j][i] == ' ' || mapinfo->map[j][i] == '\n')
+			if (ft_strchr("10 \n", mapinfo->map[j][i]))
 				space_dealer(mapinfo, i, j);
-			else if (mapinfo->map[j][i] == 'N' || mapinfo->map[j][i] == 'S'
-					|| mapinfo->map[j][i] == 'E' || mapinfo->map[j][i] == 'W')
+			else if (ft_strchr("NESW", mapinfo->map[j][i]))
 			{
 				space_dealer(mapinfo, i, j);
 				if (sto_finder(mapinfo->map[j][i], mapinfo) == 1)
-					error_free(mapinfo, NULL, "ERROR: more then one player");
+					error_free(mapinfo, NULL, "ERROR: More then one player");
 			}
 			else
-				error_free(mapinfo, NULL, "ERROR: not supposed to be there🐛");
+				error_free(mapinfo, NULL, "ERROR: Unexpected content in map");
 			i++;
 		}
 	}
 }
 
-void	take_map( t_mapinfo *mapinfo)
+void	take_map(t_mapinfo *mapinfo)
 {
 	map_line_checker(mapinfo);
 	max_line(mapinfo);

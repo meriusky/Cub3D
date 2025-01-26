@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:40:11 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/13 17:07:47 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:17:53 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -21,6 +21,7 @@ void	count_map_lines(t_mapinfo *mapinfo, char *line)
 	if (!mapinfo->map)
 		error_free(mapinfo, line, "Failed to reallocate memory");
 	mapinfo->map[j] = ft_strdup(line);
+	mapinfo->max_y++;
 	if (!mapinfo->map[j])
 		error_free(mapinfo, line, "Failed to allocate memory for line");
 	j++;

@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:02:15 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/25 21:05:49 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/26 10:55:08 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -18,7 +18,7 @@ void	extension_checker(char *line)
 
 	i = 0;
 	check = 0;
-	while (line[i] != '\0')
+	while (line && line[i] != '\0')
 	{
 		if (line[i] == '.' && line[i + 1] == 'p' && line[i + 2] == 'n'
 			&& line[i + 3] == 'g' && line[i + 4] == '\0')
@@ -26,8 +26,7 @@ void	extension_checker(char *line)
 		i++;
 	}
 	if (check != 1)
-		error_free(NULL, line, "ERROR: wrong extension, just .png allawed📸");
-	return ;
+		error_free(NULL, NULL, "ERROR: wrong extension, just .png allawed📸");
 }
 
 char	*get_texture_path(char *line)

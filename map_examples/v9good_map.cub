@@ -1,7 +1,8 @@
-NO ./sprites/texture.png
-SO ./sprites/texture.png
-WE ./sprites/texture.png
-EA ./sprites/texture.png
+NO ./sprites/xd.png
+SO ./sprites/xd.png
+WE ./sprites/xd.png
+EA ./sprites/xd.png
+
 
 F 43,124,0
 C 0,218,218

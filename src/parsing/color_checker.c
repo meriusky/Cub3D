@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:54:46 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/13 17:27:22 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/26 15:40:17 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,12 @@ int	rgb_checker(char *line, int i, t_mapinfo *mapinfo, char c)
 	{
 		while (line[i] == ' ' || line[i] == ',')
 			i++;
-		if (line[i] == '\n')
+		if (!(line[i] >= 48 && line[i] <= 57))
+		{
+			if (line[i] != '\n')
+				error_free(mapinfo, NULL, "ERROR: Unexpected content in map");
 			break ;
+		}
 		rgb = parse_color_component(line, &i, mapinfo);
 		check++;
 		convert_rgb(mapinfo, rgb, check, c);

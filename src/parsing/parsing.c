@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:22:48 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/25 20:18:48 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/26 17:23:46 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -22,27 +22,27 @@ int	dot_cub_checker(char **argv)
 				argv[1][name_len - 3] == 'c' && argv[1][name_len - 4] == '.')
 			return (0);
 		else
-		{
-			ft_fd_printf(2, "ERROR: just files .cub allowed\n");
-			return (1);
-		}
+			error_free(NULL, NULL, "ERROR: Just files .cub allowed");
 	}
 	else
-	{
-		ft_fd_printf(2, "ERROR: file not valid\n");
-		return (1);
-	}
+		error_free(NULL, NULL, "ERROR: File not valid");
+	return (0);
 }
 
 int	open_error(char *argv, int fd)
 {
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
-	{
-		ft_fd_printf(2, "ERROR: file doesn't exist\n");
-		exit(1);
-	}
+		error_free(NULL, NULL, "ERROR: File doesn't exist");
 	return (fd);
+}
+
+void	check_content(t_mapinfo mapinfo)
+{
+	if (!(mapinfo.map && *mapinfo.map && **mapinfo.map && \
+		mapinfo.north && mapinfo.south && mapinfo.east && mapinfo.south && \
+		mapinfo.stx && mapinfo.sty))
+		error_free(NULL, NULL, "ERROR: Missing content\n");
 }
 
 t_mapinfo	parsing(int argc, char **argv)
@@ -57,8 +57,6 @@ t_mapinfo	parsing(int argc, char **argv)
 	{
 		if (dot_cub_checker(argv) == 0)
 			fd = open_error(argv[1], fd);
-		else
-			exit(1);
 		line = get_next_line(fd);
 		while (line != NULL)
 		{
@@ -68,6 +66,7 @@ t_mapinfo	parsing(int argc, char **argv)
 		}
 		take_map(&mapinfo);
 		close(fd);
+		check_content(mapinfo);
 	}
 	else
 		error_args();

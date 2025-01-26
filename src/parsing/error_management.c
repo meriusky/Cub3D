@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:04:21 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/25 19:01:01 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/26 15:26:41 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"
@@ -19,6 +19,9 @@ void	error_args(void)
 
 void	error_free(t_mapinfo *mapinfo, char *line, char *print)
 {
+	int	i;
+
+	i = 0;
 	ft_fd_printf(2, "%s\n", print);
 	free(line);
 	if (mapinfo != NULL)
@@ -29,6 +32,12 @@ void	error_free(t_mapinfo *mapinfo, char *line, char *print)
 		free(mapinfo->east);
 		free(mapinfo->raw_ceiling);
 		free(mapinfo->raw_floor);
+		while (i <= mapinfo->max_y)
+		{
+			if (mapinfo->map && mapinfo->map[i])
+				free(mapinfo->map[i]);
+			i++;
+		}
 		free(mapinfo->map);
 	}
 	exit(1);

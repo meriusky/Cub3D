@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 17:25:28 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/25 18:59:37 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/26 15:31:36 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "parsing.h"

@@ -6,7 +6,7 @@
 /*   By: frankgar <frankgar@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:01:24 by frankgar          #+#    #+#             */
-/*   Updated: 2025/01/25 20:32:52 by frankgar         ###   ########.fr       */
+/*   Updated: 2025/01/26 11:23:04 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define CLEAR_SCREEN "\x1b[1J \x1b[H"
 
 # define ROT_SPEED 4
-# define MOVE_STEP 0.1
+# define MOVE_STEP 0.2
 # define FOV 60
 
 # define WIN_WITH 1920

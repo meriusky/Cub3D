@@ -6,7 +6,7 @@
 /*   By: mehernan <mehernan@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:01:18 by mehernan          #+#    #+#             */
-/*   Updated: 2025/01/13 17:11:43 by mehernan         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:18:33 by frankgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@ void	max_line(t_mapinfo *mapinfo)
 
 	max_row = 0;
 	j = 0;
-	while (mapinfo->map[j])
+	while (mapinfo->map && mapinfo->map[j])
 	{
 		if (max_row < ft_strlen(mapinfo->map[j]))
 			max_row = ft_strlen(mapinfo->map[j]);
 		j++;
 	}
-	mapinfo->max_y = j;
 	mapinfo->max_x = max_row;
 }
 
@@ -56,7 +55,7 @@ void	initial_pos_player( t_mapinfo *mapinfo)
 	int	j;
 
 	j = 0;
-	while (mapinfo->map[j])
+	while (mapinfo->map && mapinfo->map[j])
 	{
 		i = 0;
 		while (mapinfo->map[j][i])
